@@ -5,10 +5,17 @@
  */
 package dao.Interfaces.medicaltype;
 
+import java.util.List;
+import pojos.SuggestionPojo;
+
 /**
  *
  * @author Hagar
  */
-public class NewClass {
-    
+public interface Suggestion {
+
+    public boolean create(SuggestionPojo suggest);
+
+    public List<SuggestionPojo> retrieve();
+
 }

@@ -5,10 +5,15 @@
  */
 package api.interfaces;
 
+import java.util.List;
+import pojos.MedicalTypePojo;
+
 /**
  *
  * @author Hagar
  */
-public class NewClass {
-    
+public interface MedicalTypeApi {
+
+    public List<MedicalTypePojo> getAllTypes();
+
 }
