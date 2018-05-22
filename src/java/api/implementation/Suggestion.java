@@ -6,7 +6,7 @@
 package api.implementation;
 
 import api.interfaces.SuggestionApi;
-import dao.Implementation.medicaltype.SuggestionImpl;
+import dao.Implementation.suggesstion.SuggestionImpl;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;

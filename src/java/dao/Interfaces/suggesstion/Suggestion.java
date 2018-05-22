@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao.Interfaces.medicaltype;
+package dao.Interfaces.suggesstion;
 
 import java.util.List;
 import pojos.SuggestionPojo;
