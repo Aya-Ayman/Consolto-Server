@@ -11,5 +11,13 @@
         <group>
             <file>file:/C:/Users/Mayada%20Saleh/Desktop/GP_GitHub/MedicalInsurance/web/post.jsp</file>
         </group>
+        <group name="UI">
+            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/api/implementation/CompanyApiUrl.java</file>
+            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/pojos/MedicalTypePojo.java</file>
+            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/pojos/EmployeePojo.java</file>
+            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/api/implementation/MedicalSurviceDetails.java</file>
+            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/api/implementation/MedicalType.java</file>
+            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/pojos/CompanyPojo.java</file>
+        </group>
     </open-files>
 </project-private>

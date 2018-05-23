@@ -5,8 +5,10 @@
  */
 package dao.Implementation.company;
 
+import dao.Implementation.employee.EmployeeDaoImp;
 import dao.Interfaces.company.CompanyDaoInterface;
 import dao.Interfaces.company.CompanyPhoneDaoInterface;
+import dao.Interfaces.employee.EmployeeDaoInt;
 import dbconnectionfactory.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +20,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pojos.CompanyPojo;
+import pojos.EmployeePojo;
 
 
 /**
@@ -217,25 +220,44 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
 
     @Override
     public boolean deleteCompany(int id) {
-        connection = DBConnection.getConnection();
-        Statement s = null;
-        String myQuery2 = "DELETE FROM company WHERE company_id=";
-
-        int return_flage = 0;
-       
-               CompanyPhoneDaoInterface companyPhoneObject = new CompanyPhoneDaoImplementation();
-               return_flage = companyPhoneObject.deleteCompanyPhone(id);
-               
-            try{
-                s = connection.createStatement();
-               return_flage = s.executeUpdate(myQuery2 + id);
+            
+                connection = DBConnection.getConnection();
+                Statement s = null;
+                String myQuery2 = "DELETE FROM company WHERE company_id=";
+                ArrayList<EmployeePojo> employeeOfCompany;
+                int return_flage = 0;
+              try{  
+                EmployeeDaoInt employeeObject = new EmployeeDaoImp();
+                employeeOfCompany= employeeObject.selectAllEmployees(id);
+                int size = employeeOfCompany.size();
+                int i = 0;
+                while(size>0)
+                {
+                  employeeObject.deleteEmployee(employeeOfCompany.get(i).getEmployeeId());
+                  i++;
+                  size--;
+                }
+              }
+              catch(SQLException ex){
+               Logger.getLogger(CompanyDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
+                  System.out.println("can't delete employees");
             }
-            catch(SQLException ex2){
-               Logger.getLogger(CompanyPojo.class.getName()).log(Level.SEVERE, null, ex2);
+                CompanyPhoneDaoInterface companyPhoneObject = new CompanyPhoneDaoImplementation();
+                return_flage = companyPhoneObject.deleteCompanyPhone(id);
+              
+                try{
+                    s = connection.createStatement();
+                    return_flage = s.executeUpdate(myQuery2 + id);
+                }
+                catch(SQLException ex2){
+                    Logger.getLogger(CompanyPojo.class.getName()).log(Level.SEVERE, null, ex2);
+                }
+                
+                return return_flage == 1;
             }
-       
-        return return_flage == 1;
-    }
+            
+    
+    
 }
     
    
