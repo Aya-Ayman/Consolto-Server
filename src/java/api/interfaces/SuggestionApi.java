@@ -16,6 +16,7 @@ import pojos.SuggestionPojo;
 public interface SuggestionApi {
 
     public ResponsePojo addSuggestion(SuggestionPojo suggest);
-        public List<SuggestionPojo> getAllSuggesstions();
+
+    public List<SuggestionPojo> getAllSuggesstions();
 
 }

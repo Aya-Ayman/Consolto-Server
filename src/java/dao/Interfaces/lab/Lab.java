@@ -5,10 +5,14 @@
  */
 package dao.Interfaces.lab;
 
+import pojos.LabPojo;
+
 /**
  *
  * @author Hagar
  */
-public class NewClass {
-    
+public interface Lab {
+
+    public LabPojo retrieve(int labId);
+
 }
