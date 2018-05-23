@@ -5,10 +5,17 @@
  */
 package dao.Interfaces.review;
 
+import java.util.ArrayList;
+import pojos.ReviewsPojo;
+
+
 /**
  *
- * @author Hagar
+ * @author hoda.CO
  */
-public class NewClass {
+public interface ReviewsDaoInt {
     
+    public boolean create(ReviewsPojo review);
+    
+    public ArrayList<ReviewsPojo> retrieveAll();
 }
