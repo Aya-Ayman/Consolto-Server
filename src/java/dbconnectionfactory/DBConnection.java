@@ -8,17 +8,17 @@ package dbconnectionfactory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author hoda.CO
+ * @author Hagar
  */
 public class DBConnection {
-     public static final String URL= "jdbc:mysql://localhost/medical_insurance_database";
-    public static final String USER = "root";
-    public static final String PASS = "";
+    
+
+    public static final String URL = "jdbc:mysql://localhost:3306/";
+    public static final String USER = "admin";
+    public static final String PASS = "admin";
 
     /**
      * public constructor used to get a connection and return it.
@@ -27,12 +27,8 @@ public class DBConnection {
      */
     public static Connection getConnection() {
         try {
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            return DriverManager.getConnection(URL ,USER, PASS);
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            return DriverManager.getConnection(URL + "medical_insurance_database", USER, PASS);
         } catch (SQLException ex) {
             throw new RuntimeException("RuntimeExceptionError connecting to the database", ex);
         }
