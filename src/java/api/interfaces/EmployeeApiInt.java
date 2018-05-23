@@ -6,6 +6,7 @@
 package api.interfaces;
 
 import javax.ws.rs.FormParam;
+import org.codehaus.jettison.json.JSONObject;
 import pojos.ResponseMessage;
 import pojos.ResponseMessageWithId;
 
@@ -15,7 +16,7 @@ import pojos.ResponseMessageWithId;
  */
 public interface EmployeeApiInt {
     
-    public ResponseMessageWithId login(@FormParam("name")String mail,@FormParam("number")String password);
-    public ResponseMessage getEmp(@FormParam("name")String mail);
+    public ResponseMessageWithId login(JSONObject login);
+    public ResponseMessage getEmp(JSONObject mail);
     
 }
