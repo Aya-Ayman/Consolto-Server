@@ -16,7 +16,10 @@ import java.util.logging.Logger;
  * @author hoda.CO
  */
 public class DBConnection {
-     public static final String URL= "jdbc:mysql://localhost/medical_insurance_database";
+   
+    
+    
+      public static final String URL= "jdbc:mysql://localhost:3306/medical_insurance_database";
     public static final String USER = "root";
     public static final String PASS = "";
 
