@@ -20,6 +20,7 @@ import pojos.SuggestionPojo;
  *
  * @author Hagar
  */
+
 @Path("/sgst")
 public class Suggestion implements SuggestionApi {
 

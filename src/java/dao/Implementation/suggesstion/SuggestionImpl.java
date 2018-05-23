@@ -27,7 +27,6 @@ public class SuggestionImpl implements Suggestion {
     public boolean create(SuggestionPojo suggest) {
 
         try (Connection connection = DBConnection.getConnection()) {
-          //  insertCartQuery.setInt(1, suggest.getSuggestId());
 
             PreparedStatement insertCartQuery = connection.prepareStatement("INSERT INTO medical_insurance_suggestion (suggest_id , suggest_text,suggest_medical_type,suggest_location_latitude,suggest_location_longitude,location_address,suggest_contact_phone,suggest_supervisor,suggest_date,medical_service_name_ar,medical_service_name_en,employee_employee_id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
             insertCartQuery.setString(2, suggest.getSuggestText());

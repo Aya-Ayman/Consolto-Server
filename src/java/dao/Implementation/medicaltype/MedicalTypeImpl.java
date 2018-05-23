@@ -35,7 +35,6 @@ public class MedicalTypeImpl implements MedicalType {
 
     @Override
     public List<MedicalTypePojo> retrieve() {
-        System.out.println("INSIDE RETRIEVE");
         List<MedicalTypePojo> allTypes = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
             PreparedStatement retrieveTypes = connection.prepareStatement("SELECT * FROM medical_type");

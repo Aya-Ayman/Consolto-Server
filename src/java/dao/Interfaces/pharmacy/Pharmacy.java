@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao.Implementation.lab;
+package dao.Interfaces.pharmacy;
+
+import pojos.PharmacyPojo;
 
 /**
  *
  * @author Hagar
  */
-public class NewClass {
-    
+public interface Pharmacy {
+
+    public PharmacyPojo retrieve(int pharmacyId);
+
 }

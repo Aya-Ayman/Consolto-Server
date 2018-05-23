@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao.Implementation.hospital;
+package api.interfaces;
 
 /**
  *
  * @author Hagar
  */
-public class NewClass {
-    
+public interface MedicalServiceDetailsApi {
+
+    public Object getDetails(int tid, int sid);
+
 }
