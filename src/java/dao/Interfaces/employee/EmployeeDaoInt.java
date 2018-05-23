@@ -5,10 +5,16 @@
  */
 package dao.Interfaces.employee;
 
+import pojos.EmployeePojo;
+
 /**
  *
- * @author Hagar
+ * @author hoda.CO
  */
-public class NewClass {
+public interface EmployeeDaoInt {
+    
+    public EmployeePojo retrieveByMailAndPassword(String mail, String password);
+    
+    public EmployeePojo retrieveByMail(String mail);
     
 }

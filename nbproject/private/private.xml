@@ -8,5 +8,21 @@
             <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/medicaltype/MedicalTypeImpl.java</file>
             <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/implementation/MedicalType.java</file>
         </group>
+        <group>
+            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/dao/Interfaces/employee/EmployeeDaoInt.java</file>
+            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/api/interfaces/EmployeeApiInt.java</file>
+            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/api/implementation/EmployeeApiImp.java</file>
+            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/dao/Implementation/review/ReviewsDaoImp.java</file>
+            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/api/implementation/ReviewsApiImp.java</file>
+            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/dbconnectionfactory/DBConnection.java</file>
+            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/web/WEB-INF/web.xml</file>
+            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/dao/Interfaces/review/ReviewsDaoInt.java</file>
+            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/api/implementation/MedicalType.java</file>
+            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/pojos/ResponseMessageWithId.java</file>
+            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/SendMailImp/SendMail.java</file>
+            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/api/interfaces/ReviewsApiInt.java</file>
+            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/pojos/ResponseMessage.java</file>
+            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/dao/Implementation/employee/EmployeeDaoImp.java</file>
+        </group>
     </open-files>
 </project-private>

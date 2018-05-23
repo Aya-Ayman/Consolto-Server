@@ -7,6 +7,7 @@ package pojos;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -27,6 +28,66 @@ public class CompanyPojo {
     private int medicalInsuranceInsuranceId;
     private ArrayList<String> companyPhones;
 
+     public CompanyPojo(String companyName, String companyEmail, double companyLatitude, double companyLongitude, String companyAddress, float companyPackage, Date companyStartDate, Date companyEndDate, String companyCEO, int insuranceId) {
+        this.companyId = companyId;
+        this.companyName = companyName;
+        this.companyEmail = companyEmail;
+        this.companyLatitude = companyLatitude;
+        this.companyLongitude = companyLongitude;
+        this.companyAddress = companyAddress;
+        this.companyPackageType = companyPackage;
+        this.companyStartDate = companyStartDate;
+        this.companyEndDate = companyEndDate;
+        this.companyCeo = companyCEO;
+        this.medicalInsuranceInsuranceId = insuranceId;
+    }
+
+    public CompanyPojo(int companyId, String companyName, String companyEmail, double companyLatitude, double companyLongitude, String companyAddress, float companyPackage, Date companyStartDate, Date companyEndDate, String companyCEO, int insuranceId, List<String> companyPhone) {
+        this.companyId = companyId;
+        this.companyName = companyName;
+        this.companyEmail = companyEmail;
+        this.companyLatitude = companyLatitude;
+        this.companyLongitude = companyLongitude;
+        this.companyAddress = companyAddress;
+        this.companyPackageType = companyPackage;
+        this.companyStartDate = companyStartDate;
+        this.companyEndDate = companyEndDate;
+        this.companyCeo = companyCEO;
+        this.medicalInsuranceInsuranceId = insuranceId;
+        this.companyPhones = (ArrayList<String>) companyPhone;
+    }
+
+    public CompanyPojo (int companyId, String companyName, String companyEmail, double companyLatitude, double companyLongitude, String companyAddress, float companyPackage, Date companyStartDate, Date companyEndDate, String companyCEO, int insuranceId) {
+        this.companyId = companyId;
+        this.companyName = companyName;
+        this.companyEmail = companyEmail;
+        this.companyLatitude = companyLatitude;
+        this.companyLongitude = companyLongitude;
+        this.companyAddress = companyAddress;
+        this.companyPackageType = companyPackage;
+        this.companyStartDate = companyStartDate;
+        this.companyEndDate = companyEndDate;
+        this.companyCeo = companyCEO;
+        this.medicalInsuranceInsuranceId = insuranceId;
+    }
+
+    public CompanyPojo (String name, String email, double latitude, double longitude, String address, float companyPackage, Date startDate, Date endDate, String ceo, int insuranceId, List companyPhone) {
+        this.companyName = name;
+        this.companyEmail = email;
+        this.companyLatitude = latitude;
+        this.companyLongitude = longitude;
+        this.companyAddress = address;
+        this.companyPackageType = companyPackage;
+        this.companyStartDate = startDate;
+        this.companyEndDate = endDate;
+        this.companyCeo = ceo;
+        this.medicalInsuranceInsuranceId = insuranceId;
+        this.companyPhones = (ArrayList<String>) companyPhone;
+    }
+
+    public CompanyPojo () { }
+    
+    
     public int getCompanyId() {
         return companyId;
     }
