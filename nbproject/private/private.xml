@@ -19,5 +19,12 @@
             <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/api/implementation/MedicalType.java</file>
             <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/pojos/CompanyPojo.java</file>
         </group>
+        <group name="chat">
+            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/dao/Interfaces/lab/LabSpecializations.java</file>
+            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/api/implementation/HospitalApiImplementation.java</file>
+            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/dao/Interfaces/pharmacy/Pharmacy.java</file>
+            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/api/implementation/PharmacyApiImplementation.java</file>
+            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/dao/Interfaces/pharmacy/PharmacyPhones.java</file>
+        </group>
     </open-files>
 </project-private>

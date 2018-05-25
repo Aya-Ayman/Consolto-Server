@@ -19,9 +19,9 @@ public class DBConnection {
    
     
     
-      public static final String URL= "jdbc:mysql://localhost:3306/medical_insurance_database";
+      public static final String URL= "jdbc:mysql://localhost:3305/medical_insurance_database";
     public static final String USER = "root";
-    public static final String PASS = "";
+    public static final String PASS = "1234";
 
     /**
      * public constructor used to get a connection and return it.
