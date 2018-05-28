@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <form action = "http://localhost:3038/MedicalInsuranceSystem/rest/company/update/4" method = "POST">
+       <form action = "http://localhost:3038/MedicalInsuranceSystem/api/version1/company/insert" method = "POST">
          company Name: <input type = "text" name = "name">
          <br />
          company Email: <input type = "text" name = "email" />
@@ -42,36 +42,6 @@
          <input type = "submit" value = "insert" />
           <br /> <br /> <br /> <br />
        </form>
-         
-         <form action = "http://localhost:8084/lab3_server/rest/user/insert" method = "POST"> 
-             ID: <input type = "text" name = "employee_id">
-            <br />
-            Name: <input type = "text" name = "name">
-            <br />
-            Mail: <input type = "text" name = "mail" />
-            <br />
-            Password: <input type = "text" name = "password" /> 
-            <br />
-            Company ID: <input type = "text" name = "company_id" /> 
-            <br />
-            
-            employee image :<input type = "bolb" name = "employee_image" /> 
-            <br />
-            address: <input type = "text" name = "address" />
-            <br />
-             Phones: <input type = "text" name = "phone1" />
-            <br />
-            <input type = "text" name = "phone2" />
-            <br /><input type = "text" name = "phone3" />
-            <br />
-            
-            job: <input type = "text" name = "job" />
-            <br>
-            <br>
-            <input type = "submit" value = "insertEmployee" />
-        </form>
-        <br>
-         
-         
+    
     </body>
 </html>

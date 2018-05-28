@@ -17,28 +17,21 @@ import java.util.logging.Logger;
  */
 public class DBConnection {
    
-    
-    
-      public static final String URL= "jdbc:mysql://localhost:3305/medical_insurance_database";
-    public static final String USER = "root";
-    public static final String PASS = "1234";
+     public static final String URL = "jdbc:mysql://localhost:3306/medical_insurance_database";
+    public static final String USERNAME = "root";
+    public static final String PASSWORD = "";
+    private static Connection connection;
 
-    /**
-     * public constructor used to get a connection and return it.
-     *
-     * @return connection object to the database
-     */
     public static Connection getConnection() {
         try {
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            return DriverManager.getConnection(URL ,USER, PASS);
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException ex) {
-            throw new RuntimeException("RuntimeExceptionError connecting to the database", ex);
+            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return connection;
     }
     
 }

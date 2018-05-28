@@ -7,6 +7,7 @@ package dao.Interfaces.company;
 
 import java.util.List;
 import pojos.CompanyPojo;
+import pojos.CompanyResponse;
 
 
 /**
@@ -23,7 +24,7 @@ public interface CompanyDaoInterface {
 
     boolean deleteCompany(int id);
     
-    CompanyPojo getCompany(int id);
+    CompanyResponse getCompany(int id);
    
     int getCompanyIdFromMail(String companyMail);
     
