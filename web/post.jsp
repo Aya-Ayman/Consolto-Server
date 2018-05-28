@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <form action = "http://localhost:3038/MedicalInsuranceSystem/api/version1/company/insert" method = "POST">
+       <form action = "http://localhost:4048/MedicalInsuranceSystem/api/version1/company/insert" method = "POST">
          company Name: <input type = "text" name = "name">
          <br />
          company Email: <input type = "text" name = "email" />
