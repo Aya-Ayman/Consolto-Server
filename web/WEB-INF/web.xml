@@ -25,7 +25,11 @@
 
 <servlet-name>jersey-servlet</servlet-name>
 
+<<<<<<< HEAD
 <url-pattern>/api/v1/*</url-pattern>
+=======
+<url-pattern>/api/version1/*</url-pattern>
+>>>>>>> 7e70936e4e18b1c769baf1958df1a7475d3e6252
 
 </servlet-mapping>
 

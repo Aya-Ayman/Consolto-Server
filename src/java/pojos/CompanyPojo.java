@@ -15,174 +15,175 @@ import java.util.List;
  */
 public class CompanyPojo {
 
-    private int companyId;
-    private String companyEmail;
-    private Double companyLatitude;
-    private Double companyLongitude;
-    private String companyAddress;
-    private Float companyPackageType;
-    private String companyName;
-    private Date companyStartDate;
-    private Date companyEndDate;
-    private String companyCeo;
-    private int medicalInsuranceInsuranceId;
-    private ArrayList<String> companyPhones;
+    private int id;
+    private String email;
+    private Double latitude;
+    private Double longitude;
+    private String address;
+    private Float packageType;
+    private String name;
+    private String startDate;
+    private String endDate;
+    private String ceo;
+    private int medicalInsuranceId;
+    private ArrayList<String> phones;
 
-     public CompanyPojo(String companyName, String companyEmail, double companyLatitude, double companyLongitude, String companyAddress, float companyPackage, Date companyStartDate, Date companyEndDate, String companyCEO, int insuranceId) {
-        this.companyId = companyId;
-        this.companyName = companyName;
-        this.companyEmail = companyEmail;
-        this.companyLatitude = companyLatitude;
-        this.companyLongitude = companyLongitude;
-        this.companyAddress = companyAddress;
-        this.companyPackageType = companyPackage;
-        this.companyStartDate = companyStartDate;
-        this.companyEndDate = companyEndDate;
-        this.companyCeo = companyCEO;
-        this.medicalInsuranceInsuranceId = insuranceId;
+     public CompanyPojo(String companyName, String companyEmail, double companyLatitude, double companyLongitude, String companyAddress, float companyPackage, String companyStartDate, String companyEndDate, String companyCEO, int insuranceId) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.latitude = latitude;
+        this.longitude = companyLongitude;
+        this.address = companyAddress;
+        this.packageType = companyPackage;
+        this.startDate = companyStartDate;
+        this.endDate = companyEndDate;
+        this.ceo = companyCEO;
+        this.medicalInsuranceId = insuranceId;
     }
 
-    public CompanyPojo(int companyId, String companyName, String companyEmail, double companyLatitude, double companyLongitude, String companyAddress, float companyPackage, Date companyStartDate, Date companyEndDate, String companyCEO, int insuranceId, List<String> companyPhone) {
-        this.companyId = companyId;
-        this.companyName = companyName;
-        this.companyEmail = companyEmail;
-        this.companyLatitude = companyLatitude;
-        this.companyLongitude = companyLongitude;
-        this.companyAddress = companyAddress;
-        this.companyPackageType = companyPackage;
-        this.companyStartDate = companyStartDate;
-        this.companyEndDate = companyEndDate;
-        this.companyCeo = companyCEO;
-        this.medicalInsuranceInsuranceId = insuranceId;
-        this.companyPhones = (ArrayList<String>) companyPhone;
+    public CompanyPojo(int companyId, String companyName, String companyEmail, double companyLatitude, double companyLongitude, String companyAddress, float companyPackage, String companyStartDate, String companyEndDate, String companyCEO, int insuranceId, List<String> companyPhone) {
+        this.id = companyId;
+        this.name = companyName;
+        this.email = companyEmail;
+        this.latitude = companyLatitude;
+        this.longitude = companyLongitude;
+        this.address= companyAddress;
+        this.packageType = companyPackage;
+        this.startDate = companyStartDate;
+        this.endDate = companyEndDate;
+        this.ceo = companyCEO;
+        this.medicalInsuranceId = insuranceId;
+        this.phones = (ArrayList<String>) companyPhone;
     }
 
-    public CompanyPojo (int companyId, String companyName, String companyEmail, double companyLatitude, double companyLongitude, String companyAddress, float companyPackage, Date companyStartDate, Date companyEndDate, String companyCEO, int insuranceId) {
-        this.companyId = companyId;
-        this.companyName = companyName;
-        this.companyEmail = companyEmail;
-        this.companyLatitude = companyLatitude;
-        this.companyLongitude = companyLongitude;
-        this.companyAddress = companyAddress;
-        this.companyPackageType = companyPackage;
-        this.companyStartDate = companyStartDate;
-        this.companyEndDate = companyEndDate;
-        this.companyCeo = companyCEO;
-        this.medicalInsuranceInsuranceId = insuranceId;
+    public CompanyPojo (int companyId, String companyName, String companyEmail, double companyLatitude, double companyLongitude, String companyAddress, float companyPackage, String companyStartDate, String companyEndDate, String companyCEO, int insuranceId) {
+        this.id = companyId;
+        this.name = companyName;
+        this.email = companyEmail;
+        this.latitude = companyLatitude;
+        this.longitude = companyLongitude;
+        this.address = companyAddress;
+        this.packageType = companyPackage;
+        this.startDate = companyStartDate;
+        this.endDate = companyEndDate;
+        this.ceo = companyCEO;
+        this.medicalInsuranceId = insuranceId;
     }
 
-    public CompanyPojo (String name, String email, double latitude, double longitude, String address, float companyPackage, Date startDate, Date endDate, String ceo, int insuranceId, List companyPhone) {
-        this.companyName = name;
-        this.companyEmail = email;
-        this.companyLatitude = latitude;
-        this.companyLongitude = longitude;
-        this.companyAddress = address;
-        this.companyPackageType = companyPackage;
-        this.companyStartDate = startDate;
-        this.companyEndDate = endDate;
-        this.companyCeo = ceo;
-        this.medicalInsuranceInsuranceId = insuranceId;
-        this.companyPhones = (ArrayList<String>) companyPhone;
+    public CompanyPojo (String name, String email, double latitude, double longitude, String address, float companyPackage, String startDate, String endDate, String ceo, int insuranceId, List companyPhone) {
+        this.name = name;
+        this.email = email;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.address = address;
+        this.packageType = companyPackage;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.ceo = ceo;
+        this.medicalInsuranceId = insuranceId;
+        this.phones = (ArrayList<String>) companyPhone;
     }
 
     public CompanyPojo () { }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Float getPackageType() {
+        return packageType;
+    }
+
+    public void setPackageType(Float packageType) {
+        this.packageType = packageType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getCeo() {
+        return ceo;
+    }
+
+    public void setCeo(String ceo) {
+        this.ceo = ceo;
+    }
+
+    public int getMedicalInsuranceId() {
+        return medicalInsuranceId;
+    }
+
+    public void setMedicalInsuranceId(int medicalInsuranceId) {
+        this.medicalInsuranceId = medicalInsuranceId;
+    }
+
+    public ArrayList<String> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(ArrayList<String> phones) {
+        this.phones = phones;
+    }
     
     
-    public int getCompanyId() {
-        return companyId;
-    }
-
-    public String getCompanyEmail() {
-        return companyEmail;
-    }
-
-    public Double getCompanyLatitude() {
-        return companyLatitude;
-    }
-
-    public Double getCompanyLongitude() {
-        return companyLongitude;
-    }
-
-    public String getCompanyAddress() {
-        return companyAddress;
-    }
-
-    public Float getCompanyPackageType() {
-        return companyPackageType;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public Date getCompanyStartDate() {
-        return companyStartDate;
-    }
-
-    public Date getCompanyEndDate() {
-        return companyEndDate;
-    }
-
-    public String getCompanyCeo() {
-        return companyCeo;
-    }
-
-    public int getMedicalInsuranceInsuranceId() {
-        return medicalInsuranceInsuranceId;
-    }
-
-    public ArrayList<String> getCompanyPhones() {
-        return companyPhones;
-    }
-
-    public void setCompanyId(int companyId) {
-        this.companyId = companyId;
-    }
-
-    public void setCompanyEmail(String companyEmail) {
-        this.companyEmail = companyEmail;
-    }
-
-    public void setCompanyLatitude(Double companyLatitude) {
-        this.companyLatitude = companyLatitude;
-    }
-
-    public void setCompanyLongitude(Double companyLongitude) {
-        this.companyLongitude = companyLongitude;
-    }
-
-    public void setCompanyAddress(String companyAddress) {
-        this.companyAddress = companyAddress;
-    }
-
-    public void setCompanyPackageType(Float companyPackageType) {
-        this.companyPackageType = companyPackageType;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public void setCompanyStartDate(Date companyStartDate) {
-        this.companyStartDate = companyStartDate;
-    }
-
-    public void setCompanyEndDate(Date companyEndDate) {
-        this.companyEndDate = companyEndDate;
-    }
-
-    public void setCompanyCeo(String companyCeo) {
-        this.companyCeo = companyCeo;
-    }
-
-    public void setMedicalInsuranceInsuranceId(int medicalInsuranceInsuranceId) {
-        this.medicalInsuranceInsuranceId = medicalInsuranceInsuranceId;
-    }
-
-    public void setCompanyPhones(ArrayList<String> companyPhones) {
-        this.companyPhones = companyPhones;
-    }
-    
+   
 
 }

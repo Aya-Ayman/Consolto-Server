@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pojos.CompanyPojo;
+import pojos.CompanyResponse;
 import pojos.EmployeePojo;
 
 
@@ -32,8 +33,9 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
     
     
     @Override
-    public CompanyPojo getCompany(int id) {
+    public CompanyResponse getCompany(int id) {
         CompanyPojo company = new CompanyPojo();
+         CompanyResponse companyResponse = new CompanyResponse();
          List<String>phoneList;
         connection = DBConnection.getConnection();
         ResultSet rs = null;
@@ -46,27 +48,32 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                company.setCompanyId(rs.getInt(1));
-                company.setCompanyEmail(rs.getString(2));
-                company.setCompanyLatitude(rs.getDouble(3));
-                company.setCompanyLongitude(rs.getDouble(4));
-                company.setCompanyAddress(rs.getString(5));
-                company.setCompanyPackageType(rs.getFloat(6));
-                company.setCompanyName(rs.getString(7));
-                company.setCompanyStartDate(rs.getDate(8));
-                company.setCompanyEndDate(rs.getDate(9));
-                company.setCompanyCeo(rs.getString(10));
-                company.setMedicalInsuranceInsuranceId(rs.getInt(11));
+                company.setId(rs.getInt(1));
+                company.setEmail(rs.getString(2));
+                company.setLatitude(rs.getDouble(3));
+                company.setLongitude(rs.getDouble(4));
+                company.setAddress(rs.getString(5));
+                company.setPackageType(rs.getFloat(6));
+                company.setName(rs.getString(7));
+                company.setStartDate(rs.getString(8));
+                company.setEndDate(rs.getString(9));
+                company.setCeo(rs.getString(10));
+                company.setMedicalInsuranceId(rs.getInt(11));
          
                 CompanyPhoneDaoInterface companyPhoneObject = new CompanyPhoneDaoImplementation();
-                phoneList = companyPhoneObject.getCompanyPhone(company.getCompanyId());
-                company.setCompanyPhones((ArrayList<String>) phoneList);
+                phoneList = companyPhoneObject.getCompanyPhone(company.getId());
+                company.setPhones((ArrayList<String>) phoneList);
+                companyResponse = new CompanyResponse("company returned", true, "0", company);
                 
             }
+            else{
+               companyResponse = new CompanyResponse("company not returned", false, "1");
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(CompanyPojo.class.getName()).log(Level.SEVERE, null, ex);
+           companyResponse = new CompanyResponse("company not returned", false, "1");
+ 
         }
-        return company;
+        return companyResponse;
     }
     
     
@@ -85,21 +92,21 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
             rs = s.executeQuery(myQuery);
             while (rs.next()) {
                 CompanyPojo company = new CompanyPojo();
-                company.setCompanyId(rs.getInt(1));
-                company.setCompanyEmail(rs.getString(2));
-                company.setCompanyLatitude(rs.getDouble(3));
-                company.setCompanyLongitude(rs.getDouble(4));
-                company.setCompanyAddress(rs.getString(5));
-                company.setCompanyPackageType(rs.getFloat(6));
-                company.setCompanyName(rs.getString(7));
-                company.setCompanyStartDate(rs.getDate(8));
-                company.setCompanyEndDate(rs.getDate(9));
-                company.setCompanyCeo(rs.getString(10));
-                company.setMedicalInsuranceInsuranceId(rs.getInt(11));
+                company.setId(rs.getInt(1));
+                company.setEmail(rs.getString(2));
+                company.setLatitude(rs.getDouble(3));
+                company.setLongitude(rs.getDouble(4));
+                company.setAddress(rs.getString(5));
+                company.setPackageType(rs.getFloat(6));
+                company.setName(rs.getString(7));
+                company.setStartDate(rs.getString(8));
+                company.setEndDate(rs.getString(9));
+                company.setCeo(rs.getString(10));
+                company.setMedicalInsuranceId(rs.getInt(11));
 
                CompanyPhoneDaoInterface companyPhoneObject = new CompanyPhoneDaoImplementation();
-                phoneList = companyPhoneObject.getCompanyPhone(company.getCompanyId());
-                company.setCompanyPhones((ArrayList<String>) phoneList);
+                phoneList = companyPhoneObject.getCompanyPhone(company.getId());
+                company.setPhones((ArrayList<String>) phoneList);
                 allCompanies.add(company);
                }
         } catch (SQLException ex) {
@@ -143,23 +150,23 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
         boolean isInserted=false;
         try {
             ps = connection.prepareStatement(myQuery);    
-            ps.setString(1, company.getCompanyEmail());
-            ps.setDouble(2,company.getCompanyLatitude());
-            ps.setDouble(3,company.getCompanyLongitude());
-            ps.setString(4,company.getCompanyAddress());
-            ps.setFloat(5, company.getCompanyPackageType());
-            ps.setString(6,company.getCompanyName());
-            ps.setDate(7,company.getCompanyStartDate());
-            ps.setDate(8,company.getCompanyEndDate());
-            ps.setString(9,company.getCompanyCeo());
-            ps.setInt(10,company.getMedicalInsuranceInsuranceId());
+            ps.setString(1, company.getEmail());
+            ps.setDouble(2,company.getLatitude());
+            ps.setDouble(3,company.getLongitude());
+            ps.setString(4,company.getAddress());
+            ps.setFloat(5, company.getPackageType());
+            ps.setString(6,company.getName());
+            ps.setString(7,company.getStartDate());
+            ps.setString(8,company.getEndDate());
+            ps.setString(9,company.getCeo());
+            ps.setInt(10,company.getMedicalInsuranceId());
             return_flage1 = ps.executeUpdate();
            
             CompanyDaoInterface implObject = new CompanyDaoImplementation();
-            companyId = implObject.getCompanyIdFromMail(company.getCompanyEmail());
+            companyId = implObject.getCompanyIdFromMail(company.getEmail());
             
             CompanyPhoneDaoInterface companyPhoneObject = new CompanyPhoneDaoImplementation();
-            isInserted = companyPhoneObject.insertCompanyPhone(companyId, company.getCompanyPhones());
+            isInserted = companyPhoneObject.insertCompanyPhone(companyId, company.getPhones());
         } catch (SQLException ex) {
             Logger.getLogger(CompanyPojo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -184,32 +191,32 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
         try {
             ps = connection.prepareStatement(myQuery);
             
-            ps.setString(1, company.getCompanyEmail());
-            ps.setString(2, company.getCompanyName());
-            ps.setDouble(3, company.getCompanyLatitude());
-            ps.setDouble(4, company.getCompanyLongitude());
-            ps.setString(5,company.getCompanyAddress());
-            ps.setFloat(6, company.getCompanyPackageType());
-            ps.setDate(7, company.getCompanyStartDate());
-            ps.setDate(8, company.getCompanyEndDate());
-            ps.setString(9,company.getCompanyCeo());
-            ps.setInt(10, company.getMedicalInsuranceInsuranceId());
-            ps.setInt(11, company.getCompanyId());
+            ps.setString(1, company.getEmail());
+            ps.setString(2, company.getName());
+            ps.setDouble(3, company.getLatitude());
+            ps.setDouble(4, company.getLongitude());
+            ps.setString(5,company.getAddress());
+            ps.setFloat(6, company.getPackageType());
+            ps.setString(7, company.getStartDate());
+            ps.setString(8, company.getEndDate());
+            ps.setString(9,company.getCeo());
+            ps.setInt(10, company.getMedicalInsuranceId());
+            ps.setInt(11, company.getId());
             return_flage = ps.executeUpdate();
             
             if(return_flage==1)
             {
               CompanyPhoneDaoInterface companyPhoneObject = new CompanyPhoneDaoImplementation();
-               return_flage = companyPhoneObject.deleteCompanyPhone(company.getCompanyId());
+               return_flage = companyPhoneObject.deleteCompanyPhone(company.getId());
                
               if(return_flage != 0)
               {
-               isInserted = companyPhoneObject.insertCompanyPhone(company.getCompanyId(), company.getCompanyPhones());
+               isInserted = companyPhoneObject.insertCompanyPhone(company.getId(), company.getPhones());
               }
           }
        
         } catch (SQLException ex) {
-            Logger.getLogger(CompanyPojo.class.getName()).log(Level.SEVERE, null, ex);
+            isInserted = false;            
         }
         return isInserted;
     }
@@ -250,7 +257,7 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
                     return_flage = s.executeUpdate(myQuery2 + id);
                 }
                 catch(SQLException ex2){
-                    Logger.getLogger(CompanyPojo.class.getName()).log(Level.SEVERE, null, ex2);
+                   return_flage=0;
                 }
                 
                 return return_flage == 1;
