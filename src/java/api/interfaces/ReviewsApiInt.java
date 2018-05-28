@@ -7,6 +7,7 @@ package api.interfaces;
 
 import java.util.ArrayList;
 import pojos.ResponseMessage;
+import pojos.ReviewsList_Pojo;
 import pojos.ReviewsPojo;
 
 /**
@@ -15,5 +16,5 @@ import pojos.ReviewsPojo;
  */
 public interface ReviewsApiInt {
      public ResponseMessage setReview(ReviewsPojo review);
-      public ArrayList<ReviewsPojo> getAllReviews();
+      public ReviewsList_Pojo getAllReviews();
 }

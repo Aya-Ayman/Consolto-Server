@@ -22,7 +22,7 @@
      </body>-->
 
     <body>
-        <form action = "http://localhost:8084/MedicalInsuranceSystem/rest/lab/insert" method = "POST">
+        <form action = "http://localhost:8084/MedicalInsuranceSystem/api/v1/lab/insert" method = "POST">
             Name ar: <input type = "text" name = "lab_name_ar">
             <br />
             Name en: <input type = "text" name = "lab_name_en" />
