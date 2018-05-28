@@ -16,16 +16,14 @@
             <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/api/implementation/MedicalType.java</file>
             <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/pojos/CompanyPojo.java</file>
         </group>
-        <group name="chat">
-            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/dao/Implementation/pharmacy/PharmacyImpl.java</file>
-            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/dao/Interfaces/hospital/Hospital.java</file>
-            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/api/implementation/Suggestion.java</file>
-            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/api/implementation/ReviewsApiImp.java</file>
-            <file>file:/D:/graduation%20project/MedicalInsurance/web/lab.jsp</file>
-            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/dao/Implementation/hospital/HospitalImpl.java</file>
-        </group>
         <group>
             <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/api/implementation/ReviewsApiImp.java</file>
+        </group>
+        <group name="chat">
+            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/pojos/ClinicListPojo.java</file>
+            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/dao/Implementation/clinic/ClinicImpl.java</file>
+            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/pojos/LabListPojo.java</file>
+            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/pojos/ClinicPojo.java</file>
         </group>
     </open-files>
 </project-private>
