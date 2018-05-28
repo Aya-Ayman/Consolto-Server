@@ -6,19 +6,17 @@
 package dao.Interfaces.clinic;
 
 import java.util.ArrayList;
-import pojos.ClinicPojo;
 
 /**
  *
- * @author Hagar
+ * @author Aya
  */
-public interface Clinic {
+public interface ClinicPhones {
 
-    public ClinicPojo retrieve(int clinicId);
+    public boolean addClinicPhones(int clinic_id, ArrayList<String> phones);
 
-    public boolean addClinic(ClinicPojo clinic);
+    public int deleteClinicPhones(int clinic_id);
 
-    public boolean deleteClinic(int clinic_id);
+    public ArrayList<String> getClinicPhones(int clinic_id);
 
-    public ArrayList<ClinicPojo> getAllClinics();
 }

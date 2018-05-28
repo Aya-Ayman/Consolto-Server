@@ -5,8 +5,6 @@
  */
 package pojos;
 
-import java.sql.Date;
-
 /**
  *
  * @author Hagar
@@ -17,10 +15,10 @@ public class ReviewsPojo {
     private int medicalTypeId;
     private int serviceId;
     private String description;
-    private Date date;
+    private String date;
     private String type;
     private int employeeEmployeeId;
-    private int reviewRate;
+    private float reviewRate;
 
     public void setReviewId(int reviewId) {
         this.reviewId = reviewId;
@@ -38,7 +36,7 @@ public class ReviewsPojo {
         this.description = description;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -50,7 +48,7 @@ public class ReviewsPojo {
         this.employeeEmployeeId = employeeEmployeeId;
     }
 
-    public void setReviewRate(int reviewRate) {
+    public void setReviewRate(float reviewRate) {
         this.reviewRate = reviewRate;
     }
 
@@ -70,7 +68,7 @@ public class ReviewsPojo {
         return description;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -82,7 +80,7 @@ public class ReviewsPojo {
         return employeeEmployeeId;
     }
 
-    public int getReviewRate() {
+    public float getReviewRate() {
         return reviewRate;
     }
 

@@ -6,20 +6,17 @@
 package dao.Interfaces.lab;
 
 import java.util.ArrayList;
-import pojos.LabPojo;
 
 /**
  *
- * @author Hagar
+ * @author Aya
  */
-public interface Lab {
+public interface LabSpecializations {
 
-    public LabPojo retrieve(int labId);
+    public boolean addLabSpecializations(int lab_id, ArrayList<String> specializations);
 
-    public boolean addLab(LabPojo lab);
+    public int deleteLabSpecializations(int lab_id);
 
-    public boolean deleteLab(int lab_id);
-
-    public ArrayList<LabPojo> getAllLabs();
+    public ArrayList<String> getLabSpecializations(int lab_id);
 
 }

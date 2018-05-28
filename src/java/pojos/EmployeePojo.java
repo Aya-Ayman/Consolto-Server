@@ -20,7 +20,7 @@ public class EmployeePojo {
     private String employeeAddress;
     private String employeeJob;
     private String employeePassword;
-    private Blob employeeImage;
+    private String employeeImage;
     private int companyCompanyId;
     private ArrayList<String> employeePhones;
 
@@ -48,9 +48,7 @@ public class EmployeePojo {
         this.employeePassword = employeePassword;
     }
 
-    public void setEmployeeImage(Blob employeeImage) {
-        this.employeeImage = employeeImage;
-    }
+   
 
     public void setCompanyCompanyId(int companyCompanyId) {
         this.companyCompanyId = companyCompanyId;
@@ -80,9 +78,6 @@ public class EmployeePojo {
         return employeePassword;
     }
 
-    public Blob getEmployeeImage() {
-        return employeeImage;
-    }
 
     public int getCompanyCompanyId() {
         return companyCompanyId;
@@ -94,6 +89,14 @@ public class EmployeePojo {
 
     public void setEmployeePhones(ArrayList<String> employeePhones) {
         this.employeePhones = employeePhones;
+    }
+
+    public String getEmployeeImage() {
+        return employeeImage;
+    }
+
+    public void setEmployeeImage(String employeeImage) {
+        this.employeeImage = employeeImage;
     }
 
 }

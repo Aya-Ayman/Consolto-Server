@@ -5,6 +5,7 @@
  */
 package pojos;
 
+import java.sql.Blob;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -14,19 +15,116 @@ import java.util.ArrayList;
  */
 public class PharmacyPojo {
 
-    private int pharmacyId;
-    private String pharmacyNameEn;
-    private Double pharmacyLatitude;
-    private Double pharmacyLongitude;
-    private Date pharmacyStartDate;
-    private Date pharmacyEndDate;
-    private int pharmacyRate;
-    private String pharmacyAddress;
-    private String pharmacyOpenHour;
-    private String pharmacyCloseHour;
-    private String pharmacyNameAr;
+    private int id;
+    private String nameEn;
+    private Double latitude;
+    private Double longitude;
+    private String startDate;
+    private String endDate;
+    private float rate;
+    private String address;
+    private String openHour;
+    private String closeHour;
+    private String nameAr;
     private int medicalTypeId;
     private ArrayList<String> pharmacyPhones;
+    private Blob image;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNameEn() {
+        return nameEn;
+    }
+
+    public void setNameEn(String nameEn) {
+        this.nameEn = nameEn;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getOpenHour() {
+        return openHour;
+    }
+
+    public void setOpenHour(String openHour) {
+        this.openHour = openHour;
+    }
+
+    public String getCloseHour() {
+        return closeHour;
+    }
+
+    public void setCloseHour(String closeHour) {
+        this.closeHour = closeHour;
+    }
+
+    public String getNameAr() {
+        return nameAr;
+    }
+
+    public void setNameAr(String nameAr) {
+        this.nameAr = nameAr;
+    }
+
+    public int getMedicalTypeId() {
+        return medicalTypeId;
+    }
+
+    public void setMedicalTypeId(int medicalTypeId) {
+        this.medicalTypeId = medicalTypeId;
+    }
 
     public ArrayList<String> getPharmacyPhones() {
         return pharmacyPhones;
@@ -36,100 +134,14 @@ public class PharmacyPojo {
         this.pharmacyPhones = pharmacyPhones;
     }
 
-    public int getPharmacyId() {
-        return pharmacyId;
+    public Blob getImage() {
+        return image;
     }
 
-    public String getPharmacyNameEn() {
-        return pharmacyNameEn;
+    public void setImage(Blob image) {
+        this.image = image;
     }
-
-    public Double getPharmacyLatitude() {
-        return pharmacyLatitude;
-    }
-
-    public Double getPharmacyLongitude() {
-        return pharmacyLongitude;
-    }
-
-    public Date getPharmacyStartDate() {
-        return pharmacyStartDate;
-    }
-
-    public Date getPharmacyEndDate() {
-        return pharmacyEndDate;
-    }
-
-    public int getPharmacyRate() {
-        return pharmacyRate;
-    }
-
-    public String getPharmacyAddress() {
-        return pharmacyAddress;
-    }
-
-    public String getPharmacyOpenHour() {
-        return pharmacyOpenHour;
-    }
-
-    public String getPharmacyCloseHour() {
-        return pharmacyCloseHour;
-    }
-
-    public String getPharmacyNameAr() {
-        return pharmacyNameAr;
-    }
-
-    public int getMedicalTypeId() {
-        return medicalTypeId;
-    }
-
-    public void setPharmacyId(int pharmacyId) {
-        this.pharmacyId = pharmacyId;
-    }
-
-    public void setPharmacyNameEn(String pharmacyNameEn) {
-        this.pharmacyNameEn = pharmacyNameEn;
-    }
-
-    public void setPharmacyLatitude(Double pharmacyLatitude) {
-        this.pharmacyLatitude = pharmacyLatitude;
-    }
-
-    public void setPharmacyLongitude(Double pharmacyLongitude) {
-        this.pharmacyLongitude = pharmacyLongitude;
-    }
-
-    public void setPharmacyStartDate(Date pharmacyStartDate) {
-        this.pharmacyStartDate = pharmacyStartDate;
-    }
-
-    public void setPharmacyEndDate(Date pharmacyEndDate) {
-        this.pharmacyEndDate = pharmacyEndDate;
-    }
-
-    public void setPharmacyRate(int pharmacyRate) {
-        this.pharmacyRate = pharmacyRate;
-    }
-
-    public void setPharmacyAddress(String pharmacyAddress) {
-        this.pharmacyAddress = pharmacyAddress;
-    }
-
-    public void setPharmacyOpenHour(String pharmacyOpenHour) {
-        this.pharmacyOpenHour = pharmacyOpenHour;
-    }
-
-    public void setPharmacyCloseHour(String pharmacyCloseHour) {
-        this.pharmacyCloseHour = pharmacyCloseHour;
-    }
-
-    public void setPharmacyNameAr(String pharmacyNameAr) {
-        this.pharmacyNameAr = pharmacyNameAr;
-    }
-
-    public void setMedicalTypeId(int medicalTypeId) {
-        this.medicalTypeId = medicalTypeId;
-    }
+    
+    
 
 }
