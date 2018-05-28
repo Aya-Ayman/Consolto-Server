@@ -5,8 +5,7 @@
  */
 package api.interfaces;
 
-import java.util.List;
-import pojos.MedicalTypePojo;
+import pojos.MedicalTypeListPojo;
 
 /**
  *
@@ -14,6 +13,6 @@ import pojos.MedicalTypePojo;
  */
 public interface MedicalTypeApi {
 
-    public List<MedicalTypePojo> getAllTypes();
+    public  MedicalTypeListPojo getAllTypes();
 
 }

@@ -5,12 +5,8 @@
  */
 package pojos;
 
-<<<<<<< HEAD
-import java.sql.Date;
-=======
 import java.sql.Blob;
 
->>>>>>> 5a2102115f5c2824dbe170cfb860b74fb7f0e136
 import java.util.ArrayList;
 
 /**
@@ -32,15 +28,10 @@ public class HospitalPojo {
     private String Ceo;
     private String nameEn;
     private int medicalTypeId;
-<<<<<<< HEAD
-    private String hospitalImage;
-    private ArrayList<String> hospitalPhones;
-    private ArrayList<String> hospitalDepartments;
-=======
+
     private Blob image;
     private ArrayList<String> phones;
     private ArrayList<String> departments;
->>>>>>> 5a2102115f5c2824dbe170cfb860b74fb7f0e136
 
     public int getId() {
         return id;
@@ -110,13 +101,8 @@ public class HospitalPojo {
         return openHour;
     }
 
-<<<<<<< HEAD
-    public void setHospitalImage(String hospitalImage) {
-        this.hospitalImage = hospitalImage;
-=======
     public void setOpenHour(String openHour) {
         this.openHour = openHour;
->>>>>>> 5a2102115f5c2824dbe170cfb860b74fb7f0e136
     }
 
     public String getCloseHour() {
@@ -171,15 +157,14 @@ public class HospitalPojo {
         return departments;
     }
 
-<<<<<<< HEAD
-    public String getHospitalImage() {
-        return hospitalImage;
-=======
-    public void setDepartments(ArrayList<String> departments) {
-        this.departments = departments;
->>>>>>> 5a2102115f5c2824dbe170cfb860b74fb7f0e136
+    public void setImage(Blob image) {
+        this.image = image;
     }
 
-   
+    public void setDepartments(ArrayList<String> departments) {
+        this.departments = departments;
+    }
+    
+    
 
 }

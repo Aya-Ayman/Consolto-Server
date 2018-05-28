@@ -7,13 +7,16 @@ package api.implementation;
 
 import api.interfaces.SuggestionApi;
 import dao.Implementation.suggesstion.SuggestionImpl;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import pojos.ClinicPojo;
 import pojos.ResponsePojo;
+import pojos.SuggesstionListPojo;
 import pojos.SuggestionPojo;
 
 /**
@@ -38,9 +41,8 @@ public class Suggestion implements SuggestionApi {
             return response;
         } else {
             response.setStatus(true);
-            System.out.println("ya rab 5leek m3ana w mtshmtsh el23da2 feena");
             response.setMessage("Suggest Sent successfully");
-            response.setError("0");
+            response.setError(0);
 
             return response;
         }
@@ -50,12 +52,14 @@ public class Suggestion implements SuggestionApi {
     @GET
     @Path("/get")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<SuggestionPojo> getAllSuggesstions() {
+    public SuggesstionListPojo getAllSuggesstions() {
         SuggestionImpl obj = new SuggestionImpl();
-        List suggesstions = obj.retrieve();
-
+         ArrayList<SuggestionPojo> suggesstions =  new ArrayList();
+        SuggesstionListPojo suggesstionList = new SuggesstionListPojo();
+         suggesstions = obj.retrieve();
+     suggesstionList.setSuggestions(suggesstions);
         if (!suggesstions.isEmpty()) {
-            return suggesstions;
+            return suggesstionList;
         } else {
             return null;
         }

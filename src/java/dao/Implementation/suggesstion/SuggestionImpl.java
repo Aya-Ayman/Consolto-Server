@@ -54,8 +54,8 @@ public class SuggestionImpl implements Suggestion {
     }
 
     @Override
-    public List<SuggestionPojo> retrieve() {
-        List<SuggestionPojo> allSuggesstions = new ArrayList<>();
+    public ArrayList<SuggestionPojo> retrieve() {
+        ArrayList<SuggestionPojo> allSuggesstions = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
             PreparedStatement retrieveTypes = connection.prepareStatement("SELECT * FROM medical_insurance_suggestion");
 

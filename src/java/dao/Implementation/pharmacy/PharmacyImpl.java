@@ -34,21 +34,7 @@ public class PharmacyImpl implements Pharmacy {
             while (retSet.next()) {
 
                 pharmacy = new PharmacyPojo();
-<<<<<<< HEAD
-                pharmacy.setPharmacyId(retSet.getInt(1));
-                pharmacy.setPharmacyNameEn(retSet.getString(2));
-                pharmacy.setPharmacyLatitude(retSet.getDouble(3));
-                pharmacy.setPharmacyLongitude(retSet.getDouble(4));
-                pharmacy.setPharmacyStartDate(retSet.getDate(5));
-                pharmacy.setPharmacyEndDate(retSet.getDate(6));
-                pharmacy.setPharmacyRate(retSet.getInt(7));
-                pharmacy.setPharmacyAddress(retSet.getString(8));
-                pharmacy.setPharmacyOpenHour(retSet.getString(9));
-                pharmacy.setPharmacyCloseHour(retSet.getString(10));
-                pharmacy.setPharmacyNameAr(retSet.getString(11));
-                pharmacy.setMedicalTypeId(retSet.getInt(12));
 
-=======
                 pharmacy.setId(retSet.getInt(1));
                 pharmacy.setNameEn(retSet.getString(2));
                 pharmacy.setLatitude(retSet.getDouble(3));
@@ -62,7 +48,6 @@ public class PharmacyImpl implements Pharmacy {
                 pharmacy.setNameAr(retSet.getString(11));
                 pharmacy.setMedicalTypeId(retSet.getInt(12));
                 pharmacy.setImage(retSet.getBlob(13));
->>>>>>> 5a2102115f5c2824dbe170cfb860b74fb7f0e136
             }
 
         } catch (SQLException ex) {

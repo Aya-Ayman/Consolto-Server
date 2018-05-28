@@ -36,22 +36,7 @@ public class HospitalImpl implements Hospital {
             while (retSet.next()) {
 
                 hospital = new HospitalPojo();
-<<<<<<< HEAD
-                hospital.setHospitalId(retSet.getInt(1));
-                hospital.setHospitalNameAr(retSet.getString(2));
-                hospital.setHospitalAddress(retSet.getString(3));
-                hospital.setHospitalLongitude(retSet.getDouble(4));
-                hospital.setHospitalLatitude(retSet.getDouble(5));
-                hospital.setHospitalStartDate(retSet.getDate(6));
-                hospital.setHospitalEndDate(retSet.getDate(7));
-                hospital.setHospitalRate(retSet.getInt(8));
-                hospital.setHospitalOpenHour(retSet.getString(9));
-                hospital.setHospitalCloseHour(retSet.getString(10));
-                hospital.setHospitalCeo(retSet.getString(11));
-                hospital.setHospitalNameEn(retSet.getString(12));
-                hospital.setMedicalTypeId(retSet.getInt(13));
-                hospital.setHospitalImage(retSet.getString(14));
-=======
+
                 hospital.setId(retSet.getInt(1));
                 hospital.setNameAr(retSet.getString(2));
                 hospital.setAddress(retSet.getString(3));
@@ -66,7 +51,6 @@ public class HospitalImpl implements Hospital {
                 hospital.setNameEn(retSet.getString(12));
                 hospital.setMedicalTypeId(retSet.getInt(13));
                 hospital.setHospitalImage(retSet.getBlob(14));
->>>>>>> 5a2102115f5c2824dbe170cfb860b74fb7f0e136
 
             }
 
@@ -83,7 +67,6 @@ public class HospitalImpl implements Hospital {
         HospitalPhonesImplementation phones = new HospitalPhonesImplementation();
 
         try (Connection connection = DBConnection.getConnection()) {
-            // System.out.println(hospital.getHospitalNameAr());
             PreparedStatement insertPs = connection.prepareStatement("INSERT INTO hospital (hospital_id,hospital_name,hospital_address,hospital_longitude,hospital_latitude,hospital_start_date,hospital_end_date,hospital_rate,hospital_open_hour,hospital_close_hour,hospital_ceo,hospital_name_en,medical_type_medical_type_id,hospital_image)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             insertPs.setInt(1, hospital.getId());
             insertPs.setString(2, hospital.getNameAr());

@@ -35,22 +35,9 @@ public class LabImpl implements Lab {
             while (retSet.next()) {
 
                 lab = new LabPojo();
-<<<<<<< HEAD
-                lab.setLabId(retSet.getInt(1));
-                lab.setLabNameEn(retSet.getString(2));
-                lab.setLabOpenHour(retSet.getString(3));
-                lab.setLabCloseHour(retSet.getString(4));
-                lab.setLabLatitude(retSet.getDouble(5));
-                lab.setLabLongitude(retSet.getDouble(6));
-                lab.setLabAddress(retSet.getString(7));
-                lab.setLabStartDate(retSet.getDate(8));
-                lab.setLabEndDate(retSet.getDate(9));
-                lab.setLabRate(retSet.getInt(10));
-                lab.setLabCeo(retSet.getString(11));
-                lab.setLabNameAr(retSet.getString(12));
-                lab.setMedicalTypeMedicalTypeId(retSet.getInt(13));
+
+             
          
-=======
                 lab.setId(retSet.getInt(1));
                 lab.setNameEn(retSet.getString(2));
                 lab.setOpenHour(retSet.getString(3));
@@ -65,7 +52,6 @@ public class LabImpl implements Lab {
                 lab.setNameAr(retSet.getString(12));
                 lab.setMedicalTypeId(retSet.getInt(13));
                 lab.setImage(retSet.getBlob(14));
->>>>>>> 5a2102115f5c2824dbe170cfb860b74fb7f0e136
             }
 
         } catch (SQLException ex) {

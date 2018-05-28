@@ -5,8 +5,8 @@
  */
 package api.interfaces;
 
-import java.util.List;
 import pojos.ResponsePojo;
+import pojos.SuggesstionListPojo;
 import pojos.SuggestionPojo;
 
 /**
@@ -17,6 +17,6 @@ public interface SuggestionApi {
 
     public ResponsePojo addSuggestion(SuggestionPojo suggest);
 
-    public List<SuggestionPojo> getAllSuggesstions();
+     public SuggesstionListPojo getAllSuggesstions() ;
 
 }
