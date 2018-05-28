@@ -6,6 +6,7 @@
 package dao.Interfaces.review;
 
 import java.util.ArrayList;
+import pojos.ReviewsList_Pojo;
 import pojos.ReviewsPojo;
 
 
@@ -17,5 +18,5 @@ public interface ReviewsDaoInt {
     
     public boolean create(ReviewsPojo review);
     
-    public ArrayList<ReviewsPojo> retrieveAll();
+    public ReviewsList_Pojo retrieveAll();
 }
