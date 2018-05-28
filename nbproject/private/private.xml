@@ -8,9 +8,6 @@
             <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/medicaltype/MedicalTypeImpl.java</file>
             <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/implementation/MedicalType.java</file>
         </group>
-        <group>
-            <file>file:/C:/Users/Mayada%20Saleh/Desktop/GP_GitHub/MedicalInsurance/web/post.jsp</file>
-        </group>
         <group name="UI">
             <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/api/implementation/CompanyApiUrl.java</file>
             <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/pojos/MedicalTypePojo.java</file>
@@ -25,6 +22,9 @@
             <file>file:/D:/graduation%20project/MedicalInsurance/src/java/dao/Interfaces/pharmacy/Pharmacy.java</file>
             <file>file:/D:/graduation%20project/MedicalInsurance/src/java/api/implementation/PharmacyApiImplementation.java</file>
             <file>file:/D:/graduation%20project/MedicalInsurance/src/java/dao/Interfaces/pharmacy/PharmacyPhones.java</file>
+        </group>
+        <group>
+            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/api/implementation/ReviewsApiImp.java</file>
         </group>
     </open-files>
 </project-private>
