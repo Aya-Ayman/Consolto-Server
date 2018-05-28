@@ -9,12 +9,14 @@ import api.interfaces.ReviewsApiInt;
 import dao.Implementation.review.ReviewsDaoImp;
 import dao.Interfaces.review.ReviewsDaoInt;
 import java.util.ArrayList;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import pojos.ResponseMessage;
+import pojos.ReviewsList_Pojo;
 import pojos.ReviewsPojo;
 
 /**
@@ -27,6 +29,7 @@ public class ReviewsApiImp implements ReviewsApiInt{
 
     @POST
     @Path("/insert")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public ResponseMessage setReview(ReviewsPojo review) {
@@ -52,11 +55,9 @@ public class ReviewsApiImp implements ReviewsApiInt{
     @Path("/retrieve")
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public ArrayList<ReviewsPojo> getAllReviews() {
-        ResponseMessage response = new ResponseMessage();
+    public ReviewsList_Pojo getAllReviews() {
         ReviewsDaoInt revv = new ReviewsDaoImp();
-        ArrayList<ReviewsPojo> all =revv.retrieveAll();
+        ReviewsList_Pojo all =revv.retrieveAll();
         return all;
     }
-    
 }
