@@ -38,16 +38,16 @@ public class HospitalImpl implements Hospital {
                 hospital.setHospitalNameAr(retSet.getString(2));
                 hospital.setHospitalAddress(retSet.getString(3));
                 hospital.setHospitalLongitude(retSet.getDouble(4));
-                hospital.setHospitalLatitude(retSet.getDouble(6));
-                hospital.setHospitalStartDate(retSet.getDate(7));
-                hospital.setHospitalEndDate(retSet.getDate(8));
-                hospital.setHospitalRate(retSet.getInt(9));
-                hospital.setHospitalOpenHour(retSet.getString(10));
-                hospital.setHospitalCloseHour(retSet.getString(11));
-                hospital.setHospitalCeo(retSet.getString(12));
-                hospital.setHospitalNameEn(retSet.getString(13));
-                hospital.setMedicalTypeId(retSet.getInt(14));
-                hospital.setHospitalImage(retSet.getBlob(15));
+                hospital.setHospitalLatitude(retSet.getDouble(5));
+                hospital.setHospitalStartDate(retSet.getDate(6));
+                hospital.setHospitalEndDate(retSet.getDate(7));
+                hospital.setHospitalRate(retSet.getInt(8));
+                hospital.setHospitalOpenHour(retSet.getString(9));
+                hospital.setHospitalCloseHour(retSet.getString(10));
+                hospital.setHospitalCeo(retSet.getString(11));
+                hospital.setHospitalNameEn(retSet.getString(12));
+                hospital.setMedicalTypeId(retSet.getInt(13));
+                hospital.setHospitalImage(retSet.getString(14));
 
             }
 

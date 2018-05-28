@@ -2,15 +2,23 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="AJAX">
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/interfaces/MedicalTypeApi.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/medicaltype/MedicalTypeImpl.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/implementation/MedicalType.java</file>
-        </group>
         <group>
             <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/api/implementation/EmployeeApiImp.java</file>
             <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/api/implementation/MedicalType.java</file>
+        </group>
+        <group name="AJAX">
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/implementation/Suggestion.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/hospital/HospitalImpl.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/interfaces/MedicalTypeApi.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/ClinicPojo.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/HospitalPojo.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Interfaces/suggesstion/Suggestion.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/medicaltype/MedicalTypeImpl.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/implementation/MedicalType.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/suggesstion/SuggestionImpl.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/implementation/MedicalSurviceDetails.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/SuggestionPojo.java</file>
         </group>
     </open-files>
 </project-private>

@@ -37,20 +37,21 @@ public class LabImpl implements Lab {
                 lab.setLabNameEn(retSet.getString(2));
                 lab.setLabOpenHour(retSet.getString(3));
                 lab.setLabCloseHour(retSet.getString(4));
-                lab.setLabLatitude(retSet.getDouble(6));
-                lab.setLabLongitude(retSet.getDouble(7));
-                lab.setLabAddress(retSet.getString(8));
-                lab.setLabStartDate(retSet.getDate(9));
-                lab.setLabEndDate(retSet.getDate(10));
-                lab.setLabRate(retSet.getInt(11));
-                lab.setLabCeo(retSet.getString(12));
-                lab.setLabNameAr(retSet.getString(13));
-                lab.setMedicalTypeMedicalTypeId(retSet.getInt(14));
-
+                lab.setLabLatitude(retSet.getDouble(5));
+                lab.setLabLongitude(retSet.getDouble(6));
+                lab.setLabAddress(retSet.getString(7));
+                lab.setLabStartDate(retSet.getDate(8));
+                lab.setLabEndDate(retSet.getDate(9));
+                lab.setLabRate(retSet.getInt(10));
+                lab.setLabCeo(retSet.getString(11));
+                lab.setLabNameAr(retSet.getString(12));
+                lab.setMedicalTypeMedicalTypeId(retSet.getInt(13));
+         
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(LabImpl.class.getName()).log(Level.SEVERE, null, ex);
+        
         }
         return lab;
 

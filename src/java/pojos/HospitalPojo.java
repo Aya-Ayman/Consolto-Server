@@ -5,7 +5,6 @@
  */
 package pojos;
 
-import java.sql.Blob;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -28,7 +27,7 @@ public class HospitalPojo {
     private String hospitalCeo;
     private String hospitalNameEn;
     private int medicalTypeId;
-    private Blob hospitalImage;
+    private String hospitalImage;
     private ArrayList<String> hospitalPhones;
     private ArrayList<String> hospitalDepartments;
 
@@ -100,7 +99,7 @@ public class HospitalPojo {
         this.medicalTypeId = medicalTypeId;
     }
 
-    public void setHospitalImage(Blob hospitalImage) {
+    public void setHospitalImage(String hospitalImage) {
         this.hospitalImage = hospitalImage;
     }
 
@@ -156,7 +155,7 @@ public class HospitalPojo {
         return medicalTypeId;
     }
 
-    public Blob getHospitalImage() {
+    public String getHospitalImage() {
         return hospitalImage;
     }
 

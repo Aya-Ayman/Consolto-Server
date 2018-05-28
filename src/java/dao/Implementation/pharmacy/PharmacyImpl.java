@@ -37,14 +37,14 @@ public class PharmacyImpl implements Pharmacy {
                 pharmacy.setPharmacyNameEn(retSet.getString(2));
                 pharmacy.setPharmacyLatitude(retSet.getDouble(3));
                 pharmacy.setPharmacyLongitude(retSet.getDouble(4));
-                pharmacy.setPharmacyStartDate(retSet.getDate(6));
-                pharmacy.setPharmacyEndDate(retSet.getDate(7));
-                pharmacy.setPharmacyRate(retSet.getInt(8));
-                pharmacy.setPharmacyAddress(retSet.getString(9));
-                pharmacy.setPharmacyOpenHour(retSet.getString(10));
-                pharmacy.setPharmacyCloseHour(retSet.getString(11));
-                pharmacy.setPharmacyNameAr(retSet.getString(12));
-                pharmacy.setMedicalTypeId(retSet.getInt(13));
+                pharmacy.setPharmacyStartDate(retSet.getDate(5));
+                pharmacy.setPharmacyEndDate(retSet.getDate(6));
+                pharmacy.setPharmacyRate(retSet.getInt(7));
+                pharmacy.setPharmacyAddress(retSet.getString(8));
+                pharmacy.setPharmacyOpenHour(retSet.getString(9));
+                pharmacy.setPharmacyCloseHour(retSet.getString(10));
+                pharmacy.setPharmacyNameAr(retSet.getString(11));
+                pharmacy.setMedicalTypeId(retSet.getInt(12));
 
             }
 

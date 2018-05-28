@@ -20,16 +20,16 @@ import pojos.SuggestionPojo;
  *
  * @author Hagar
  */
-
-@Path("/sgst")
+@Path("/suggestion")
 public class Suggestion implements SuggestionApi {
 
     @Override
     @POST
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/add")
     public ResponsePojo addSuggestion(SuggestionPojo suggest) {
-
         ResponsePojo response = new ResponsePojo();
+
         SuggestionImpl suggesstion = new SuggestionImpl();
         if (suggesstion.create(suggest) == false) {
             response.setStatus(false);
@@ -38,14 +38,17 @@ public class Suggestion implements SuggestionApi {
             return response;
         } else {
             response.setStatus(true);
+            System.out.println("ya rab 5leek m3ana w mtshmtsh el23da2 feena");
             response.setMessage("Suggest Sent successfully");
+            response.setError("0");
+
             return response;
         }
     }
 
     @Override
     @GET
-    @Path("/getSug")
+    @Path("/get")
     @Produces(MediaType.APPLICATION_JSON)
     public List<SuggestionPojo> getAllSuggesstions() {
         SuggestionImpl obj = new SuggestionImpl();
