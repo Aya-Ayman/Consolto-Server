@@ -34,19 +34,19 @@ public class PharmacyImpl implements Pharmacy {
             while (retSet.next()) {
 
                 pharmacy = new PharmacyPojo();
-                pharmacy.setPharmacyId(retSet.getInt(1));
-                pharmacy.setPharmacyNameEn(retSet.getString(2));
-                pharmacy.setPharmacyLatitude(retSet.getDouble(3));
-                pharmacy.setPharmacyLongitude(retSet.getDouble(4));
-                pharmacy.setPharmacyStartDate(retSet.getDate(6));
-                pharmacy.setPharmacyEndDate(retSet.getDate(7));
-                pharmacy.setPharmacyRate(retSet.getInt(8));
-                pharmacy.setPharmacyAddress(retSet.getString(9));
-                pharmacy.setPharmacyOpenHour(retSet.getString(10));
-                pharmacy.setPharmacyCloseHour(retSet.getString(11));
-                pharmacy.setPharmacyNameAr(retSet.getString(12));
-                pharmacy.setMedicalTypeId(retSet.getInt(13));
-
+                pharmacy.setId(retSet.getInt(1));
+                pharmacy.setNameEn(retSet.getString(2));
+                pharmacy.setLatitude(retSet.getDouble(3));
+                pharmacy.setLongitude(retSet.getDouble(4));
+                pharmacy.setStartDate(retSet.getString(5));
+                pharmacy.setEndDate(retSet.getString(6));
+                pharmacy.setRate(retSet.getInt(7));
+                pharmacy.setAddress(retSet.getString(8));
+                pharmacy.setOpenHour(retSet.getString(9));
+                pharmacy.setCloseHour(retSet.getString(10));
+                pharmacy.setNameAr(retSet.getString(11));
+                pharmacy.setMedicalTypeId(retSet.getInt(12));
+                pharmacy.setImage(retSet.getBlob(13));
             }
 
         } catch (SQLException ex) {
@@ -62,27 +62,27 @@ public class PharmacyImpl implements Pharmacy {
         PharmacyPhonesImplementation phonesObj = new PharmacyPhonesImplementation();
 
         try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement insertPs = connection.prepareStatement("INSERT INTO pharmacy (pharmacy_id,pharmacy_name_en,pharmacy_latitude,pharmacy_longitude,pharmacy_start_date,pharmacy_end_date,pharmacy_rate,pharmacy_address,pharmacy_open_hour,pharmacy_close_hour,pharmacy_name_ar,medical_type_medical_type_id)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-            insertPs.setInt(1, pharmacy.getPharmacyId());
-            insertPs.setString(2, pharmacy.getPharmacyNameEn());
-            insertPs.setDouble(3, pharmacy.getPharmacyLatitude());
-            insertPs.setDouble(4, pharmacy.getPharmacyLongitude());
-            insertPs.setDate(5, pharmacy.getPharmacyStartDate());
-            insertPs.setDate(6, pharmacy.getPharmacyEndDate());
-            insertPs.setInt(7, pharmacy.getPharmacyRate());
-            insertPs.setString(8, pharmacy.getPharmacyAddress());
-            insertPs.setString(9, pharmacy.getPharmacyOpenHour());
-            insertPs.setString(10, pharmacy.getPharmacyCloseHour());
-            insertPs.setString(11, pharmacy.getPharmacyNameAr());
+            PreparedStatement insertPs = connection.prepareStatement("INSERT INTO pharmacy (pharmacy_id,pharmacy_name_en,pharmacy_latitude,pharmacy_longitude,pharmacy_start_date,pharmacy_end_date,pharmacy_rate,pharmacy_address,pharmacy_open_hour,pharmacy_close_hour,pharmacy_name_ar,medical_type_medical_type_id,pharmacy_image)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            insertPs.setInt(1, pharmacy.getId());
+            insertPs.setString(2, pharmacy.getNameEn());
+            insertPs.setDouble(3, pharmacy.getLatitude());
+            insertPs.setDouble(4, pharmacy.getLongitude());
+            insertPs.setString(5, pharmacy.getStartDate());
+            insertPs.setString(6, pharmacy.getEndDate());
+            insertPs.setFloat(7, pharmacy.getRate());
+            insertPs.setString(8, pharmacy.getAddress());
+            insertPs.setString(9, pharmacy.getOpenHour());
+            insertPs.setString(10, pharmacy.getCloseHour());
+            insertPs.setString(11, pharmacy.getNameAr());
             insertPs.setInt(12, pharmacy.getMedicalTypeId());
-
+            insertPs.setBlob(13, pharmacy.getImage());
             int insertflag = insertPs.executeUpdate();
 
             boolean res = false;
             if (insertflag == 1) {
                 PreparedStatement getPs = connection.prepareStatement("SELECT pharmacy_id FROM pharmacy WHERE pharmacy_name_ar=? OR pharmacy_name_en=?");
-                getPs.setString(1, pharmacy.getPharmacyNameAr());
-                getPs.setString(2, pharmacy.getPharmacyNameEn());
+                getPs.setString(1, pharmacy.getNameAr());
+                getPs.setString(2, pharmacy.getNameEn());
 
                 ResultSet resSet = getPs.executeQuery();
 
@@ -147,19 +147,19 @@ public class PharmacyImpl implements Pharmacy {
             ResultSet retSet = retrievePs.executeQuery();
             while (retSet.next()) {
                 PharmacyPojo pharmacy = new PharmacyPojo();
-                pharmacy.setPharmacyId(retSet.getInt(1));
-                pharmacy.setPharmacyNameEn(retSet.getString(2));
-                pharmacy.setPharmacyLatitude(retSet.getDouble(3));
-                pharmacy.setPharmacyLongitude(retSet.getDouble(4));
-                pharmacy.setPharmacyStartDate(retSet.getDate(5));
-                pharmacy.setPharmacyEndDate(retSet.getDate(6));
-                pharmacy.setPharmacyRate(retSet.getInt(7));
-                pharmacy.setPharmacyAddress(retSet.getString(8));
-                pharmacy.setPharmacyOpenHour(retSet.getString(9));
-                pharmacy.setPharmacyCloseHour(retSet.getString(10));
-                pharmacy.setPharmacyNameAr(retSet.getString(11));
+                pharmacy.setId(retSet.getInt(1));
+                pharmacy.setNameEn(retSet.getString(2));
+                pharmacy.setLatitude(retSet.getDouble(3));
+                pharmacy.setLongitude(retSet.getDouble(4));
+                pharmacy.setStartDate(retSet.getString(5));
+                pharmacy.setEndDate(retSet.getString(6));
+                pharmacy.setRate(retSet.getInt(7));
+                pharmacy.setAddress(retSet.getString(8));
+                pharmacy.setOpenHour(retSet.getString(9));
+                pharmacy.setCloseHour(retSet.getString(10));
+                pharmacy.setNameAr(retSet.getString(11));
                 pharmacy.setMedicalTypeId(retSet.getInt(12));
-                //  clinic.setClinic_image(retSet.getBlob(14));
+                pharmacy.setImage(retSet.getBlob(13));
                 phones = phonesObj.getPharmacyPhones(retSet.getInt(1));
                 pharmacy.setPharmacyPhones(phones);
                 pharmacies.add(pharmacy);

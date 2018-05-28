@@ -7,7 +7,6 @@ package api.implementation;
 
 import api.interfaces.ClinicApi;
 import dao.Implementation.clinic.ClinicImpl;
-import java.sql.Date;
 import java.util.ArrayList;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -17,8 +16,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import pojos.ClinicListPojo;
 import pojos.ClinicPojo;
-import pojos.ResponsePojo;
+import pojos.ResponseMessage;
 
 /**
  *
@@ -31,18 +31,18 @@ public class ClinicApiImplementation implements ClinicApi {
     @Path("/insert")
     // @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public ResponsePojo insertClinic(@FormParam("clinic_longitude") String clinic_longitude, @FormParam("clinic_latitude") String clinic_latitude, @FormParam("clinic_address") String clinic_address, @FormParam("clinic_specialization") String clinic_specialization, @FormParam("clinic_end_date") String clinic_end_date, @FormParam("clinic_start_date") String clinic_start_date, @FormParam("clinic_open_hour") String clinic_open_hour, @FormParam("clinic_close_hour") String clinic_close_hour, @FormParam("clinic_rate") int clinic_rate, @FormParam("clinic_doctor_name_en") String clinic_doctor_name_en, @FormParam("clinic_doctor_name_ar") String clinic_doctor_name_ar, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3) {
+    public ResponseMessage insertClinic(@FormParam("clinic_longitude") String clinic_longitude, @FormParam("clinic_latitude") String clinic_latitude, @FormParam("clinic_address") String clinic_address, @FormParam("clinic_specialization") String clinic_specialization, @FormParam("clinic_end_date") String clinic_end_date, @FormParam("clinic_start_date") String clinic_start_date, @FormParam("clinic_open_hour") String clinic_open_hour, @FormParam("clinic_close_hour") String clinic_close_hour, @FormParam("clinic_rate") int clinic_rate, @FormParam("clinic_doctor_name_en") String clinic_doctor_name_en, @FormParam("clinic_doctor_name_ar") String clinic_doctor_name_ar, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3) {
 
-        ResponsePojo response = new ResponsePojo();
+        ResponseMessage response = new ResponseMessage();
         ArrayList<String> phones = new ArrayList();
         ClinicPojo clinic = new ClinicPojo();
         ClinicImpl clinicObj = new ClinicImpl();
 
         double mylongitude = Double.parseDouble(clinic_longitude);
         double mylatitude = Double.parseDouble(clinic_latitude);
-        Date start = null, end = null;
-        start = java.sql.Date.valueOf(clinic_start_date);
-        end = java.sql.Date.valueOf(clinic_end_date);
+        //Date start = null, end = null;
+        //start = java.sql.Date.valueOf(clinic_start_date);
+        //end = java.sql.Date.valueOf(clinic_end_date);
 
         if (!phone1.isEmpty()) {
             phones.add(phone1);
@@ -54,31 +54,31 @@ public class ClinicApiImplementation implements ClinicApi {
             phones.add(phone3);
         }
 
-        clinic.setClinicLatitude(mylatitude);
-        clinic.setClinicLongitude(mylongitude);
-        clinic.setClinicDoctorNameAr(clinic_doctor_name_ar);
-        clinic.setClinicDoctorNameEn(clinic_doctor_name_en);
-        clinic.setClinicSpecialization(clinic_specialization);
-        clinic.setMedicalTypeMedicalTypeId(2);
-        clinic.setClinicStartDate(start);
-        clinic.setClinicEndDate(end);
-        clinic.setClinicCloseHour(clinic_close_hour);
-        clinic.setClinicOpenHour(clinic_open_hour);
-        clinic.setClinicAddress(clinic_address);
-        clinic.setClinicRate(clinic_rate);
-        clinic.setClinicPhones(phones);
+        clinic.setLatitude(mylatitude);
+        clinic.setLongitude(mylongitude);
+        clinic.setDoctorNameAr(clinic_doctor_name_ar);
+        clinic.setDoctorNameEn(clinic_doctor_name_en);
+        clinic.setSpecialization(clinic_specialization);
+        clinic.setMedicalTypeId(2);
+        clinic.setStartDate(clinic_start_date);
+        clinic.setEndDate(clinic_end_date);
+        clinic.setCloseHour(clinic_close_hour);
+        clinic.setOpenHour(clinic_open_hour);
+        clinic.setAddress(clinic_address);
+        clinic.setRate(clinic_rate);
+        clinic.setPhones(phones);
 
         boolean result = clinicObj.addClinic(clinic);
 
         if (result == true) {
             response.setStatus(true);
             response.setMessage("Clinic Added Successfully");
-            response.setError("No Error");
+            response.setError("0");
             return response;
         } else {
             response.setStatus(false);
             response.setMessage("Clinic Failed to be added");
-            response.setError(" Error");
+            response.setError("1");
             return response;
 
         }
@@ -87,37 +87,38 @@ public class ClinicApiImplementation implements ClinicApi {
 
     @DELETE
     @Path("/delete/{clinic_id}")
-    ///{type_id}
-    public ResponsePojo deleteClinic(@PathParam("clinic_id") int clinic_id) {
-        //@PathParam("type_id")int type_id
-        ResponsePojo response = new ResponsePojo();
+   
+    public ResponseMessage deleteClinic(@PathParam("clinic_id") int clinic_id) {
+        
+        ResponseMessage response = new ResponseMessage();
         ClinicImpl clinicObj = new ClinicImpl();
-        //int i=clinicObj.deleteClinic(clinic_id);
+       
         boolean result = clinicObj.deleteClinic(clinic_id);
         System.out.print("deleteeeeeeeeeeeeeeeeeeeeeeeeApi" + result);
         if (result == true) {
             response.setStatus(true);
-            //response
             response.setMessage("clinic deleted Successfully");
-            response.setError("No Error");
+            response.setError("0");
             return response;
         } else {
             response.setStatus(false);
             response.setMessage("clinic deletion failed");
-            response.setError(" Error");
+            response.setError("1");
             return response;
 
         }
     }
 
     @GET
-    @Path("/get")
+    @Path("/getAll")
     @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<ClinicPojo> getClinic() {
+    public ClinicListPojo getAllClinics() {
 
         ClinicImpl clinicObj = new ClinicImpl();
         ArrayList<ClinicPojo> clinics = new ArrayList();
+        ClinicListPojo clinicList = new ClinicListPojo();
         clinics = clinicObj.getAllClinics();
-        return clinics;
+        clinicList.setClinics(clinics);
+        return clinicList;
     }
 }

@@ -34,7 +34,7 @@ public class Suggestion implements SuggestionApi {
         if (suggesstion.create(suggest) == false) {
             response.setStatus(false);
             response.setMessage("Suggest Already Sent!");
-            response.setError("404");
+            response.setError(0);
             return response;
         } else {
             response.setStatus(true);

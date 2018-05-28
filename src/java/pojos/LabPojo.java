@@ -5,6 +5,7 @@
  */
 package pojos;
 
+import java.sql.Blob;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -14,140 +15,150 @@ import java.util.ArrayList;
  */
 public class LabPojo {
 
-    private int labId;
-    private String labNameEn;
-    private String labOpenHour;
-    private String labCloseHour;
-    private Double labLatitude;
-    private Double labLongitude;
-    private String labAddress;
-    private Date labStartDate;
-    private Date labEndDate;
-    private int labRate;
-    private String labCeo;
-    private String labNameAr;
-    private int medicalTypeMedicalTypeId;
+    private int id;
+    private String nameEn;
+    private String openHour;
+    private String closeHour;
+    private Double latitude;
+    private Double longitude;
+    private String address;
+    private String startDate;
+    private String endDate;
+    private float rate;
+    private String ceo;
+    private String nameAr;
+    private int medicalTypeId;
+    private Blob image;
     private ArrayList<String> labPhones;
     private ArrayList<String> labSpecializations;
 
-    public void setLabPhones(ArrayList<String> labPhones) {
-        this.labPhones = labPhones;
+    public int getId() {
+        return id;
     }
 
-    public void setLabSpecializations(ArrayList<String> labSpecializations) {
-        this.labSpecializations = labSpecializations;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNameEn() {
+        return nameEn;
+    }
+
+    public void setNameEn(String nameEn) {
+        this.nameEn = nameEn;
+    }
+
+    public String getOpenHour() {
+        return openHour;
+    }
+
+    public void setOpenHour(String openHour) {
+        this.openHour = openHour;
+    }
+
+    public String getCloseHour() {
+        return closeHour;
+    }
+
+    public void setCloseHour(String closeHour) {
+        this.closeHour = closeHour;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
+    }
+
+    public String getCeo() {
+        return ceo;
+    }
+
+    public void setCeo(String ceo) {
+        this.ceo = ceo;
+    }
+
+    public String getNameAr() {
+        return nameAr;
+    }
+
+    public void setNameAr(String nameAr) {
+        this.nameAr = nameAr;
+    }
+
+    public int getMedicalTypeId() {
+        return medicalTypeId;
+    }
+
+    public void setMedicalTypeId(int medicalTypeId) {
+        this.medicalTypeId = medicalTypeId;
+    }
+
+    public Blob getImage() {
+        return image;
+    }
+
+    public void setImage(Blob image) {
+        this.image = image;
     }
 
     public ArrayList<String> getLabPhones() {
         return labPhones;
     }
 
+    public void setLabPhones(ArrayList<String> labPhones) {
+        this.labPhones = labPhones;
+    }
+
     public ArrayList<String> getLabSpecializations() {
         return labSpecializations;
     }
 
-    public void setLabId(int labId) {
-        this.labId = labId;
+    public void setLabSpecializations(ArrayList<String> labSpecializations) {
+        this.labSpecializations = labSpecializations;
     }
 
-    public void setLabNameEn(String labNameEn) {
-        this.labNameEn = labNameEn;
-    }
-
-    public void setLabOpenHour(String labOpenHour) {
-        this.labOpenHour = labOpenHour;
-    }
-
-    public void setLabCloseHour(String labCloseHour) {
-        this.labCloseHour = labCloseHour;
-    }
-
-    public void setLabLatitude(Double labLatitude) {
-        this.labLatitude = labLatitude;
-    }
-
-    public void setLabLongitude(Double labLongitude) {
-        this.labLongitude = labLongitude;
-    }
-
-    public void setLabAddress(String labAddress) {
-        this.labAddress = labAddress;
-    }
-
-    public void setLabStartDate(Date labStartDate) {
-        this.labStartDate = labStartDate;
-    }
-
-    public void setLabEndDate(Date labEndDate) {
-        this.labEndDate = labEndDate;
-    }
-
-    public void setLabRate(int labRate) {
-        this.labRate = labRate;
-    }
-
-    public void setLabCeo(String labCeo) {
-        this.labCeo = labCeo;
-    }
-
-    public void setLabNameAr(String labNameAr) {
-        this.labNameAr = labNameAr;
-    }
-
-    public void setMedicalTypeMedicalTypeId(int medicalTypeMedicalTypeId) {
-        this.medicalTypeMedicalTypeId = medicalTypeMedicalTypeId;
-    }
-
-    public int getLabId() {
-        return labId;
-    }
-
-    public String getLabNameEn() {
-        return labNameEn;
-    }
-
-    public String getLabOpenHour() {
-        return labOpenHour;
-    }
-
-    public String getLabCloseHour() {
-        return labCloseHour;
-    }
-
-    public Double getLabLatitude() {
-        return labLatitude;
-    }
-
-    public Double getLabLongitude() {
-        return labLongitude;
-    }
-
-    public String getLabAddress() {
-        return labAddress;
-    }
-
-    public Date getLabStartDate() {
-        return labStartDate;
-    }
-
-    public Date getLabEndDate() {
-        return labEndDate;
-    }
-
-    public int getLabRate() {
-        return labRate;
-    }
-
-    public String getLabCeo() {
-        return labCeo;
-    }
-
-    public String getLabNameAr() {
-        return labNameAr;
-    }
-
-    public int getMedicalTypeMedicalTypeId() {
-        return medicalTypeMedicalTypeId;
-    }
-
+    
 }

@@ -7,6 +7,7 @@ package dao.Implementation.clinic;
 
 import dao.Interfaces.clinic.Clinic;
 import dbconnectionfactory.DBConnection;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,20 +36,20 @@ public class ClinicImpl implements Clinic {
             while (retSet.next()) {
 
                 clinic = new ClinicPojo();
-                clinic.setClinicId(retSet.getInt(1));
-                clinic.setClinicLongitude(retSet.getDouble(2));
-                clinic.setClinicLatitude(retSet.getDouble(3));
-                clinic.setClinicAddress(retSet.getString(4));
-                clinic.setClinicSpecialization(retSet.getString(5));
-                clinic.setClinicEndDate(retSet.getDate(6));
-                clinic.setClinicStartDate(retSet.getDate(7));
-                clinic.setClinicOpenHour(retSet.getString(8));
-                clinic.setClinicCloseHour(retSet.getString(9));
-                clinic.setClinicRate(retSet.getInt(10));
-                clinic.setClinicDoctorNameEn(retSet.getString(11));
-                clinic.setClinicDoctorNameAr(retSet.getString(12));
-                clinic.setMedicalTypeMedicalTypeId(retSet.getInt(13));
-
+                clinic.setId(retSet.getInt(1));
+                clinic.setLongitude(retSet.getDouble(2));
+                clinic.setLatitude(retSet.getDouble(3));
+                clinic.setAddress(retSet.getString(4));
+                clinic.setSpecialization(retSet.getString(5));
+                clinic.setEndDate(retSet.getString(6));
+                clinic.setStartDate(retSet.getString(7));
+                clinic.setOpenHour(retSet.getString(8));
+                clinic.setCloseHour(retSet.getString(9));
+                clinic.setRate(retSet.getFloat(10));
+                clinic.setDoctorNameEn(retSet.getString(11));
+                clinic.setDoctorNameAr(retSet.getString(12));
+                clinic.setMedicalTypeId(retSet.getInt(13));
+                clinic.setImage(retSet.getBlob(14));
             }
 
         } catch (SQLException ex) {
@@ -63,30 +64,30 @@ public class ClinicImpl implements Clinic {
         ClinicPhonesImplementation phonesObj = new ClinicPhonesImplementation();
 
         try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement insertPs = connection.prepareStatement("INSERT INTO clinic (clinic_id,clinic_longitude,clinic_latitude,clinic_address,clinic_specialization,clinic_end_date,clinic_start_date,clinic_open_hour,clinic_close_hour,clinic_rate,clinic_doctor_name_en,clinic_doctor_name_ar,medical_type_medical_type_id)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            insertPs.setInt(1, clinic.getClinicId());
-            insertPs.setDouble(2, clinic.getClinicLongitude());
-            insertPs.setDouble(3, clinic.getClinicLatitude());
-            insertPs.setString(4, clinic.getClinicAddress());
-            insertPs.setString(5, clinic.getClinicSpecialization());
-            insertPs.setDate(6, clinic.getClinicEndDate());
-            insertPs.setDate(7, clinic.getClinicStartDate());
-            insertPs.setString(8, clinic.getClinicOpenHour());
-            insertPs.setString(9, clinic.getClinicCloseHour());
-            insertPs.setInt(10, clinic.getClinicRate());
-            insertPs.setString(11, clinic.getClinicDoctorNameEn());
-            insertPs.setString(12, clinic.getClinicDoctorNameAr());
-            insertPs.setInt(13, clinic.getMedicalTypeMedicalTypeId());
-            // Blob blob=null;
-            // insertPs.setBlob(14, blob);
+            PreparedStatement insertPs = connection.prepareStatement("INSERT INTO clinic (clinic_id,clinic_longitude,clinic_latitude,clinic_address,clinic_specialization,clinic_end_date,clinic_start_date,clinic_open_hour,clinic_close_hour,clinic_rate,clinic_doctor_name_en,clinic_doctor_name_ar,medical_type_medical_type_id,clinic_image)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            insertPs.setInt(1, clinic.getId());
+            insertPs.setDouble(2, clinic.getLongitude());
+            insertPs.setDouble(3, clinic.getLatitude());
+            insertPs.setString(4, clinic.getAddress());
+            insertPs.setString(5, clinic.getSpecialization());
+            insertPs.setString(6, clinic.getEndDate());
+            insertPs.setString(7, clinic.getStartDate());
+            insertPs.setString(8, clinic.getOpenHour());
+            insertPs.setString(9, clinic.getCloseHour());
+            insertPs.setFloat(10, clinic.getRate());
+            insertPs.setString(11, clinic.getDoctorNameEn());
+            insertPs.setString(12, clinic.getDoctorNameAr());
+            insertPs.setInt(13, clinic.getMedicalTypeId());
+            Blob blob=null;
+            insertPs.setBlob(14, blob);
 
             int insertflag = insertPs.executeUpdate();
 
             boolean res = false;
             if (insertflag == 1) {
                 PreparedStatement getPs = connection.prepareStatement("SELECT clinic_id FROM clinic WHERE clinic_doctor_name_ar=? OR clinic_doctor_name_en=?");
-                getPs.setString(1, clinic.getClinicDoctorNameAr());
-                getPs.setString(2, clinic.getClinicDoctorNameEn());
+                getPs.setString(1, clinic.getDoctorNameAr());
+                getPs.setString(2, clinic.getDoctorNameEn());
 
                 ResultSet resSet = getPs.executeQuery();
 
@@ -96,7 +97,7 @@ public class ClinicImpl implements Clinic {
                     id = resSet.getInt(1);
                     System.out.print(id);
                 }
-                res = phonesObj.addClinicPhones(id, clinic.getClinicPhones());
+                res = phonesObj.addClinicPhones(id, clinic.getPhones());
 
             }
             return res;
@@ -153,22 +154,22 @@ public class ClinicImpl implements Clinic {
             ResultSet retSet = retrievePs.executeQuery();
             while (retSet.next()) {
                 ClinicPojo clinic = new ClinicPojo();
-                clinic.setClinicId(retSet.getInt(1));
-                clinic.setClinicLongitude(retSet.getDouble(2));
-                clinic.setClinicLatitude(retSet.getDouble(3));
-                clinic.setClinicAddress(retSet.getString(4));
-                clinic.setClinicSpecialization(retSet.getString(5));
-                clinic.setClinicEndDate(retSet.getDate(6));
-                clinic.setClinicStartDate(retSet.getDate(7));
-                clinic.setClinicOpenHour(retSet.getString(8));
-                clinic.setClinicCloseHour(retSet.getString(9));
-                clinic.setClinicRate(retSet.getInt(10));
-                clinic.setClinicDoctorNameEn(retSet.getString(11));
-                clinic.setClinicDoctorNameAr(retSet.getString(12));
-                clinic.setMedicalTypeMedicalTypeId(retSet.getInt(13));
-                //  clinic.setClinic_image(retSet.getBlob(14));
+                clinic.setId(retSet.getInt(1));
+                clinic.setLongitude(retSet.getDouble(2));
+                clinic.setLatitude(retSet.getDouble(3));
+                clinic.setAddress(retSet.getString(4));
+                clinic.setSpecialization(retSet.getString(5));
+                clinic.setEndDate(retSet.getString(6));
+                clinic.setStartDate(retSet.getString(7));
+                clinic.setOpenHour(retSet.getString(8));
+                clinic.setCloseHour(retSet.getString(9));
+                clinic.setRate(retSet.getInt(10));
+                clinic.setDoctorNameEn(retSet.getString(11));
+                clinic.setDoctorNameAr(retSet.getString(12));
+                clinic.setMedicalTypeId(retSet.getInt(13));
+                clinic.setImage(retSet.getBlob(14));
                 phones = phonesObj.getClinicPhones(retSet.getInt(1));
-                clinic.setClinicPhones(phones);
+                clinic.setPhones(phones);
                 clinics.add(clinic);
 
                 //System.out.print(retSet.getInt(1));
