@@ -43,9 +43,8 @@
           <br /> <br /> <br /> <br />
        </form>
          
-         <form action = "http://localhost:8084/lab3_server/rest/user/insert" method = "POST"> 
-             ID: <input type = "text" name = "employee_id">
-            <br />
+         <form action = "http://localhost:8084/MedicalInsuranceSystem/rest/user/insertEmployee" method = "POST"> 
+        
             Name: <input type = "text" name = "name">
             <br />
             Mail: <input type = "text" name = "mail" />
@@ -55,8 +54,9 @@
             Company ID: <input type = "text" name = "company_id" /> 
             <br />
             
-            employee image :<input type = "bolb" name = "employee_image" /> 
-            <br />
+<!--            employee image :<input type = "file" name = "employee_image" /> 
+            <br />-->
+
             address: <input type = "text" name = "address" />
             <br />
              Phones: <input type = "text" name = "phone1" />
@@ -67,7 +67,11 @@
             
             job: <input type = "text" name = "job" />
             <br>
-            <br>
+             start Date: <input type = "text" name = "startDate" />
+            <br /> end Date: <input type = "text" name = "endDate" />
+            <br /> Package Type <input type = "text" name = "packageType" />
+          
+           
             <input type = "submit" value = "insertEmployee" />
         </form>
         <br>
