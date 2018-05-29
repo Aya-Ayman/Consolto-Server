@@ -5,6 +5,7 @@
  */
 package dao.Interfaces.clinic;
 
+import java.util.ArrayList;
 import pojos.ClinicPojo;
 
 /**
@@ -15,4 +16,9 @@ public interface Clinic {
 
     public ClinicPojo retrieve(int clinicId);
 
+    public boolean addClinic(ClinicPojo clinic);
+
+    public boolean deleteClinic(int clinic_id);
+
+    public ArrayList<ClinicPojo> getAllClinics();
 }

@@ -5,6 +5,7 @@
  */
 package dao.Interfaces.pharmacy;
 
+import java.util.ArrayList;
 import pojos.PharmacyPojo;
 
 /**
@@ -14,5 +15,11 @@ import pojos.PharmacyPojo;
 public interface Pharmacy {
 
     public PharmacyPojo retrieve(int pharmacyId);
+
+    public boolean addPharmacy(PharmacyPojo pharmacy);
+
+    public boolean deletePharmacy(int pharmacy_id);
+
+    public ArrayList<PharmacyPojo> getAllPharmacies();
 
 }

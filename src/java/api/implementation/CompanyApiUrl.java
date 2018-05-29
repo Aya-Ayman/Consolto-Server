@@ -32,7 +32,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import pojos.CompanyListPojo;
 import pojos.CompanyPojo;
+import pojos.CompanyResponse;
 import pojos.ResponseMessage;
 
 
@@ -53,47 +55,24 @@ public class CompanyApiUrl implements api.interfaces.CompanyApiUrlInterface{
     @Produces(MediaType.APPLICATION_JSON)
     
  @Override
-    public List retrive(){
+    public CompanyListPojo retrive(){
         CompanyDaoInterface implObject = new CompanyDaoImplementation();
         companyList = (ArrayList<CompanyPojo>) implObject.getAllCompanies();
-        return companyList;
+        CompanyListPojo companyListObject = new CompanyListPojo(companyList);
+        return companyListObject;
     }
     
     
     @GET
     @Path("/getCompany/{id}")
     @Produces(MediaType.APPLICATION_JSON)
- @Override
-    public CompanyPojo retriveCompany(@PathParam("id")int id){
-        CompanyPojo company = new CompanyPojo();
+    @Override
+    public CompanyResponse retriveCompany(@PathParam("id")int id){
+        CompanyResponse companyresponse = new CompanyResponse();
         CompanyDaoInterface implObject = new CompanyDaoImplementation();
-        company = implObject.getCompany(id);
-        return company;
+        companyresponse= implObject.getCompany(id);
+        return companyresponse;
     }
-    
-    
-    
-//    @POST
-//    @Path("/insert")
-//    public Response setData(Company company)
-//    {
-//        Response response = new Response();
-//        CompanyDaoImplementation implObject = new CompanyDaoImplementation();
-//        boolean isInserted = implObject.insertCompany(company);
-//        //System.out.println(isInserted);
-//        if(isInserted==true)
-//        {
-//          response.setError(200);
-//          response.setMessage("company is inserted");
-//          response.setStatus(true);
-//        }
-//        else{
-//            response.setError(404);
-//          response.setMessage("company is not inserted");
-//          response.setStatus(false);
-//        }
-//        return response;
-//    }
     
     
     @POST
@@ -121,23 +100,20 @@ public class CompanyApiUrl implements api.interfaces.CompanyApiUrlInterface{
    double doubleLongitude = Double.parseDouble(longitude);
    double doubleLatitude = Double.parseDouble(latitude);
    float packageFloat = Float.parseFloat(companyPackage);
-   Date startdateDate = null,enddateDate=null;
-  // DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-   startdateDate = java.sql.Date.valueOf(startDate);
-   enddateDate = java.sql.Date.valueOf(endDate);
+ 
  
    
-   CompanyPojo company = new CompanyPojo(name, email,doubleLatitude , doubleLongitude, address, packageFloat,startdateDate,enddateDate, ceo, insuranceId,phoneList);
+   CompanyPojo company = new CompanyPojo(name, email,doubleLatitude , doubleLongitude, address, packageFloat,startDate,endDate, ceo, insuranceId,phoneList);
    CompanyDaoInterface implObject = new CompanyDaoImplementation();
     boolean isInserted = implObject.insertCompany(company);
     if(isInserted==true)
      {
-      response.setError("200");
+      response.setError("0");
       response.setMessage("company is inserted");
       response.setStatus(true);
      }
   else{
-       response.setError("404");
+       response.setError("1");
        response.setMessage("company is not inserted");
        response.setStatus(false);
         }
@@ -145,27 +121,14 @@ public class CompanyApiUrl implements api.interfaces.CompanyApiUrlInterface{
    return response;
     
 }
-    
-    
-    
-    
-//    @POST
-//    @Path("/insertJson")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces("text/html")
-//    public Response setData(student st)
-//    {
-//          String result = "student saved : " + st;
-//        return Response.status(201).entity(result).build();
-//    }
-//    
-//        
+           
     @PUT
     @Path("/update/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public ResponseMessage update(@FormParam("name")String name,@FormParam("email")String email,@FormParam("latitude")String latitude,@FormParam("longitude")String longitude,@FormParam("address")String address,@FormParam("companyPackage")String companyPackage,@FormParam("startDate")String startDate,@FormParam("endDate")String endDate,@FormParam("ceo")String ceo,@FormParam("insuranceId")int insuranceId,@FormParam("phone1")String phone1,@FormParam("phone2")String phone2,@FormParam("phone3")String phone3,@PathParam("id")int id)
+    public CompanyResponse update(@FormParam("name")String name,@FormParam("email")String email,@FormParam("latitude")String latitude,@FormParam("longitude")String longitude,@FormParam("address")String address,@FormParam("companyPackage")String companyPackage,@FormParam("startDate")String startDate,@FormParam("endDate")String endDate,@FormParam("ceo")String ceo,@FormParam("insuranceId")int insuranceId,@FormParam("phone1")String phone1,@FormParam("phone2")String phone2,@FormParam("phone3")String phone3,@PathParam("id")int id)
     {
-      ResponseMessage response = new ResponseMessage();
+      CompanyResponse response = new CompanyResponse();
       List phoneList = new ArrayList<String>();
       if(!phone1.isEmpty())
       {    
@@ -182,22 +145,20 @@ public class CompanyApiUrl implements api.interfaces.CompanyApiUrlInterface{
         double doubleLongitude = Double.parseDouble(longitude);
        double doubleLatitude = Double.parseDouble(latitude);
         float packageFloat = Float.parseFloat(companyPackage);
-       Date startdateDate = null,enddateDate=null;
-   DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-   startdateDate = java.sql.Date.valueOf(startDate);
-   enddateDate = java.sql.Date.valueOf(endDate);
+
         
-      CompanyPojo company = new CompanyPojo(id, name, email, doubleLatitude, doubleLongitude, address, packageFloat, startdateDate, enddateDate, ceo, insuranceId,phoneList);
+      CompanyPojo company = new CompanyPojo(id, name, email, doubleLatitude, doubleLongitude, address, packageFloat, startDate, endDate, ceo, insuranceId,phoneList);
       CompanyDaoInterface implObject = new CompanyDaoImplementation();
       boolean isInserted = implObject.updateCompany(company);
       if(isInserted==true)
        {
-         response.setError("200");
+         response.setError("0");
          response.setMessage("company is updated");
          response.setStatus(true);
+         response.setCompanyObject(company);
        }
      else{
-         response.setError("404");
+         response.setError("1");
          response.setMessage("company is not updated");
          response.setStatus(false);
          }
@@ -209,6 +170,7 @@ public class CompanyApiUrl implements api.interfaces.CompanyApiUrlInterface{
     
     @DELETE
     @Path("/delete/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public ResponseMessage delete(@PathParam("id")int id)
     {
@@ -217,19 +179,16 @@ public class CompanyApiUrl implements api.interfaces.CompanyApiUrlInterface{
        boolean isInserted = implObject.deleteCompany(id);
        if(isInserted==true)
        {
-         response.setError("200");
+         response.setError("0");
          response.setMessage("company is Deleted");
          response.setStatus(true);
        }
      else{
-         response.setError("404");
+         response.setError("1");
          response.setMessage("company is not Deleted");
          response.setStatus(false);
          }
       return response;   
     }
-    
-
-    
-    
+  
 }

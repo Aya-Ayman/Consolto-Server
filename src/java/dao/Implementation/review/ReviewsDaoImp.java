@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pojos.ReviewsList_Pojo;
 import pojos.ReviewsPojo;
 
 /**
@@ -31,10 +32,10 @@ public class ReviewsDaoImp implements ReviewsDaoInt {
             insertPs.setInt(1, review.getMedicalTypeId());
             insertPs.setInt(2, review.getServiceId());
             insertPs.setString(3, review.getDescription());
-            insertPs.setDate(4,review.getDate());
+            insertPs.setString(4,review.getDate());
             insertPs.setString(5, review.getType());
             insertPs.setInt(6,review.getEmployeeEmployeeId());
-            insertPs.setInt(7,review.getReviewRate());
+            insertPs.setFloat(7,review.getReviewRate());
             System.out.println("DB CONNN " + insertPs.executeUpdate());
             return true;
         } catch (SQLException ex) {
@@ -44,7 +45,7 @@ public class ReviewsDaoImp implements ReviewsDaoInt {
     }
 
     @Override
-    public ArrayList<ReviewsPojo> retrieveAll() {
+    public ReviewsList_Pojo retrieveAll() {
         ArrayList<ReviewsPojo> allreviews = new ArrayList<ReviewsPojo>();
         try {
             Connection connection = DBConnection.getConnection();
@@ -54,17 +55,19 @@ public class ReviewsDaoImp implements ReviewsDaoInt {
                 ReviewsPojo review = new ReviewsPojo();
                 review.setReviewId(retSet.getInt("review_id"));
                 review.setMedicalTypeId(retSet.getInt("medicaltype_id"));
-                review.setReviewRate(retSet.getInt("review_rate"));
+                review.setReviewRate(retSet.getFloat("review_rate"));
                 review.setServiceId(retSet.getInt("service_id"));
                 review.setEmployeeEmployeeId(retSet.getInt("employee_employee_id"));
                 review.setDescription(retSet.getString("description"));
                 review.setType(retSet.getString("type"));
-                review.setDate(retSet.getDate("date"));
+                review.setDate(retSet.getString("date"));
                 allreviews.add(review);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ReviewsDaoImp.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return allreviews;
+        ReviewsList_Pojo all = new ReviewsList_Pojo();
+        all.setList_review(allreviews);
+        return all;
     }
 }

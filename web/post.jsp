@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <form action = "http://localhost:3038/MedicalInsuranceSystem/rest/company/update/4" method = "POST">
+       <form action = "http://localhost:4048/MedicalInsuranceSystem/api/version1/company/insert" method = "POST">
          company Name: <input type = "text" name = "name">
          <br />
          company Email: <input type = "text" name = "email" />
@@ -42,6 +42,7 @@
          <input type = "submit" value = "insert" />
           <br /> <br /> <br /> <br />
        </form>
+<<<<<<< HEAD
          
          <form action = "http://localhost:8084/MedicalInsuranceSystem/rest/user/insertEmployee" method = "POST"> 
         
@@ -77,5 +78,8 @@
         <br>
          
          
+=======
+    
+>>>>>>> c56092e043d674f82477208880c0b32b43332d75
     </body>
 </html>
