@@ -167,6 +167,7 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
             
             CompanyPhoneDaoInterface companyPhoneObject = new CompanyPhoneDaoImplementation();
             isInserted = companyPhoneObject.insertCompanyPhone(companyId, company.getPhones());
+           
         } catch (SQLException ex) {
             Logger.getLogger(CompanyPojo.class.getName()).log(Level.SEVERE, null, ex);
         }
