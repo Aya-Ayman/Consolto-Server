@@ -14,89 +14,114 @@ import java.util.ArrayList;
  */
 public class EmployeePojo {
 
-    private int employeeId;
-    private String employeeEmail;
-    private String employeeName;
-    private String employeeAddress;
-    private String employeeJob;
-    private String employeePassword;
-    private String employeeImage;
-    private int companyCompanyId;
-    private ArrayList<String> employeePhones;
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public void setEmployeeEmail(String employeeEmail) {
-        this.employeeEmail = employeeEmail;
-    }
-
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
-    }
-
-    public void setEmployeeAddress(String employeeAddress) {
-        this.employeeAddress = employeeAddress;
-    }
-
-    public void setEmployeeJob(String employeeJob) {
-        this.employeeJob = employeeJob;
-    }
-
-    public void setEmployeePassword(String employeePassword) {
-        this.employeePassword = employeePassword;
-    }
+    private int id;
+    private String email;
+    private String name;
+    private String address;
+    private String job;
+    private String password;
+   // private Blob image;
+    private int companyId;
+    private ArrayList<String> phones;
+    private String startDate;
+    private String endDate;
+    private float packageType;
 
    
-
-    public void setCompanyCompanyId(int companyCompanyId) {
-        this.companyCompanyId = companyCompanyId;
+    public int getId() {
+        return id;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getEmployeeEmail() {
-        return employeeEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public String getEmployeeName() {
-        return employeeName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getEmployeeAddress() {
-        return employeeAddress;
+    public String getName() {
+        return name;
     }
 
-    public String getEmployeeJob() {
-        return employeeJob;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getEmployeePassword() {
-        return employeePassword;
+    public String getAddress() {
+        return address;
     }
 
-
-    public int getCompanyCompanyId() {
-        return companyCompanyId;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public ArrayList<String> getEmployeePhones() {
-        return employeePhones;
+    public String getJob() {
+        return job;
     }
 
-    public void setEmployeePhones(ArrayList<String> employeePhones) {
-        this.employeePhones = employeePhones;
+    public void setJob(String job) {
+        this.job = job;
     }
 
-    public String getEmployeeImage() {
-        return employeeImage;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmployeeImage(String employeeImage) {
-        this.employeeImage = employeeImage;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+//
+//    public Blob getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(Blob image) {
+//        this.image = image;
+//    }
+
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
+    public ArrayList<String> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(ArrayList<String> phones) {
+        this.phones = phones;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public float getPackageType() {
+        return packageType;
+    }
+
+    public void setPackageType(float packageType) {
+        this.packageType = packageType;
     }
 
 }

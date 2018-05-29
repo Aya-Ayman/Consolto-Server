@@ -16,13 +16,13 @@ public class ResponsePojo {
 
     private boolean status;
     private String message;
-    private String error;
+    private int error;
 
-    public void setError(String error) {
+    public void setError(int error) {
         this.error = error;
     }
 
-    public String getError() {
+    public int getError() {
         return error;
     }
 

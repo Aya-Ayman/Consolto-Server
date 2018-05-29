@@ -7,6 +7,7 @@ package dao.Implementation.lab;
 
 import dao.Interfaces.lab.Lab;
 import dbconnectionfactory.DBConnection;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,24 +35,28 @@ public class LabImpl implements Lab {
             while (retSet.next()) {
 
                 lab = new LabPojo();
-                lab.setLabId(retSet.getInt(1));
-                lab.setLabNameEn(retSet.getString(2));
-                lab.setLabOpenHour(retSet.getString(3));
-                lab.setLabCloseHour(retSet.getString(4));
-                lab.setLabLatitude(retSet.getDouble(6));
-                lab.setLabLongitude(retSet.getDouble(7));
-                lab.setLabAddress(retSet.getString(8));
-                lab.setLabStartDate(retSet.getDate(9));
-                lab.setLabEndDate(retSet.getDate(10));
-                lab.setLabRate(retSet.getInt(11));
-                lab.setLabCeo(retSet.getString(12));
-                lab.setLabNameAr(retSet.getString(13));
-                lab.setMedicalTypeMedicalTypeId(retSet.getInt(14));
 
+             
+         
+                lab.setId(retSet.getInt(1));
+                lab.setNameEn(retSet.getString(2));
+                lab.setOpenHour(retSet.getString(3));
+                lab.setCloseHour(retSet.getString(4));
+                lab.setLatitude(retSet.getDouble(5));
+                lab.setLongitude(retSet.getDouble(6));
+                lab.setAddress(retSet.getString(7));
+                lab.setStartDate(retSet.getString(8));
+                lab.setEndDate(retSet.getString(9));
+                lab.setRate(retSet.getInt(10));
+                lab.setCeo(retSet.getString(11));
+                lab.setNameAr(retSet.getString(12));
+                lab.setMedicalTypeId(retSet.getInt(13));
+                lab.setImage(retSet.getBlob(14));
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(LabImpl.class.getName()).log(Level.SEVERE, null, ex);
+        
         }
         return lab;
 
@@ -62,22 +67,22 @@ public class LabImpl implements Lab {
         LabSpecializationsImplementation specializationsObj = new LabSpecializationsImplementation();
 
         try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement insertPs = connection.prepareStatement("INSERT INTO lab (lab_id,lab_name_en,lab_open_hour,lab_close_hour,lab_latitude,lab_longitude,lab_address,lab_start_date,lab_end_date,lab_rate,lab_ceo,lab_name_ar,medical_type_medical_type_id)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            insertPs.setInt(1, lab.getLabId());
-            insertPs.setString(2, lab.getLabNameEn());
-            insertPs.setString(3, lab.getLabOpenHour());
-            insertPs.setString(4, lab.getLabCloseHour());
-            insertPs.setDouble(5, lab.getLabLatitude());
-            insertPs.setDouble(6, lab.getLabLongitude());
-            insertPs.setString(7, lab.getLabAddress());
-            insertPs.setDate(8, lab.getLabStartDate());
-            insertPs.setDate(9, lab.getLabEndDate());
-            insertPs.setInt(10, lab.getLabRate());
-            insertPs.setString(11, lab.getLabCeo());
-            insertPs.setString(12, lab.getLabNameAr());
-            insertPs.setInt(13, lab.getMedicalTypeMedicalTypeId());
-            // Blob blob= null;
-            //insertPs.setBlob(14, blob);
+            PreparedStatement insertPs = connection.prepareStatement("INSERT INTO lab (lab_id,lab_name_en,lab_open_hour,lab_close_hour,lab_latitude,lab_longitude,lab_address,lab_start_date,lab_end_date,lab_rate,lab_ceo,lab_name_ar,medical_type_medical_type_id,lab_image)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            insertPs.setInt(1, lab.getId());
+            insertPs.setString(2, lab.getNameEn());
+            insertPs.setString(3, lab.getOpenHour());
+            insertPs.setString(4, lab.getCloseHour());
+            insertPs.setDouble(5, lab.getLatitude());
+            insertPs.setDouble(6, lab.getLongitude());
+            insertPs.setString(7, lab.getAddress());
+            insertPs.setString(8, lab.getStartDate());
+            insertPs.setString(9, lab.getEndDate());
+            insertPs.setFloat(10, lab.getRate());
+            insertPs.setString(11, lab.getCeo());
+            insertPs.setString(12, lab.getNameAr());
+            insertPs.setInt(13, lab.getMedicalTypeId());
+            Blob blob= null;
+            insertPs.setBlob(14, blob);
 
             int insertflag = insertPs.executeUpdate();
             boolean res = false;
@@ -85,8 +90,8 @@ public class LabImpl implements Lab {
 
             if (insertflag == 1) {
                 PreparedStatement getPs = connection.prepareStatement("SELECT lab_id FROM lab WHERE lab_name_en=? OR lab_name_ar=?");
-                getPs.setString(1, lab.getLabNameEn());
-                getPs.setString(2, lab.getLabNameAr());
+                getPs.setString(1, lab.getNameEn());
+                getPs.setString(2, lab.getNameAr());
                 ResultSet resSet = getPs.executeQuery();
 
                 int id = 0;
@@ -152,21 +157,21 @@ public class LabImpl implements Lab {
             ResultSet retSet = retrievePs.executeQuery();
             while (retSet.next()) {
                 LabPojo lab = new LabPojo();
-                lab.setLabId(retSet.getInt(1));
-                lab.setLabNameEn(retSet.getString(2));
-                lab.setLabOpenHour(retSet.getString(3));
-                lab.setLabCloseHour(retSet.getString(4));
-                lab.setLabLatitude(retSet.getDouble(5));
-                lab.setLabLongitude(retSet.getDouble(6));
-                lab.setLabAddress(retSet.getString(7));
-                lab.setLabStartDate(retSet.getDate(8));
-                lab.setLabEndDate(retSet.getDate(9));
-                lab.setLabRate(retSet.getInt(10));
-                lab.setLabCeo(retSet.getString(11));
-                lab.setLabNameAr(retSet.getString(12));
-                lab.setMedicalTypeMedicalTypeId(13);
+                lab.setId(retSet.getInt(1));
+                lab.setNameEn(retSet.getString(2));
+                lab.setOpenHour(retSet.getString(3));
+                lab.setCloseHour(retSet.getString(4));
+                lab.setLatitude(retSet.getDouble(5));
+                lab.setLongitude(retSet.getDouble(6));
+                lab.setAddress(retSet.getString(7));
+                lab.setStartDate(retSet.getString(8));
+                lab.setEndDate(retSet.getString(9));
+                lab.setRate(retSet.getInt(10));
+                lab.setCeo(retSet.getString(11));
+                lab.setNameAr(retSet.getString(12));
+                lab.setMedicalTypeId(13);
 
-                //lab.setLab_image(retSet.getBlob(14));
+                lab.setImage(retSet.getBlob(14));
                 phones = phonesObj.getLabPhones(retSet.getInt(1));
                 specializations = specializationsObj.getLabSpecializations(retSet.getInt(1));
 

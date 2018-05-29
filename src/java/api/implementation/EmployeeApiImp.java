@@ -9,6 +9,7 @@ import SendMailImp.SendMail;
 import api.interfaces.EmployeeApiInt;
 import dao.Implementation.employee.EmployeeDaoImp;
 import dao.Interfaces.employee.EmployeeDaoInt;
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -25,8 +26,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import pojos.EmployeeListObject;
 import pojos.EmployeePojo;
 import pojos.ResponseMessage;
+import pojos.ResponseMessageWithEmployee;
 import pojos.ResponseMessageWithId;
 
 /**
@@ -35,117 +38,114 @@ import pojos.ResponseMessageWithId;
  */
 @Path("/user")
 public class EmployeeApiImp implements EmployeeApiInt {
-    
-        static EmployeeDaoImp impl = new EmployeeDaoImp();
+
+    static EmployeeDaoImp impl = new EmployeeDaoImp();
 
     @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public ResponseMessageWithId login(JSONObject login){
+    public ResponseMessageWithId login(JSONObject login) {
         ResponseMessageWithId response = new ResponseMessageWithId();
         EmployeePojo emp;
-         String email=null;
-         String password=null;
+        String email = null;
+        String password = null;
         try {
             email = (String) login.get("mail");
             password = (String) login.get("password");
         } catch (JSONException ex) {
             Logger.getLogger(EmployeeApiImp.class.getName()).log(Level.SEVERE, null, ex);
         }
-       EmployeeDaoInt empdao=new EmployeeDaoImp();
-       emp= empdao.retrieveByMailAndPassword(email, password);
-       if (emp.getEmployeeId()== 0)
-       {
-           response.setMessage("user not found");
-           response.setStatus(false);
-           response.setError("404");
-           return response;
-       }else
-               {
+        EmployeeDaoInt empdao = new EmployeeDaoImp();
+        emp = empdao.retrieveByMailAndPassword(email, password);
+        if (emp.getId() == 0) {
+            response.setMessage("user not found");
+            response.setStatus(false);
+            response.setError("404");
+            return response;
+        } else {
             response.setMessage("user found");
-           response.setStatus(true);
-           response.setError("200");
-           response.setId(emp.getEmployeeId());
-           return response;
-               }
+            response.setStatus(true);
+            response.setError("200");
+            response.setId(emp.getId());
+            return response;
+        }
     }
-   
+
     @POST
     @Path("/forget")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public ResponseMessage getEmp(JSONObject mail) {
-      ResponseMessage response = new ResponseMessage();
-      EmployeePojo emp;
-            String email=null;
+        ResponseMessage response = new ResponseMessage();
+        EmployeePojo emp;
+        String email = null;
         try {
             email = (String) mail.get("mail");
-            
+
         } catch (JSONException ex) {
             Logger.getLogger(EmployeeApiImp.class.getName()).log(Level.SEVERE, null, ex);
         }
-            EmployeeDaoInt empdao=new EmployeeDaoImp();
-            emp= empdao.retrieveByMail(email);
-            if (emp.getEmployeeId()== 0)
-            {
-                response.setMessage("user not found");
-                response.setStatus(false);
-                response.setError("404");
-                return response;
-            }else
-            {
-                response.setMessage("Check Your Mail");
-                response.setStatus(true);
-                response.setError("200");
-                SendMail send = new SendMail();
-                send.sendmail(emp.getEmployeeEmail(),emp.getEmployeePassword());
-                return response;
-            }
+        EmployeeDaoInt empdao = new EmployeeDaoImp();
+        emp = empdao.retrieveByMail(email);
+        if (emp.getId() == 0) {
+            response.setMessage("user not found");
+            response.setStatus(false);
+            response.setError("404");
+            return response;
+        } else {
+            response.setMessage("Check Your Mail");
+            response.setStatus(true);
+            response.setError("200");
+            SendMail send = new SendMail();
+            send.sendmail(emp.getEmail(), emp.getPassword());
+            return response;
+        }
     }
-    
-    
-    
+
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
-
-    
-     @GET
-    @Path("/get/company/{id}")
+    @GET
+    @Path("/getEmployees/companyID={id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public ArrayList<EmployeePojo> retriveEmployeesOfCompany(@PathParam("id") int id) {
+    public EmployeeListObject retriveEmployeesOfCompany(@PathParam("id") int id) {
 
+        EmployeeListObject employeeList = new EmployeeListObject();
         ArrayList<EmployeePojo> returnedEmp = new ArrayList<EmployeePojo>();
 
         try {
             returnedEmp = impl.selectAllEmployees(id);
+            employeeList.setEmployeeListObject(returnedEmp);
         } catch (SQLException ex) {
             Logger.getLogger(EmployeeApiImp.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return returnedEmp;
+        return employeeList;
     }
-    
-    
+
     @GET
-    @Path("/get/{id}")
+    @Path("/getEmployee/employeeID={id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public EmployeePojo retriveEmployee(@PathParam("id") int id) {
-        EmployeePojo returnedEmp = new EmployeePojo();
+    public ResponseMessageWithEmployee retriveEmployee(@PathParam("id") int id) {
+        ResponseMessageWithEmployee allResponse = new ResponseMessageWithEmployee();
+        ResponseMessage reponseMessage = new ResponseMessage();
 
         try {
-            returnedEmp = impl.select(id);
+            allResponse = impl.select(id);
+
         } catch (SQLException ex) {
+
             Logger.getLogger(EmployeeApiImp.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return returnedEmp;
+
+        return allResponse;
     }
-    
-     @DELETE
-    @Path("/delete/{id}")
+
+    @DELETE
+    @Path("/deleteEmployee/employeeID={id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public ResponseMessage deleteEmployee(@PathParam("id") int employeeId
@@ -175,15 +175,12 @@ public class EmployeeApiImp implements EmployeeApiInt {
 
         return returnedResponse;
     }
-    
-    
-     @PUT
-    @Path("/put/{id}")
-//    @Consumes("application/json")
+
+    @PUT
+    @Path("/updateEmployee/employeeID={id}")
     @Produces(MediaType.APPLICATION_JSON)
-    // @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Override
-    public ResponseMessage updateEmployee(@PathParam("id") int employeeId,
+    public ResponseMessageWithEmployee updateEmployee(@PathParam("id") int employeeId,
             @FormParam("name") String name,
             @FormParam("mail") String mail,
             @FormParam("password") String password,
@@ -193,21 +190,27 @@ public class EmployeeApiImp implements EmployeeApiInt {
             @FormParam("phone1") String phone1,
             @FormParam("phone2") String phone2,
             @FormParam("phone3") String phone3,
-            @FormParam("employee_image") String employeeImage
+            @FormParam("startDate") String startDate,
+            @FormParam("endDate") String endDate,
+            @FormParam("packageType") float packageType
     ) {
 
-        ResponseMessage returnedResponse = new ResponseMessage();
-        Boolean updateStatus = false;
+        ResponseMessageWithEmployee allResponse = new ResponseMessageWithEmployee();
         ArrayList<String> insertedPhones = new ArrayList<>();
 
+        
         EmployeePojo updatedEmployee = new EmployeePojo();
-        updatedEmployee.setEmployeeId(employeeId);
-        updatedEmployee.setEmployeeName(name);
-        updatedEmployee.setEmployeeEmail(mail);
-        updatedEmployee.setEmployeeAddress(address);
-        updatedEmployee.setEmployeeJob(job);
-        updatedEmployee.setEmployeePassword(password);
-        updatedEmployee.setCompanyCompanyId(companyID);
+        updatedEmployee.setId(employeeId);
+        updatedEmployee.setName(name);
+        updatedEmployee.setEmail(mail);
+        updatedEmployee.setAddress(address);
+        updatedEmployee.setJob(job);
+        updatedEmployee.setPassword(password);
+        updatedEmployee.setCompanyId(companyID);
+        // updatedEmployee.setImage(employeeImage);
+        updatedEmployee.setStartDate(startDate);
+        updatedEmployee.setEndDate(endDate);
+        updatedEmployee.setPackageType(packageType);
 
         if (!phone1.isEmpty()) {
             insertedPhones.add(phone1);
@@ -218,53 +221,43 @@ public class EmployeeApiImp implements EmployeeApiInt {
         if (!phone3.isEmpty()) {
             insertedPhones.add(phone3);
         }
-        updatedEmployee.setEmployeePhones(insertedPhones);
+        updatedEmployee.setPhones(insertedPhones);
 
         try {
-            updateStatus = impl.update(updatedEmployee);
+            allResponse = impl.update(updatedEmployee);
 
-            if (updateStatus) {
-                returnedResponse.setError("No Error");
-                returnedResponse.setMessage("Update Done");
-                returnedResponse.setStatus(true);
-
-            } else {
-                returnedResponse.setError("Error");
-                returnedResponse.setMessage("Error in Update");
-                returnedResponse.setStatus(false);
-            }
 
         } catch (Exception ex) {
-
-            returnedResponse.setError("Error");
-            returnedResponse.setMessage("Error in Update");
-            returnedResponse.setStatus(false);
-            System.out.println("Errorrrrr at update api");
+            Logger.getLogger(EmployeeApiImp.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return returnedResponse;
+        return allResponse;
     }
-    
+
     @POST
-    @Path("/insert")
-   //  @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Path("/insertEmployee")
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public ResponseMessage insertEmployee(@FormParam("name") String name, @FormParam("mail") String mail,
             @FormParam("password") String password, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3, @FormParam("address") String address, @FormParam("job") String job,
-            @FormParam("employee_image") String employeeImage,@FormParam("company_id") int companyID) {
-
+            @FormParam("company_id") int companyID, @FormParam("startDate") String startDate,
+            @FormParam("endDate") String endDate,
+            @FormParam("packageType") float packageType) {
+        
         ArrayList<String> insertedPhones = new ArrayList<>();
         Boolean checkInsertion = false;
         ResponseMessage returnedResponse = new ResponseMessage();
         EmployeePojo insertedEmployee = new EmployeePojo();
 
-        insertedEmployee.setEmployeeName(name);
-        insertedEmployee.setEmployeeEmail(mail);
-        insertedEmployee.setEmployeeAddress(address);
-        insertedEmployee.setEmployeeJob(job);
-        insertedEmployee.setEmployeePassword(password);
-        insertedEmployee.setCompanyCompanyId(companyID);
-        insertedEmployee.setEmployeeImage(employeeImage);
+        insertedEmployee.setName(name);
+        insertedEmployee.setEmail(mail);
+        insertedEmployee.setAddress(address);
+        insertedEmployee.setJob(job);
+        insertedEmployee.setPassword(password);
+        insertedEmployee.setCompanyId(companyID);
+        //  insertedEmployee.setImage(employeeImage);
+        insertedEmployee.setStartDate(startDate);
+        insertedEmployee.setEndDate(endDate);
+        insertedEmployee.setPackageType(packageType);
 
         if (!phone1.isEmpty()) {
             insertedPhones.add(phone1);
@@ -275,7 +268,7 @@ public class EmployeeApiImp implements EmployeeApiInt {
         if (!phone3.isEmpty()) {
             insertedPhones.add(phone3);
         }
-        insertedEmployee.setEmployeePhones(insertedPhones);
+        insertedEmployee.setPhones(insertedPhones);
 
         try {
             checkInsertion = impl.insert(insertedEmployee);
@@ -297,8 +290,6 @@ public class EmployeeApiImp implements EmployeeApiInt {
             returnedResponse.setMessage("Error in Insertion");
             returnedResponse.setStatus(false);
         }
-        //    list.add(insertedEmployee);
-        //    System.out.println(list.get(0).getName());
 
         return returnedResponse;
     }

@@ -7,11 +7,12 @@ package api.implementation;
 
 import api.interfaces.MedicalTypeApi;
 import dao.Implementation.medicaltype.MedicalTypeImpl;
-import java.util.List;
+import java.util.ArrayList;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import pojos.MedicalTypeListPojo;
 import pojos.MedicalTypePojo;
 
 /**
@@ -25,12 +26,16 @@ public class MedicalType implements MedicalTypeApi {
     @GET
     @Path("/gettypes")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<MedicalTypePojo> getAllTypes() {
+    public MedicalTypeListPojo getAllTypes() {
         MedicalTypeImpl type = new MedicalTypeImpl();
-        List types = type.retrieve();
+        MedicalTypeListPojo list = new MedicalTypeListPojo();
+       ArrayList<MedicalTypePojo> types= new ArrayList<>();
+
+         types = type.retrieve();
+         list.setTypes(types);
 
         if (!types.isEmpty()) {
-            return types;
+            return list;
         } else {
             return null;
         }

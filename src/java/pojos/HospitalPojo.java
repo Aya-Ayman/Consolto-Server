@@ -6,7 +6,7 @@
 package pojos;
 
 import java.sql.Blob;
-import java.sql.Date;
+
 import java.util.ArrayList;
 
 /**
@@ -15,149 +15,156 @@ import java.util.ArrayList;
  */
 public class HospitalPojo {
 
-    private int hospitalId;
-    private String hospitalNameAr;
-    private String hospitalAddress;
-    private Double hospitalLongitude;
-    private Double hospitalLatitude;
-    private Date hospitalStartDate;
-    private Date hospitalEndDate;
-    private int hospitalRate;
-    private String hospitalOpenHour;
-    private String hospitalCloseHour;
-    private String hospitalCeo;
-    private String hospitalNameEn;
+    private int id;
+    private String nameAr;
+    private String address;
+    private Double longitude;
+    private Double latitude;
+    private String startDate;
+    private String endDate;
+    private float rate;
+    private String openHour;
+    private String CloseHour;
+    private String Ceo;
+    private String nameEn;
     private int medicalTypeId;
-    private Blob hospitalImage;
-    private ArrayList<String> hospitalPhones;
-    private ArrayList<String> hospitalDepartments;
 
-    public ArrayList<String> getHospitalPhones() {
-        return hospitalPhones;
+    private Blob image;
+    private ArrayList<String> phones;
+    private ArrayList<String> departments;
+
+    public int getId() {
+        return id;
     }
 
-    public ArrayList<String> getHospitalDepartments() {
-        return hospitalDepartments;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setHospitalPhones(ArrayList<String> hospitalPhones) {
-        this.hospitalPhones = hospitalPhones;
+    public String getNameAr() {
+        return nameAr;
     }
 
-    public void setHospitalDepartments(ArrayList<String> hospitalDepartments) {
-        this.hospitalDepartments = hospitalDepartments;
+    public void setNameAr(String nameAr) {
+        this.nameAr = nameAr;
     }
 
-    public void setHospitalId(int hospitalId) {
-        this.hospitalId = hospitalId;
+    public String getAddress() {
+        return address;
     }
 
-    public void setHospitalNameAr(String hospitalNameAr) {
-        this.hospitalNameAr = hospitalNameAr;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void setHospitalAddress(String hospitalAddress) {
-        this.hospitalAddress = hospitalAddress;
+    public Double getLongitude() {
+        return longitude;
     }
 
-    public void setHospitalLongitude(Double hospitalLongitude) {
-        this.hospitalLongitude = hospitalLongitude;
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
-    public void setHospitalLatitude(Double hospitalLatitude) {
-        this.hospitalLatitude = hospitalLatitude;
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public void setHospitalStartDate(Date hospitalStartDate) {
-        this.hospitalStartDate = hospitalStartDate;
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 
-    public void setHospitalEndDate(Date hospitalEndDate) {
-        this.hospitalEndDate = hospitalEndDate;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setHospitalRate(int hospitalRate) {
-        this.hospitalRate = hospitalRate;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
-    public void setHospitalOpenHour(String hospitalOpenHour) {
-        this.hospitalOpenHour = hospitalOpenHour;
+    public String getEndDate() {
+        return endDate;
     }
 
-    public void setHospitalCloseHour(String hospitalCloseHour) {
-        this.hospitalCloseHour = hospitalCloseHour;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
-    public void setHospitalCeo(String hospitalCeo) {
-        this.hospitalCeo = hospitalCeo;
+    public float getRate() {
+        return rate;
     }
 
-    public void setHospitalNameEn(String hospitalNameEn) {
-        this.hospitalNameEn = hospitalNameEn;
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 
-    public void setMedicalTypeId(int medicalTypeId) {
-        this.medicalTypeId = medicalTypeId;
+    public String getOpenHour() {
+        return openHour;
     }
 
-    public void setHospitalImage(Blob hospitalImage) {
-        this.hospitalImage = hospitalImage;
+    public void setOpenHour(String openHour) {
+        this.openHour = openHour;
     }
 
-    public int getHospitalId() {
-        return hospitalId;
+    public String getCloseHour() {
+        return CloseHour;
     }
 
-    public String getHospitalNameAr() {
-        return hospitalNameAr;
+    public void setCloseHour(String CloseHour) {
+        this.CloseHour = CloseHour;
     }
 
-    public String getHospitalAddress() {
-        return hospitalAddress;
+    public String getCeo() {
+        return Ceo;
     }
 
-    public Double getHospitalLongitude() {
-        return hospitalLongitude;
+    public void setCeo(String Ceo) {
+        this.Ceo = Ceo;
     }
 
-    public Double getHospitalLatitude() {
-        return hospitalLatitude;
+    public String getNameEn() {
+        return nameEn;
     }
 
-    public Date getHospitalStartDate() {
-        return hospitalStartDate;
-    }
-
-    public Date getHospitalEndDate() {
-        return hospitalEndDate;
-    }
-
-    public int getHospitalRate() {
-        return hospitalRate;
-    }
-
-    public String getHospitalOpenHour() {
-        return hospitalOpenHour;
-    }
-
-    public String getHospitalCloseHour() {
-        return hospitalCloseHour;
-    }
-
-    public String getHospitalCeo() {
-        return hospitalCeo;
-    }
-
-    public String getHospitalNameEn() {
-        return hospitalNameEn;
+    public void setNameEn(String nameEn) {
+        this.nameEn = nameEn;
     }
 
     public int getMedicalTypeId() {
         return medicalTypeId;
     }
 
-    public Blob getHospitalImage() {
-        return hospitalImage;
+    public void setMedicalTypeId(int medicalTypeId) {
+        this.medicalTypeId = medicalTypeId;
     }
+
+    public Blob getImage() {
+        return image;
+    }
+
+    public void setHospitalImage(Blob image) {
+        this.image = image;
+    }
+
+    public ArrayList<String> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(ArrayList<String> phones) {
+        this.phones = phones;
+    }
+
+    public ArrayList<String> getDepartments() {
+        return departments;
+    }
+
+    public void setImage(Blob image) {
+        this.image = image;
+    }
+
+    public void setDepartments(ArrayList<String> departments) {
+        this.departments = departments;
+    }
+    
+    
 
 }

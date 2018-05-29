@@ -34,8 +34,8 @@ public class MedicalTypeImpl implements MedicalType {
     }
 
     @Override
-    public List<MedicalTypePojo> retrieve() {
-        List<MedicalTypePojo> allTypes = new ArrayList<>();
+    public ArrayList<MedicalTypePojo> retrieve() {
+        ArrayList<MedicalTypePojo> allTypes = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
             PreparedStatement retrieveTypes = connection.prepareStatement("SELECT * FROM medical_type");
 
@@ -47,7 +47,7 @@ public class MedicalTypeImpl implements MedicalType {
                 medicalType.setMedicalTypeId(retSet.getInt(1));
                 medicalType.setMedicalTypeNameAr(retSet.getString(2));
                 medicalType.setMedicalTypeNameEn(retSet.getString(3));
-                medicalType.setMedicalInsuranceId(retSet.getInt(4));
+             //   medicalType.setMedicalInsuranceId(retSet.getInt(4));
 
                 allTypes.add(medicalType);
             }

@@ -17,7 +17,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import pojos.PharmacyListPojo;
 import pojos.PharmacyPojo;
+import pojos.ResponseMessage;
 import pojos.ResponsePojo;
 
 /**
@@ -31,8 +33,8 @@ public class PharmacyApiImplementation implements PharmacyApi {
     @Path("/insert")
     // @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public ResponsePojo insertPharmacy(@FormParam("pharmacy_name_en") String pharmacy_name_en, @FormParam("pharmacy_latitude") String pharmacy_latitude, @FormParam("pharmacy_longitude") String pharmacy_longitude, @FormParam("pharmacy_start_date") String pharmacy_start_date, @FormParam("pharmacy_end_date") String pharmacy_end_date, @FormParam("pharmacy_rate") int pharmacy_rate, @FormParam("pharmacy_address") String pharmacy_address, @FormParam("pharmacy_open_hour") String pharmacy_open_hour, @FormParam("pharmacy_close_hour") String pharmacy_close_hour, @FormParam("pharmacy_name_ar") String pharmacy_name_ar, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3) {
-        ResponsePojo response = new ResponsePojo();
+    public ResponseMessage insertPharmacy(@FormParam("pharmacy_name_en") String pharmacy_name_en, @FormParam("pharmacy_latitude") String pharmacy_latitude, @FormParam("pharmacy_longitude") String pharmacy_longitude, @FormParam("pharmacy_start_date") String pharmacy_start_date, @FormParam("pharmacy_end_date") String pharmacy_end_date, @FormParam("pharmacy_rate") int pharmacy_rate, @FormParam("pharmacy_address") String pharmacy_address, @FormParam("pharmacy_open_hour") String pharmacy_open_hour, @FormParam("pharmacy_close_hour") String pharmacy_close_hour, @FormParam("pharmacy_name_ar") String pharmacy_name_ar, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3) {
+        ResponseMessage response = new ResponseMessage();
         PharmacyPojo pharmacy = new PharmacyPojo();
         ArrayList<String> phones = new ArrayList();
         PharmacyImpl pharmacyObj = new PharmacyImpl();
@@ -53,30 +55,30 @@ public class PharmacyApiImplementation implements PharmacyApi {
             phones.add(phone3);
         }
 
-        pharmacy.setPharmacyLatitude(mylatitude);
-        pharmacy.setPharmacyLongitude(mylongitude);
-        pharmacy.setPharmacyNameAr(pharmacy_name_ar);
-        pharmacy.setPharmacyNameEn(pharmacy_name_en);
-        pharmacy.setPharmacyAddress(pharmacy_address);
-        pharmacy.setPharmacyOpenHour(pharmacy_open_hour);
-        pharmacy.setPharmacyCloseHour(pharmacy_close_hour);
-        pharmacy.setPharmacyRate(pharmacy_rate);
+        pharmacy.setLatitude(mylatitude);
+        pharmacy.setLongitude(mylongitude);
+        pharmacy.setNameAr(pharmacy_name_ar);
+        pharmacy.setNameEn(pharmacy_name_en);
+        pharmacy.setAddress(pharmacy_address);
+        pharmacy.setOpenHour(pharmacy_open_hour);
+        pharmacy.setCloseHour(pharmacy_close_hour);
+        pharmacy.setRate(pharmacy_rate);
         pharmacy.setMedicalTypeId(3);
         pharmacy.setPharmacyPhones(phones);
-        pharmacy.setPharmacyStartDate(start);
-        pharmacy.setPharmacyEndDate(end);
+        pharmacy.setStartDate(pharmacy_start_date);
+        pharmacy.setEndDate(pharmacy_end_date);
 
         boolean result = pharmacyObj.addPharmacy(pharmacy);
 
         if (result == true) {
             response.setStatus(true);
             response.setMessage("Pharmacy Added Successfully");
-            response.setError("No Error");
+            response.setError("0");
             return response;
         } else {
             response.setStatus(false);
             response.setMessage("Pharmacy Failed to be added");
-            response.setError(" Error");
+            response.setError("1");
             return response;
 
         }
@@ -86,9 +88,9 @@ public class PharmacyApiImplementation implements PharmacyApi {
     @DELETE
     ///{type_id}
     @Path("/delete/{pharmacy_id}")
-    public ResponsePojo deletePharmacy(@PathParam("pharmacy_id") int pharmacy_id) {
+    public ResponseMessage deletePharmacy(@PathParam("pharmacy_id") int pharmacy_id) {
         //,@PathParam("type_id")int type_id
-        ResponsePojo response = new ResponsePojo();
+        ResponseMessage response = new ResponseMessage();
         PharmacyImpl pharmacyObj = new PharmacyImpl();
 
         boolean result = pharmacyObj.deletePharmacy(pharmacy_id);
@@ -96,24 +98,26 @@ public class PharmacyApiImplementation implements PharmacyApi {
         if (result == true) {
             response.setStatus(true);
             response.setMessage("pharmacy deleted Successfully");
-            response.setError("No Error");
+            response.setError("0");
             return response;
         } else {
             response.setStatus(false);
             response.setMessage("pharmacy deletion failed");
-            response.setError(" Error");
+            response.setError("1");
             return response;
         }
     }
 
     @GET
-    @Path("/get")
+    @Path("/getAll")
     @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<PharmacyPojo> getPharmacy() {
+    public PharmacyListPojo getAllPharmacies() {
 
         PharmacyImpl pharmacyObj = new PharmacyImpl();
         ArrayList<PharmacyPojo> pharmacies = new ArrayList();
+        PharmacyListPojo pharmacyList = new PharmacyListPojo();
         pharmacies = pharmacyObj.getAllPharmacies();
-        return pharmacies;
+        pharmacyList.setPharmacies(pharmacies);
+        return pharmacyList;
     }
 }

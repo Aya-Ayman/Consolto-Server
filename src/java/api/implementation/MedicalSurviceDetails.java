@@ -14,6 +14,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import pojos.ClinicPojo;
 import pojos.HospitalPojo;
@@ -27,11 +28,16 @@ import pojos.PharmacyPojo;
 @Path("/details")
 public class MedicalSurviceDetails implements MedicalServiceDetailsApi {
 
+    public static final int hospitalID = 1;
+    public static final int clinicID = 4;
+    public static final int pharmacyID = 2;
+    public static final int labID = 3;
+
     @Override
     @GET
-    @Path("get/{tid}/{sid}")
+    @Path("get")
     @Produces(MediaType.APPLICATION_JSON)
-    public Object getDetails(@PathParam("tid") int tid, @PathParam("sid") int sid) {
+    public Object getDetails(@QueryParam("tid") int tid, @QueryParam("sid") int sid) {
 
         PharmacyPojo pharmacy = null;
         HospitalPojo hospital = null;
@@ -39,24 +45,25 @@ public class MedicalSurviceDetails implements MedicalServiceDetailsApi {
         LabPojo lab = null;
 
         switch (tid) {
-            case 1:
+            case pharmacyID:
                 PharmacyImpl obj = new PharmacyImpl();
                 pharmacy = obj.retrieve(sid);
                 return pharmacy;
 
-            case 2:
+            case hospitalID:
                 HospitalImpl obj2 = new HospitalImpl();
                 hospital = obj2.retrieve(sid);
                 return hospital;
-            case 3:
+            case clinicID:
                 ClinicImpl obj3 = new ClinicImpl();
                 clinic = obj3.retrieve(sid);
                 return clinic;
-            case 4:
+            case labID:
                 LabImpl obj4 = new LabImpl();
                 lab = obj4.retrieve(sid);
                 return lab;
         }
+
         return null;
     }
 

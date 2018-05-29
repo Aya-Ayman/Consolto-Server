@@ -36,20 +36,21 @@ public class HospitalImpl implements Hospital {
             while (retSet.next()) {
 
                 hospital = new HospitalPojo();
-                hospital.setHospitalId(retSet.getInt(1));
-                hospital.setHospitalNameAr(retSet.getString(2));
-                hospital.setHospitalAddress(retSet.getString(3));
-                hospital.setHospitalLongitude(retSet.getDouble(4));
-                hospital.setHospitalLatitude(retSet.getDouble(6));
-                hospital.setHospitalStartDate(retSet.getDate(7));
-                hospital.setHospitalEndDate(retSet.getDate(8));
-                hospital.setHospitalRate(retSet.getInt(9));
-                hospital.setHospitalOpenHour(retSet.getString(10));
-                hospital.setHospitalCloseHour(retSet.getString(11));
-                hospital.setHospitalCeo(retSet.getString(12));
-                hospital.setHospitalNameEn(retSet.getString(13));
-                hospital.setMedicalTypeId(retSet.getInt(14));
-                hospital.setHospitalImage(retSet.getBlob(15));
+
+                hospital.setId(retSet.getInt(1));
+                hospital.setNameAr(retSet.getString(2));
+                hospital.setAddress(retSet.getString(3));
+                hospital.setLongitude(retSet.getDouble(4));
+                hospital.setLatitude(retSet.getDouble(5));
+                hospital.setStartDate(retSet.getString(6));
+                hospital.setEndDate(retSet.getString(7));
+                hospital.setRate(retSet.getInt(8));
+                hospital.setOpenHour(retSet.getString(9));
+                hospital.setCloseHour(retSet.getString(10));
+                hospital.setCeo(retSet.getString(11));
+                hospital.setNameEn(retSet.getString(12));
+                hospital.setMedicalTypeId(retSet.getInt(13));
+                hospital.setHospitalImage(retSet.getBlob(14));
 
             }
 
@@ -66,20 +67,19 @@ public class HospitalImpl implements Hospital {
         HospitalPhonesImplementation phones = new HospitalPhonesImplementation();
 
         try (Connection connection = DBConnection.getConnection()) {
-            // System.out.println(hospital.getHospitalNameAr());
             PreparedStatement insertPs = connection.prepareStatement("INSERT INTO hospital (hospital_id,hospital_name,hospital_address,hospital_longitude,hospital_latitude,hospital_start_date,hospital_end_date,hospital_rate,hospital_open_hour,hospital_close_hour,hospital_ceo,hospital_name_en,medical_type_medical_type_id,hospital_image)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            insertPs.setInt(1, hospital.getHospitalId());
-            insertPs.setString(2, hospital.getHospitalNameAr());
-            insertPs.setString(3, hospital.getHospitalAddress());
-            insertPs.setDouble(4, hospital.getHospitalLongitude());
-            insertPs.setDouble(5, hospital.getHospitalLatitude());
-            insertPs.setDate(6, hospital.getHospitalStartDate());
-            insertPs.setDate(7, hospital.getHospitalEndDate());
-            insertPs.setInt(8, hospital.getHospitalRate());
-            insertPs.setString(9, hospital.getHospitalOpenHour());
-            insertPs.setString(10, hospital.getHospitalCloseHour());
-            insertPs.setString(11, hospital.getHospitalCeo());
-            insertPs.setString(12, hospital.getHospitalNameEn());
+            insertPs.setInt(1, hospital.getId());
+            insertPs.setString(2, hospital.getNameAr());
+            insertPs.setString(3, hospital.getAddress());
+            insertPs.setDouble(4, hospital.getLongitude());
+            insertPs.setDouble(5, hospital.getLatitude());
+            insertPs.setString(6, hospital.getStartDate());
+            insertPs.setString(7, hospital.getEndDate());
+            insertPs.setFloat(8, hospital.getRate());
+            insertPs.setString(9, hospital.getOpenHour());
+            insertPs.setString(10, hospital.getCloseHour());
+            insertPs.setString(11, hospital.getCeo());
+            insertPs.setString(12, hospital.getNameEn());
             insertPs.setInt(13, hospital.getMedicalTypeId());
             Blob blob = null;
             insertPs.setBlob(14, blob);
@@ -89,8 +89,8 @@ public class HospitalImpl implements Hospital {
             boolean res2 = false;
             if (insertflag == 1) {
                 PreparedStatement getPs = connection.prepareStatement("SELECT hospital_id FROM hospital WHERE hospital_name=? OR hospital_name_en=?");
-                getPs.setString(1, hospital.getHospitalNameAr());
-                getPs.setString(2, hospital.getHospitalNameEn());
+                getPs.setString(1, hospital.getNameAr());
+                getPs.setString(2, hospital.getNameEn());
                 ResultSet resSet = getPs.executeQuery();
 
                 int id = 0;
@@ -99,8 +99,8 @@ public class HospitalImpl implements Hospital {
                     id = resSet.getInt(1);
                     System.out.print(id);
                 }
-                res = phones.addHospitalPhones(id, hospital.getHospitalPhones());
-                res2 = departments.addHospitalDepartments(id, hospital.getHospitalDepartments());
+                res = phones.addHospitalPhones(id, hospital.getPhones());
+                res2 = departments.addHospitalDepartments(id, hospital.getDepartments());
 
             }
             return res && res2;
@@ -163,18 +163,18 @@ public class HospitalImpl implements Hospital {
             ResultSet retSet = retrievePs.executeQuery();
             while (retSet.next()) {
                 HospitalPojo hos = new HospitalPojo();
-                hos.setHospitalId(retSet.getInt(1));
-                hos.setHospitalNameAr(retSet.getString(2));
-                hos.setHospitalAddress(retSet.getString(3));
-                hos.setHospitalLongitude(retSet.getDouble(4));
-                hos.setHospitalLatitude(retSet.getDouble(5));
-                hos.setHospitalStartDate(retSet.getDate(6));
-                hos.setHospitalEndDate(retSet.getDate(7));
-                hos.setHospitalRate(retSet.getInt(8));
-                hos.setHospitalOpenHour(retSet.getString(9));
-                hos.setHospitalCloseHour(retSet.getString(10));
-                hos.setHospitalCeo(retSet.getString(11));
-                hos.setHospitalNameEn(retSet.getString(12));
+                hos.setId(retSet.getInt(1));
+                hos.setNameAr(retSet.getString(2));
+                hos.setAddress(retSet.getString(3));
+                hos.setLongitude(retSet.getDouble(4));
+                hos.setLatitude(retSet.getDouble(5));
+                hos.setStartDate(retSet.getString(6));
+                hos.setEndDate(retSet.getString(7));
+                hos.setRate(retSet.getInt(8));
+                hos.setOpenHour(retSet.getString(9));
+                hos.setCloseHour(retSet.getString(10));
+                hos.setCeo(retSet.getString(11));
+                hos.setNameEn(retSet.getString(12));
                 hos.setMedicalTypeId(retSet.getInt(13));
                 hos.setHospitalImage(retSet.getBlob(14));
 
@@ -182,8 +182,8 @@ public class HospitalImpl implements Hospital {
                 //System.out.print(retSet.getInt(1));
                 departments = departmentsObj.getHospitalDepartments(retSet.getInt(1));
 
-                hos.setHospitalPhones(phones);
-                hos.setHospitalDepartments(departments);
+                hos.setPhones(phones);
+                hos.setDepartments(departments);
 
                 hospitals.add(hos);
             }

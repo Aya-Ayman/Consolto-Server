@@ -14,7 +14,6 @@ public class MedicalTypePojo {
     private int medicalTypeId;
     private String medicalTypeNameAr;
     private String medicalTypeNameEn;
-    private int medicalInsuranceId;
 
     public void setMedicalTypeId(int medicalTypeId) {
         this.medicalTypeId = medicalTypeId;
@@ -28,9 +27,6 @@ public class MedicalTypePojo {
         this.medicalTypeNameEn = medicalTypeNameEn;
     }
 
-    public void setMedicalInsuranceId(int medicalInsuranceId) {
-        this.medicalInsuranceId = medicalInsuranceId;
-    }
 
     public int getMedicalTypeId() {
         return medicalTypeId;
@@ -44,8 +40,5 @@ public class MedicalTypePojo {
         return medicalTypeNameEn;
     }
 
-    public int getMedicalInsuranceId() {
-        return medicalInsuranceId;
-    }
 
 }
