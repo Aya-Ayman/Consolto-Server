@@ -8,6 +8,7 @@ package dao.Interfaces.employee;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import pojos.EmployeePojo;
+import pojos.ResponseMessageWithEmployee;
 
 /**
  *
@@ -23,11 +24,11 @@ public interface EmployeeDaoInt {
     ////////////////////////////////////////////////
     public ArrayList<EmployeePojo> selectAllEmployees(int id) throws SQLException;
 
-    public EmployeePojo select(int id) throws SQLException;
+    public ResponseMessageWithEmployee select(int id) throws SQLException;
 
     public boolean deleteEmployee(int employeeId) throws SQLException;
 
-    public boolean update(EmployeePojo emp) throws SQLException;
+    public ResponseMessageWithEmployee update(EmployeePojo emp) throws SQLException;
 
     public boolean insert(EmployeePojo emp) throws SQLException;
 

@@ -35,6 +35,9 @@ public class LabImpl implements Lab {
             while (retSet.next()) {
 
                 lab = new LabPojo();
+
+             
+         
                 lab.setId(retSet.getInt(1));
                 lab.setNameEn(retSet.getString(2));
                 lab.setOpenHour(retSet.getString(3));
@@ -53,6 +56,7 @@ public class LabImpl implements Lab {
 
         } catch (SQLException ex) {
             Logger.getLogger(LabImpl.class.getName()).log(Level.SEVERE, null, ex);
+        
         }
         return lab;
 

@@ -14,100 +14,52 @@ import java.sql.Date;
 public class SuggestionPojo {
 
     private int suggestId;
-    private String suggestText;
-    private int suggestMedicalType;
-    private Double suggestLocationLatitude;
-    private Double suggestLocationLongitude;
-    private String locationAddress;
-    private String suggestContactPhone;
-    private String suggestSupervisor;
-    private Date suggestDate;
+    private String description;
+    private int medicalType;
+    private Double Latitude;
+    private Double Longitude;
+    private String address;
+    private String contactPhone;
+    private String supervisor;
+    private String date;
     private String medicalServiceNameAr;
     private String medicalServiceNameEn;
-    private int employeeEmployeeId;
-
-    public void setSuggestId(int suggestId) {
-        this.suggestId = suggestId;
-    }
-
-    public void setSuggestText(String suggestText) {
-        this.suggestText = suggestText;
-    }
-
-    public void setSuggestMedicalType(int suggestMedicalType) {
-        this.suggestMedicalType = suggestMedicalType;
-    }
-
-    public void setSuggestLocationLatitude(Double suggestLocationLatitude) {
-        this.suggestLocationLatitude = suggestLocationLatitude;
-    }
-
-    public void setSuggestLocationLongitude(Double suggestLocationLongitude) {
-        this.suggestLocationLongitude = suggestLocationLongitude;
-    }
-
-    public void setLocationAddress(String locationAddress) {
-        this.locationAddress = locationAddress;
-    }
-
-    public void setSuggestContactPhone(String suggestContactPhone) {
-        this.suggestContactPhone = suggestContactPhone;
-    }
-
-    public void setSuggestSupervisor(String suggestSupervisor) {
-        this.suggestSupervisor = suggestSupervisor;
-    }
-
-    public void setSuggestDate(Date suggestDate) {
-        this.suggestDate = suggestDate;
-    }
-
-    public void setMedicalServiceNameAr(String medicalServiceNameAr) {
-        this.medicalServiceNameAr = medicalServiceNameAr;
-    }
-
-    public void setMedicalServiceNameEn(String medicalServiceNameEn) {
-        this.medicalServiceNameEn = medicalServiceNameEn;
-    }
-
-    public void setEmployeeEmployeeId(int employeeEmployeeId) {
-        this.employeeEmployeeId = employeeEmployeeId;
-    }
+    private int employeeId;
 
     public int getSuggestId() {
         return suggestId;
     }
 
-    public String getSuggestText() {
-        return suggestText;
+    public String getDescription() {
+        return description;
     }
 
-    public int getSuggestMedicalType() {
-        return suggestMedicalType;
+    public int getMedicalType() {
+        return medicalType;
     }
 
-    public Double getSuggestLocationLatitude() {
-        return suggestLocationLatitude;
+    public Double getLatitude() {
+        return Latitude;
     }
 
-    public Double getSuggestLocationLongitude() {
-        return suggestLocationLongitude;
+    public Double getLongitude() {
+        return Longitude;
     }
 
-    public String getLocationAddress() {
-        return locationAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public String getSuggestContactPhone() {
-        return suggestContactPhone;
+    public String getContactPhone() {
+        return contactPhone;
     }
 
-    public String getSuggestSupervisor() {
-        return suggestSupervisor;
+    public String getSupervisor() {
+        return supervisor;
     }
 
-    public Date getSuggestDate() {
-        return suggestDate;
+    public String getDate() {
+        return date;
     }
 
     public String getMedicalServiceNameAr() {
@@ -118,8 +70,58 @@ public class SuggestionPojo {
         return medicalServiceNameEn;
     }
 
-    public int getEmployeeEmployeeId() {
-        return employeeEmployeeId;
+    public int getEmployeeId() {
+        return employeeId;
     }
+
+    public void setSuggestId(int suggestId) {
+        this.suggestId = suggestId;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setMedicalType(int medicalType) {
+        this.medicalType = medicalType;
+    }
+
+    public void setLatitude(Double Latitude) {
+        this.Latitude = Latitude;
+    }
+
+    public void setLongitude(Double Longitude) {
+        this.Longitude = Longitude;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public void setSupervisor(String supervisor) {
+        this.supervisor = supervisor;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setMedicalServiceNameAr(String medicalServiceNameAr) {
+        this.medicalServiceNameAr = medicalServiceNameAr;
+    }
+
+    public void setMedicalServiceNameEn(String medicalServiceNameEn) {
+        this.medicalServiceNameEn = medicalServiceNameEn;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
+
 
 }

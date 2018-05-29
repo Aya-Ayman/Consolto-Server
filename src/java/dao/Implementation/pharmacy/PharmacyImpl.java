@@ -34,6 +34,7 @@ public class PharmacyImpl implements Pharmacy {
             while (retSet.next()) {
 
                 pharmacy = new PharmacyPojo();
+
                 pharmacy.setId(retSet.getInt(1));
                 pharmacy.setNameEn(retSet.getString(2));
                 pharmacy.setLatitude(retSet.getDouble(3));

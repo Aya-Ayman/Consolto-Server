@@ -36,6 +36,7 @@ public class HospitalImpl implements Hospital {
             while (retSet.next()) {
 
                 hospital = new HospitalPojo();
+
                 hospital.setId(retSet.getInt(1));
                 hospital.setNameAr(retSet.getString(2));
                 hospital.setAddress(retSet.getString(3));
@@ -66,7 +67,6 @@ public class HospitalImpl implements Hospital {
         HospitalPhonesImplementation phones = new HospitalPhonesImplementation();
 
         try (Connection connection = DBConnection.getConnection()) {
-            // System.out.println(hospital.getHospitalNameAr());
             PreparedStatement insertPs = connection.prepareStatement("INSERT INTO hospital (hospital_id,hospital_name,hospital_address,hospital_longitude,hospital_latitude,hospital_start_date,hospital_end_date,hospital_rate,hospital_open_hour,hospital_close_hour,hospital_ceo,hospital_name_en,medical_type_medical_type_id,hospital_image)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             insertPs.setInt(1, hospital.getId());
             insertPs.setString(2, hospital.getNameAr());
