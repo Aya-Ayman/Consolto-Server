@@ -25,6 +25,8 @@ public class PharmacyImpl implements Pharmacy {
     @Override
     public PharmacyPojo retrieve(int pharmacyId) {
         PharmacyPojo pharmacy = null;
+        ArrayList<String> phones = new ArrayList();
+        PharmacyPhonesImplementation phonesObj = new PharmacyPhonesImplementation();
         try (Connection connection = DBConnection.getConnection()) {
             PreparedStatement retrieveTypes = connection.prepareStatement("SELECT * FROM pharmacy WHERE pharmacy_id=?");
 
@@ -48,6 +50,8 @@ public class PharmacyImpl implements Pharmacy {
                 pharmacy.setNameAr(retSet.getString(11));
                 pharmacy.setMedicalTypeId(retSet.getInt(12));
                 pharmacy.setImage(retSet.getBlob(13));
+                phones = phonesObj.getPharmacyPhones(retSet.getInt(1));
+                pharmacy.setPharmacyPhones(phones);
             }
 
         } catch (SQLException ex) {

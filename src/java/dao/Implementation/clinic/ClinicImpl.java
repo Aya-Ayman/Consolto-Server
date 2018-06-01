@@ -25,7 +25,9 @@ public class ClinicImpl implements Clinic {
 
     @Override
     public ClinicPojo retrieve(int clinicId) {
+        ArrayList<String> phones = new ArrayList();
 
+        ClinicPhonesImplementation phonesObj = new ClinicPhonesImplementation();
         ClinicPojo clinic = null;
         try (Connection connection = DBConnection.getConnection()) {
             PreparedStatement retrieveTypes = connection.prepareStatement("SELECT * FROM clinic WHERE clinic_id=?");
@@ -50,6 +52,8 @@ public class ClinicImpl implements Clinic {
                 clinic.setDoctorNameAr(retSet.getString(12));
                 clinic.setMedicalTypeId(retSet.getInt(13));
                 clinic.setImage(retSet.getBlob(14));
+                phones = phonesObj.getClinicPhones(retSet.getInt(1));
+                clinic.setPhones(phones);
             }
 
         } catch (SQLException ex) {
@@ -78,7 +82,7 @@ public class ClinicImpl implements Clinic {
             insertPs.setString(11, clinic.getDoctorNameEn());
             insertPs.setString(12, clinic.getDoctorNameAr());
             insertPs.setInt(13, clinic.getMedicalTypeId());
-            Blob blob=null;
+            Blob blob = null;
             insertPs.setBlob(14, blob);
 
             int insertflag = insertPs.executeUpdate();

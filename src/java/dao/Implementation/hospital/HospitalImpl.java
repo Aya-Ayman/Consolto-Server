@@ -25,6 +25,11 @@ public class HospitalImpl implements Hospital {
 
     @Override
     public HospitalPojo retrieve(int hospitalId) {
+        HospitalPhonesImplementation phonesObj = new HospitalPhonesImplementation();
+            HospitalDepartmentsImplementation departmentsObj = new HospitalDepartmentsImplementation();
+        ArrayList<String> departments = new ArrayList();
+
+        ArrayList<String> phones = new ArrayList();
 
         HospitalPojo hospital = null;
         try (Connection connection = DBConnection.getConnection()) {
@@ -51,6 +56,13 @@ public class HospitalImpl implements Hospital {
                 hospital.setNameEn(retSet.getString(12));
                 hospital.setMedicalTypeId(retSet.getInt(13));
                 hospital.setHospitalImage(retSet.getBlob(14));
+                
+                 phones = phonesObj.getHospitalPhones(retSet.getInt(1));
+                departments = departmentsObj.getHospitalDepartments(retSet.getInt(1));
+
+                hospital.setPhones(phones);
+                                hospital.setDepartments(departments);
+
 
             }
 
@@ -179,7 +191,6 @@ public class HospitalImpl implements Hospital {
                 hos.setHospitalImage(retSet.getBlob(14));
 
                 phones = phonesObj.getHospitalPhones(retSet.getInt(1));
-                //System.out.print(retSet.getInt(1));
                 departments = departmentsObj.getHospitalDepartments(retSet.getInt(1));
 
                 hos.setPhones(phones);

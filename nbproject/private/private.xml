@@ -2,62 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group>
-            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/api/implementation/EmployeeApiImp.java</file>
-            <file>file:/D:/hoda/ITI/projects/Graduated%20Project/MedicalInsurance/src/java/api/implementation/MedicalType.java</file>
-        </group>
         <group name="AJAX">
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Interfaces/clinic/Clinic.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/ClinicPojo.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/HospitalPojo.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/ResponseMessageWithId.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/lab/LabImpl.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/pharmacy/PharmacyImpl.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/suggesstion/SuggestionImpl.java</file>
             <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/implementation/Suggestion.java</file>
             <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/hospital/HospitalImpl.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/ResponsePojo.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/SuggesstionListPojo.java</file>
             <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/interfaces/MedicalTypeApi.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Interfaces/suggesstion/Suggestion.java</file>
             <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/medicaltype/MedicalTypeImpl.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/ResponseMessage.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/SendMailImp/SendMail.java</file>
             <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/MedicalTypePojo.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/ReviewsPojo.java</file>
             <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/implementation/MedicalType.java</file>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/implementation/EmployeeApiImp.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/implementation/MedicalSurviceDetails.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/review/ReviewsDaoImp.java</file>
-            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/SuggestionPojo.java</file>
-=======
-        </group>
-        <group name="UI">
-            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/api/implementation/CompanyApiUrl.java</file>
-            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/pojos/MedicalTypePojo.java</file>
-            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/pojos/EmployeePojo.java</file>
-            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/api/implementation/MedicalSurviceDetails.java</file>
-            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/api/implementation/MedicalType.java</file>
-            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/pojos/CompanyPojo.java</file>
-        </group>
-        <group>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/api/implementation/ReviewsApiImp.java</file>
-        </group>
-        <group name="chat">
-            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/pojos/ClinicListPojo.java</file>
-            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/dao/Implementation/clinic/ClinicImpl.java</file>
-            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/pojos/LabListPojo.java</file>
-            <file>file:/D:/graduation%20project/MedicalInsurance/src/java/pojos/ClinicPojo.java</file>
->>>>>>> 5a2102115f5c2824dbe170cfb860b74fb7f0e136
-=======
-        <group name="UI">
-            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/api/implementation/CompanyApiUrl.java</file>
-            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/web/post.jsp</file>
-            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/nbproject/build-impl.xml</file>
->>>>>>> 331b41996fd1c4b112b6e411615d7df4ce7ff96e
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/MedicalTypeListPojo.java</file>
         </group>
     </open-files>
 </project-private>
