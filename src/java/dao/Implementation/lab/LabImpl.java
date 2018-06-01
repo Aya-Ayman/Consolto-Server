@@ -60,7 +60,7 @@ public class LabImpl implements Lab {
 
                 lab.setLabSpecializations(specializations);
                 lab.setLabPhones(phones);
-                
+
             }
 
         } catch (SQLException ex) {

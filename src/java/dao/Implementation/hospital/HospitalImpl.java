@@ -26,7 +26,7 @@ public class HospitalImpl implements Hospital {
     @Override
     public HospitalPojo retrieve(int hospitalId) {
         HospitalPhonesImplementation phonesObj = new HospitalPhonesImplementation();
-            HospitalDepartmentsImplementation departmentsObj = new HospitalDepartmentsImplementation();
+        HospitalDepartmentsImplementation departmentsObj = new HospitalDepartmentsImplementation();
         ArrayList<String> departments = new ArrayList();
 
         ArrayList<String> phones = new ArrayList();
@@ -56,13 +56,12 @@ public class HospitalImpl implements Hospital {
                 hospital.setNameEn(retSet.getString(12));
                 hospital.setMedicalTypeId(retSet.getInt(13));
                 hospital.setHospitalImage(retSet.getBlob(14));
-                
-                 phones = phonesObj.getHospitalPhones(retSet.getInt(1));
+
+                phones = phonesObj.getHospitalPhones(retSet.getInt(1));
                 departments = departmentsObj.getHospitalDepartments(retSet.getInt(1));
 
                 hospital.setPhones(phones);
-                                hospital.setDepartments(departments);
-
+                hospital.setDepartments(departments);
 
             }
 

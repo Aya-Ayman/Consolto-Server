@@ -42,6 +42,44 @@
          <input type = "submit" value = "insert" />
           <br /> <br /> <br /> <br />
        </form>
+<<<<<<< HEAD
+         
+         <form action = "http://localhost:8084/MedicalInsuranceSystem/rest/user/insertEmployee" method = "POST"> 
+        
+            Name: <input type = "text" name = "name">
+            <br />
+            Mail: <input type = "text" name = "mail" />
+            <br />
+            Password: <input type = "text" name = "password" /> 
+            <br />
+            Company ID: <input type = "text" name = "company_id" /> 
+            <br />
+            
+<!--            employee image :<input type = "file" name = "employee_image" /> 
+            <br />-->
+
+            address: <input type = "text" name = "address" />
+            <br />
+             Phones: <input type = "text" name = "phone1" />
+            <br />
+            <input type = "text" name = "phone2" />
+            <br /><input type = "text" name = "phone3" />
+            <br />
+            
+            job: <input type = "text" name = "job" />
+            <br>
+             start Date: <input type = "text" name = "startDate" />
+            <br /> end Date: <input type = "text" name = "endDate" />
+            <br /> Package Type <input type = "text" name = "packageType" />
+          
+           
+            <input type = "submit" value = "insertEmployee" />
+        </form>
+        <br>
+         
+         
+=======
     
+>>>>>>> c56092e043d674f82477208880c0b32b43332d75
     </body>
 </html>
