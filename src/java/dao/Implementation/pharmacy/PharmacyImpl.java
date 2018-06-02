@@ -177,5 +177,41 @@ public class PharmacyImpl implements Pharmacy {
         return pharmacies;
 
     }
+    
+     public ArrayList<PharmacyPojo> searchPharmacy(String input) {
+
+        ArrayList<PharmacyPojo> results = new ArrayList<>();
+        try (Connection connection = DBConnection.getConnection()) {
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT * FROM pharmacy where pharmacy_name_en=? OR pharmacy_name_ar=?");
+            retrievePs.setString(1,input );
+           retrievePs.setString(2,input);
+          //  retrievePs.setString(3, "%"+ input+"%");
+
+            ResultSet retSet = retrievePs.executeQuery();
+
+            while (retSet.next()) {
+                PharmacyPojo pharmacy = new PharmacyPojo();
+                pharmacy.setId(retSet.getInt(1));
+                pharmacy.setNameEn(retSet.getString(2));
+                pharmacy.setLatitude(retSet.getDouble(3));
+                pharmacy.setLongitude(retSet.getDouble(4));
+                pharmacy.setStartDate(retSet.getString(5));
+                pharmacy.setEndDate(retSet.getString(6));
+                pharmacy.setRate(retSet.getInt(7));
+                pharmacy.setAddress(retSet.getString(8));
+                pharmacy.setOpenHour(retSet.getString(9));
+                pharmacy.setCloseHour(retSet.getString(10));
+                pharmacy.setNameAr(retSet.getString(11));
+                pharmacy.setMedicalTypeId(retSet.getInt(12));
+                  results.add(pharmacy);
+
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return results;
+    }
 
 }

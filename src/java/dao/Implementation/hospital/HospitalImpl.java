@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pojos.HospitalPojo;
+import pojos.LabPojo;
 
 /**
  *
@@ -203,6 +204,83 @@ public class HospitalImpl implements Hospital {
         }
         return hospitals;
 
+    }
+     public ArrayList<HospitalPojo> searchHospitalByName(String input) {
+        System.out.println("inside searchLabByName");
+
+        ArrayList<HospitalPojo> results = new ArrayList<>();
+        try (Connection connection = DBConnection.getConnection()) {
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT * FROM hospital where hospital_name=? OR hospital_name_en=? OR hospital_ceo=?");
+            retrievePs.setString(1, input);
+            retrievePs.setString(2, input);
+            retrievePs.setString(3, input);
+
+            ResultSet retSet = retrievePs.executeQuery();
+
+            while (retSet.next()) {
+                 HospitalPojo hos = new HospitalPojo();
+                hos.setId(retSet.getInt(1));
+                hos.setNameAr(retSet.getString(2));
+                hos.setAddress(retSet.getString(3));
+                hos.setLongitude(retSet.getDouble(4));
+                hos.setLatitude(retSet.getDouble(5));
+                hos.setStartDate(retSet.getString(6));
+                hos.setEndDate(retSet.getString(7));
+                hos.setRate(retSet.getInt(8));
+                hos.setOpenHour(retSet.getString(9));
+                hos.setCloseHour(retSet.getString(10));
+                hos.setCeo(retSet.getString(11));
+                hos.setNameEn(retSet.getString(12));
+                hos.setMedicalTypeId(retSet.getInt(13));
+
+                results.add(hos);
+
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return results;
+    }
+
+    public ArrayList<HospitalPojo> searchHospitalByDepartment(String input) {
+
+        ArrayList<HospitalPojo> results = new ArrayList<>();
+
+        try (Connection connection = DBConnection.getConnection()) {
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT * FROM hospital where hospital_id in (SELECT hospital_hospital_id FROM hospital_departments where department=?)");
+            retrievePs.setString(1, input);
+
+            ResultSet retSet = retrievePs.executeQuery();
+
+            while (retSet.next()) {
+                HospitalPojo hos = new HospitalPojo();
+                hos.setId(retSet.getInt(1));
+                hos.setNameAr(retSet.getString(2));
+                hos.setAddress(retSet.getString(3));
+                hos.setLongitude(retSet.getDouble(4));
+                hos.setLatitude(retSet.getDouble(5));
+                hos.setStartDate(retSet.getString(6));
+                hos.setEndDate(retSet.getString(7));
+                hos.setRate(retSet.getInt(8));
+                hos.setOpenHour(retSet.getString(9));
+                hos.setCloseHour(retSet.getString(10));
+                hos.setCeo(retSet.getString(11));
+                hos.setNameEn(retSet.getString(12));
+                hos.setMedicalTypeId(retSet.getInt(13));
+
+
+                results.add(hos);
+
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return results;
     }
 
 }

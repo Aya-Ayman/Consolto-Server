@@ -197,4 +197,82 @@ public class LabImpl implements Lab {
 
     }
 
+    public ArrayList<LabPojo> searchLabByName(String input) {
+        System.out.println("inside searchLabByName");
+
+        ArrayList<LabPojo> results = new ArrayList<>();
+        try (Connection connection = DBConnection.getConnection()) {
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT * FROM lab where lab_name_en=? OR lab_name_ar=? OR lab_ceo=?");
+            retrievePs.setString(1, input);
+            retrievePs.setString(2, input);
+            retrievePs.setString(3, input);
+
+            ResultSet retSet = retrievePs.executeQuery();
+
+            while (retSet.next()) {
+                LabPojo lab = new LabPojo();
+                lab.setId(retSet.getInt(1));
+                lab.setNameEn(retSet.getString(2));
+                lab.setOpenHour(retSet.getString(3));
+                lab.setCloseHour(retSet.getString(4));
+                lab.setLatitude(retSet.getDouble(5));
+                lab.setLongitude(retSet.getDouble(6));
+                lab.setAddress(retSet.getString(7));
+                lab.setStartDate(retSet.getString(8));
+                lab.setEndDate(retSet.getString(9));
+                lab.setRate(retSet.getInt(10));
+                lab.setCeo(retSet.getString(11));
+                lab.setNameAr(retSet.getString(12));
+                lab.setMedicalTypeId(13);
+
+                results.add(lab);
+
+            }
+            System.out.println("results : " + results.size());
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return results;
+    }
+
+    public ArrayList<LabPojo> searchLabBySpecialization(String input) {
+
+        ArrayList<LabPojo> results = new ArrayList<>();
+
+        try (Connection connection = DBConnection.getConnection()) {
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT * FROM lab where lab_id in (SELECT lab_lab_id FROM lab_specializations where specialization=?)");
+            retrievePs.setString(1, input);
+
+            ResultSet retSet = retrievePs.executeQuery();
+
+            while (retSet.next()) {
+                LabPojo lab = new LabPojo();
+                lab.setId(retSet.getInt(1));
+                lab.setNameEn(retSet.getString(2));
+                lab.setOpenHour(retSet.getString(3));
+                lab.setCloseHour(retSet.getString(4));
+                lab.setLatitude(retSet.getDouble(5));
+                lab.setLongitude(retSet.getDouble(6));
+                lab.setAddress(retSet.getString(7));
+                lab.setStartDate(retSet.getString(8));
+                lab.setEndDate(retSet.getString(9));
+                lab.setRate(retSet.getInt(10));
+                lab.setCeo(retSet.getString(11));
+                lab.setNameAr(retSet.getString(12));
+                lab.setMedicalTypeId(13);
+
+                results.add(lab);
+
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return results;
+    }
+
 }
