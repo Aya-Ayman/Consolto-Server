@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action = "http://localhost:8084/MedicalInsuranceSystem/api/v1/hospital/insert" method = "POST">
+        <form action = "http://localhost:8585/MedicalInsuranceSystem/api/version1/hospital/insert" method = "POST">
             Name: <input type = "text" name = "name">
             <br />
             Name in english: <input type = "text" name = "name_english" />

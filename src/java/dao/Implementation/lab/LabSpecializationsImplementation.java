@@ -74,4 +74,10 @@ public class LabSpecializationsImplementation implements LabSpecializations {
         return specializations;
 
     }
+    
+   
+    
+    
+    
+    
 }

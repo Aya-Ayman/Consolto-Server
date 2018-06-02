@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group name="AJAX">
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/implementation/Suggestion.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/hospital/HospitalImpl.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/SuggesstionListPojo.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/interfaces/MedicalTypeApi.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/medicaltype/MedicalTypeImpl.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/MedicalTypePojo.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/api/implementation/MedicalType.java</file>
+            <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/pojos/MedicalTypeListPojo.java</file>
+=======
         <group name="UI">
             <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/dbconnectionfactory/DBConnection.java</file>
             <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/pojos/ReviewsPojo.java</file>
@@ -15,6 +26,7 @@
             <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/api/implementation/ClinicApiImplementation.java</file>
             <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/api/implementation/ReviewsApiImp.java</file>
             <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/nbproject/build-impl.xml</file>
+>>>>>>> 578c1641079e09b17216d36d6f24e8e772f9edda
         </group>
     </open-files>
 </project-private>
