@@ -12,13 +12,13 @@ import java.util.ArrayList;
  * @author Hagar
  */
 public class ResultListPojo {
-           private ArrayList<Object> results= new ArrayList<>();
+           private ArrayList<ResultPojo> results= new ArrayList<>();
 
-    public ArrayList<Object> getResults() {
+    public ArrayList<ResultPojo> getResults() {
         return results;
     }
 
-    public void setResults(ArrayList<Object> results) {
+    public void setResults(ArrayList<ResultPojo> results) {
         this.results = results;
     }
            

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pojos.ClinicPojo;
+import pojos.ResultPojo;
 
 /**
  *
@@ -185,11 +186,11 @@ public class ClinicImpl implements Clinic {
         return clinics;
 
     }
-    public ArrayList<ClinicPojo> searchClinic(String input) {
+    public ArrayList<ResultPojo> searchClinic(String input) {
 
-        ArrayList<ClinicPojo> results = new ArrayList<>();
+        ArrayList<ResultPojo> results = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement retrievePs = connection.prepareStatement("SELECT * FROM clinic where clinic_doctor_name_ar like ? OR clinic_doctor_name_en like ? OR clinic_specialization like ?");
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT clinic_id , medical_type_medical_type_id FROM clinic where clinic_doctor_name_ar like ? OR clinic_doctor_name_en like ? OR clinic_specialization like ?");
             retrievePs.setString(1,"%" + input + "%");
             retrievePs.setString(2,"%" +  input+ "%");
             retrievePs.setString(3,"%" +  input+ "%");
@@ -197,21 +198,10 @@ public class ClinicImpl implements Clinic {
             ResultSet retSet = retrievePs.executeQuery();
 
             while (retSet.next()) {
-                ClinicPojo clinic = new ClinicPojo();
+                ResultPojo clinic = new ResultPojo();
                 clinic.setId(retSet.getInt(1));
-                clinic.setLongitude(retSet.getDouble(2));
-                clinic.setLatitude(retSet.getDouble(3));
-                clinic.setAddress(retSet.getString(4));
-                clinic.setSpecialization(retSet.getString(5));
-                clinic.setEndDate(retSet.getString(6));
-                clinic.setStartDate(retSet.getString(7));
-                clinic.setOpenHour(retSet.getString(8));
-                clinic.setCloseHour(retSet.getString(9));
-                clinic.setRate(retSet.getInt(10));
-                clinic.setDoctorNameEn(retSet.getString(11));
-                clinic.setDoctorNameAr(retSet.getString(12));
-                clinic.setMedicalTypeId(retSet.getInt(13));
-               // clinic.setImage(retSet.getBlob(14));
+              
+                clinic.setTypeId(retSet.getInt(2));
 
                 results.add(clinic);
 
