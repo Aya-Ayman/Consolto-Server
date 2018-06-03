@@ -150,8 +150,4 @@ public class ClinicPojo {
     public void setImage(Blob image) {
         this.image = image;
     }
-
-   
-   
-
 }
