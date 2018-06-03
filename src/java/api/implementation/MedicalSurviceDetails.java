@@ -29,9 +29,9 @@ import pojos.PharmacyPojo;
 public class MedicalSurviceDetails implements MedicalServiceDetailsApi {
 
     public static final int hospitalID = 1;
-    public static final int clinicID = 4;
-    public static final int pharmacyID = 2;
-    public static final int labID = 3;
+    public static final int clinicID = 2;
+    public static final int pharmacyID = 3;
+    public static final int labID = 4;
 
     @Override
     @GET

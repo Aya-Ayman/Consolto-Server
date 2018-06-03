@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pojos.PharmacyPojo;
+import pojos.ResultPojo;
 
 /**
  *
@@ -25,6 +26,8 @@ public class PharmacyImpl implements Pharmacy {
     @Override
     public PharmacyPojo retrieve(int pharmacyId) {
         PharmacyPojo pharmacy = null;
+        ArrayList<String> phones = new ArrayList();
+        PharmacyPhonesImplementation phonesObj = new PharmacyPhonesImplementation();
         try (Connection connection = DBConnection.getConnection()) {
             PreparedStatement retrieveTypes = connection.prepareStatement("SELECT * FROM pharmacy WHERE pharmacy_id=?");
 
@@ -48,6 +51,8 @@ public class PharmacyImpl implements Pharmacy {
                 pharmacy.setNameAr(retSet.getString(11));
                 pharmacy.setMedicalTypeId(retSet.getInt(12));
                 pharmacy.setImage(retSet.getBlob(13));
+                phones = phonesObj.getPharmacyPhones(retSet.getInt(1));
+                pharmacy.setPharmacyPhones(phones);
             }
 
         } catch (SQLException ex) {
@@ -172,6 +177,33 @@ public class PharmacyImpl implements Pharmacy {
         }
         return pharmacies;
 
+    }
+    
+     public ArrayList<ResultPojo> searchPharmacy(String input) {
+
+        ArrayList<ResultPojo> results = new ArrayList<>();
+        try (Connection connection = DBConnection.getConnection()) {
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT pharmacy_id , medical_type_medical_type_id FROM pharmacy where pharmacy_name_en=? OR pharmacy_name_ar=?");
+            retrievePs.setString(1,input );
+           retrievePs.setString(2,input);
+          //  retrievePs.setString(3, "%"+ input+"%");
+
+            ResultSet retSet = retrievePs.executeQuery();
+
+            while (retSet.next()) {
+                ResultPojo pharmacy = new ResultPojo();
+                pharmacy.setId(retSet.getInt(1));
+               
+                pharmacy.setTypeId(retSet.getInt(12));
+                  results.add(pharmacy);
+
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return results;
     }
 
 }

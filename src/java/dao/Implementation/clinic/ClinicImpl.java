@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pojos.ClinicPojo;
+import pojos.ResultPojo;
 
 /**
  *
@@ -25,7 +26,9 @@ public class ClinicImpl implements Clinic {
 
     @Override
     public ClinicPojo retrieve(int clinicId) {
+        ArrayList<String> phones = new ArrayList();
 
+        ClinicPhonesImplementation phonesObj = new ClinicPhonesImplementation();
         ClinicPojo clinic = null;
         try (Connection connection = DBConnection.getConnection()) {
             PreparedStatement retrieveTypes = connection.prepareStatement("SELECT * FROM clinic WHERE clinic_id=?");
@@ -50,6 +53,8 @@ public class ClinicImpl implements Clinic {
                 clinic.setDoctorNameAr(retSet.getString(12));
                 clinic.setMedicalTypeId(retSet.getInt(13));
                 clinic.setImage(retSet.getBlob(14));
+                phones = phonesObj.getClinicPhones(retSet.getInt(1));
+                clinic.setPhones(phones);
             }
 
         } catch (SQLException ex) {
@@ -78,7 +83,7 @@ public class ClinicImpl implements Clinic {
             insertPs.setString(11, clinic.getDoctorNameEn());
             insertPs.setString(12, clinic.getDoctorNameAr());
             insertPs.setInt(13, clinic.getMedicalTypeId());
-            Blob blob=null;
+            Blob blob = null;
             insertPs.setBlob(14, blob);
 
             int insertflag = insertPs.executeUpdate();
@@ -180,5 +185,32 @@ public class ClinicImpl implements Clinic {
         }
         return clinics;
 
+    }
+    public ArrayList<ResultPojo> searchClinic(String input) {
+
+        ArrayList<ResultPojo> results = new ArrayList<>();
+        try (Connection connection = DBConnection.getConnection()) {
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT clinic_id , medical_type_medical_type_id FROM clinic where clinic_doctor_name_ar like ? OR clinic_doctor_name_en like ? OR clinic_specialization like ?");
+            retrievePs.setString(1,"%" + input + "%");
+            retrievePs.setString(2,"%" +  input+ "%");
+            retrievePs.setString(3,"%" +  input+ "%");
+
+            ResultSet retSet = retrievePs.executeQuery();
+
+            while (retSet.next()) {
+                ResultPojo clinic = new ResultPojo();
+                clinic.setId(retSet.getInt(1));
+              
+                clinic.setTypeId(retSet.getInt(2));
+
+                results.add(clinic);
+
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return results;
     }
 }

@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pojos.HospitalPojo;
+import pojos.LabPojo;
+import pojos.ResultPojo;
 
 /**
  *
@@ -25,6 +27,11 @@ public class HospitalImpl implements Hospital {
 
     @Override
     public HospitalPojo retrieve(int hospitalId) {
+        HospitalPhonesImplementation phonesObj = new HospitalPhonesImplementation();
+        HospitalDepartmentsImplementation departmentsObj = new HospitalDepartmentsImplementation();
+        ArrayList<String> departments = new ArrayList();
+
+        ArrayList<String> phones = new ArrayList();
 
         HospitalPojo hospital = null;
         try (Connection connection = DBConnection.getConnection()) {
@@ -51,6 +58,12 @@ public class HospitalImpl implements Hospital {
                 hospital.setNameEn(retSet.getString(12));
                 hospital.setMedicalTypeId(retSet.getInt(13));
                 hospital.setHospitalImage(retSet.getBlob(14));
+
+                phones = phonesObj.getHospitalPhones(retSet.getInt(1));
+                departments = departmentsObj.getHospitalDepartments(retSet.getInt(1));
+
+                hospital.setPhones(phones);
+                hospital.setDepartments(departments);
 
             }
 
@@ -179,7 +192,6 @@ public class HospitalImpl implements Hospital {
                 hos.setHospitalImage(retSet.getBlob(14));
 
                 phones = phonesObj.getHospitalPhones(retSet.getInt(1));
-                //System.out.print(retSet.getInt(1));
                 departments = departmentsObj.getHospitalDepartments(retSet.getInt(1));
 
                 hos.setPhones(phones);
@@ -193,6 +205,63 @@ public class HospitalImpl implements Hospital {
         }
         return hospitals;
 
+    }
+     public ArrayList<ResultPojo> searchHospitalByName(String input) {
+        System.out.println("inside searchLabByName");
+
+        ArrayList<ResultPojo> results = new ArrayList<>();
+        try (Connection connection = DBConnection.getConnection()) {
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT  hospital_id , medical_type_medical_type_id FROM hospital where hospital_name=? OR hospital_name_en=? OR hospital_ceo=?");
+            retrievePs.setString(1, input);
+            retrievePs.setString(2, input);
+            retrievePs.setString(3, input);
+
+            ResultSet retSet = retrievePs.executeQuery();
+
+            while (retSet.next()) {
+                 ResultPojo hos = new ResultPojo();
+                hos.setId(retSet.getInt(1));
+               
+                hos.setTypeId(retSet.getInt(2));
+
+                results.add(hos);
+
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return results;
+    }
+
+    public ArrayList<ResultPojo> searchHospitalByDepartment(String input) {
+
+        ArrayList<ResultPojo> results = new ArrayList<>();
+
+        try (Connection connection = DBConnection.getConnection()) {
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT hospital_id , medical_type_medical_type_id FROM hospital where hospital_id in (SELECT hospital_hospital_id FROM hospital_departments where department=?)");
+            retrievePs.setString(1, input);
+
+            ResultSet retSet = retrievePs.executeQuery();
+
+            while (retSet.next()) {
+                ResultPojo hos = new ResultPojo();
+                hos.setId(retSet.getInt(1));
+             
+                hos.setTypeId(retSet.getInt(2));
+
+
+                results.add(hos);
+
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return results;
     }
 
 }
