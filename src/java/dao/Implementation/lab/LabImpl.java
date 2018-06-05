@@ -204,17 +204,22 @@ public class LabImpl implements Lab {
 
         ArrayList<ResultPojo> results = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement retrievePs = connection.prepareStatement("SELECT lab_id , medical_type_medical_type_id FROM lab where lab_name_en like ? OR lab_name_ar like ? OR lab_ceo like ?");
-            retrievePs.setString(1, input+"%");
-            retrievePs.setString(2, input+"%");
-            retrievePs.setString(3, input+"%");
+
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT lab_id , medical_type_medical_type_id FROM lab where lab_name_en like ? OR lab_name_ar like ? ");
+            retrievePs.setString(1, input +"%" );
+            retrievePs.setString(2, input +"%" );
+//            retrievePs.setString(3, input +"%" );
 
             ResultSet retSet = retrievePs.executeQuery();
 
             while (retSet.next()) {
                 ResultPojo lab = new ResultPojo();
                 lab.setId(retSet.getInt(1));
-                lab.setTypeId(retSet.getInt(2));
+
+
+                lab.setTypeId(retSet.getInt(2));    //trueee
+
+
 
                 results.add(lab);
 
@@ -229,30 +234,38 @@ public class LabImpl implements Lab {
         return results;
     }
 
-    public ArrayList<ResultPojo> searchLabBySpecialization(String input) {
-
-        ArrayList<ResultPojo> results = new ArrayList<>();
-
-        try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement retrievePs = connection.prepareStatement("SELECT lab_id , medical_type_medical_type_id FROM lab where lab_id in (SELECT lab_lab_id FROM lab_specializations where specialization like ?)");
-            retrievePs.setString(1, input+"%");
-
-            ResultSet retSet = retrievePs.executeQuery();
-
-            while (retSet.next()) {
-                ResultPojo lab = new ResultPojo();
-                lab.setId(retSet.getInt(1));
-                lab.setTypeId(retSet.getInt(2));
-
-                results.add(lab);
-                System.out.println("labs :"+results.size());
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-
-        return results;
-    }
+//    public ArrayList<ResultPojo> searchLabBySpecialization(String input) {
+//
+//        ArrayList<ResultPojo> results = new ArrayList<>();
+//
+//        try (Connection connection = DBConnection.getConnection()) {
+//            PreparedStatement retrievePs = connection.prepareStatement("SELECT lab_id , medical_type_medical_type_id FROM lab where lab_id in (SELECT lab_lab_id FROM lab_specializations where specialization like ?)");
+//<<<<<<< HEAD
+//            retrievePs.setString(1, input+"%");
+//=======
+//            retrievePs.setString(1, input +"%" );
+//>>>>>>> 229c069139e01ec12b3e6f2eef7ca15832fdd636
+//
+//            ResultSet retSet = retrievePs.executeQuery();
+//
+//            while (retSet.next()) {
+//                ResultPojo lab = new ResultPojo();
+//                lab.setId(retSet.getInt(1));
+//<<<<<<< HEAD
+//                lab.setTypeId(retSet.getInt(2));
+//=======
+//                lab.setTypeId(retSet.getInt(2));  // this line
+//>>>>>>> 229c069139e01ec12b3e6f2eef7ca15832fdd636
+//
+//                results.add(lab);
+//                System.out.println("labs :"+results.size());
+//            }
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//            return null;
+//        }
+//
+//        return results;
+//    }
 
 }

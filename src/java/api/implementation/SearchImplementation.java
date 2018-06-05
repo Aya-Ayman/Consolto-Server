@@ -40,12 +40,11 @@ public class SearchImplementation {
     public ResultListPojo getAll(@PathParam("input") String input) {
         ArrayList<ResultPojo> results = new ArrayList();
 
-      ResultListPojo obj = new ResultListPojo();
+        ResultListPojo obj = new ResultListPojo();
         HospitalImpl hospitalObj = new HospitalImpl();
         ArrayList<ResultPojo> hospitals = new ArrayList();
         hospitals = hospitalObj.searchHospitalByName(input);
 
-        // ResultListPojo hospitalsList = new ResultListPojo();
         if (hospitals.size() != 0) {
             for (int i = 0; i < hospitals.size(); i++) {
 
@@ -54,67 +53,61 @@ public class SearchImplementation {
             }
         }
 
-        ArrayList<ResultPojo> hospitals2 = new ArrayList();
-        //   ResultListPojo hospitalsList2 = new ResultListPojo();
-        hospitals2 = hospitalObj.searchHospitalByDepartment(input);
-        //   hospitalsList.setResults(hospitals2);
-        if (hospitals2.size() != 0) {
-
-            for (int i = 0; i < hospitals2.size(); i++) {
-                results.add(hospitals2.get(i));
-
-            }
-        }
-
+//        ArrayList<ResultPojo> hospitals2 = new ArrayList();
+//        //   ResultListPojo hospitalsList2 = new ResultListPojo();
+//        hospitals2 = hospitalObj.searchHospitalByDepartment(input);
+//        //   hospitalsList.setResults(hospitals2);
+//        if (hospitals2.size() != 0) {
+//
+//            for (int i = 0; i < hospitals2.size(); i++) {
+//                results.add(hospitals2.get(i));
+//
+//            }
+//        }
         LabImpl labObj = new LabImpl();
-        ArrayList<ResultPojo> labs = new ArrayList();
-        labs = labObj.searchLabBySpecialization(input);
-
-//        ResultListPojo labList = new ResultListPojo();
-        if (labs.size()!= 0) {
-
-            for (int i = 0; i < labs.size(); i++) {
-                results.add(labs.get(i));
-
-            }
-        }
+//        ArrayList<ResultPojo> labs = new ArrayList();
+//        labs = labObj.searchLabBySpecialization(input);
+//
+////        ResultListPojo labList = new ResultListPojo();
+//        if (labs.size()!= 0) {
+//
+//            for (int i = 0; i < labs.size(); i++) {
+//                results.add(labs.get(i));
+//
+//            }
+//        }
 
         ArrayList<ResultPojo> labs2 = new ArrayList();
         labs2 = labObj.searchLabByName(input);
         if (labs2.size() != 0) {
-             for (int i = 0; i < labs2.size(); i++) {
+            for (int i = 0; i < labs2.size(); i++) {
                 results.add(labs2.get(i));
 
             }
         }
 
-        
-        
-        
-        
-        
         PharmacyImpl PharmacyObj = new PharmacyImpl();
         ArrayList<ResultPojo> pharmacies = new ArrayList();
         pharmacies = PharmacyObj.searchPharmacy(input);
         if (pharmacies.size() != 0) {
-             for (int i = 0; i < pharmacies.size(); i++) {
+            for (int i = 0; i < pharmacies.size(); i++) {
                 results.add(pharmacies.get(i));
 
             }
         }
-        
 
         ClinicImpl clinicObj = new ClinicImpl();
         ArrayList<ResultPojo> clinics = new ArrayList();
         clinics = clinicObj.searchClinic(input);
         if (clinics.size() != 0) {
-             for (int i = 0; i < clinics.size(); i++) {
+            for (int i = 0; i < clinics.size(); i++) {
                 results.add(clinics.get(i));
 
             }
         }
+
         obj.setResults(results);
-        System.out.println("results ="+results.size());
+        System.out.println("results =" + results.size());
 
         return obj;
     }

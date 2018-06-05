@@ -3,36 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/dao/Implementation/lab/LabSpecializationsImplementation.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/dao/Implementation/hospital/HospitalImpl.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/pojos/PharmacyPojo.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/pojos/PharmacyListPojo.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/dao/Implementation/employee/EmployeeDaoImp.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/dao/Implementation/lab/LabImpl.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/pojos/LabListPojo.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/dao/Implementation/medicaltype/MedicalTypeImpl.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/dao/Implementation/pharmacy/PharmacyImpl.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/web/index.html</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/api/implementation/HospitalApiImplementation.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/pojos/ClinicPojo.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/api/implementation/MedicalSurviceDetails.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/api/implementation/PharmacyApiImplementation.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/pojos/ResultPojo.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/api/implementation/ReviewsApiImp.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/web/WEB-INF/web.xml</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/dbconnectionfactory/DBConnection.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/pojos/ClinicListPojo.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/pojos/LabPojo.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/pojos/ReviewsList_Pojo.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/api/implementation/LabApiImplementation.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/pojos/HospitalPojo.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/web/hospital.jsp</file>
             <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/api/implementation/SearchImplementation.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/api/implementation/EmployeeApiImp.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/pojos/HospitalListPojo.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/pojos/ResultListPojo.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/SendMailImp/SendMail.java</file>
-            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/api/implementation/ClinicApiImplementation.java</file>
+            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/dao/Implementation/hospital/HospitalImpl.java</file>
+            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/dao/Implementation/lab/LabImpl.java</file>
+            <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/dao/Implementation/pharmacy/PharmacyImpl.java</file>
             <file>file:/D:/hoda/ITI/projects/medicalproj/MedicalInsurance/src/java/dao/Implementation/clinic/ClinicImpl.java</file>
         </group>
     </open-files>
