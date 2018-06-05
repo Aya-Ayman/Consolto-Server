@@ -86,7 +86,7 @@ public class HospitalApiImplementation implements HospitalApi {
         hospital.setRate(rate);
         hospital.setEndDate(end_date);
         hospital.setStartDate(start_date);
-        hospital.setMedicalTypeId(1);
+        hospital.setMedicalTypeId(2);
         hospital.setCloseHour(close_hour);
         hospital.setOpenHour(open_hour);
         hospital.setPhones(phones);

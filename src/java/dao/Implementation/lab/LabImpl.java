@@ -204,18 +204,17 @@ public class LabImpl implements Lab {
 
         ArrayList<ResultPojo> results = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement retrievePs = connection.prepareStatement("SELECT lab_id , medical_type_medical_type_id FROM lab where lab_name_en=? OR lab_name_ar=? OR lab_ceo=?");
-            retrievePs.setString(1, input);
-            retrievePs.setString(2, input);
-            retrievePs.setString(3, input);
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT lab_id , medical_type_medical_type_id FROM lab where lab_name_en like ? OR lab_name_ar like ? OR lab_ceo like ?");
+            retrievePs.setString(1, input+"%");
+            retrievePs.setString(2, input+"%");
+            retrievePs.setString(3, input+"%");
 
             ResultSet retSet = retrievePs.executeQuery();
 
             while (retSet.next()) {
                 ResultPojo lab = new ResultPojo();
                 lab.setId(retSet.getInt(1));
-               
-                lab.setTypeId(2);
+                lab.setTypeId(retSet.getInt(2));
 
                 results.add(lab);
 
@@ -235,18 +234,18 @@ public class LabImpl implements Lab {
         ArrayList<ResultPojo> results = new ArrayList<>();
 
         try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement retrievePs = connection.prepareStatement("SELECT lab_id , medical_type_medical_type_id FROM lab where lab_id in (SELECT lab_lab_id FROM lab_specializations where specialization=?)");
-            retrievePs.setString(1, input);
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT lab_id , medical_type_medical_type_id FROM lab where lab_id in (SELECT lab_lab_id FROM lab_specializations where specialization like ?)");
+            retrievePs.setString(1, input+"%");
 
             ResultSet retSet = retrievePs.executeQuery();
 
             while (retSet.next()) {
                 ResultPojo lab = new ResultPojo();
                 lab.setId(retSet.getInt(1));
-                lab.setTypeId(2);
+                lab.setTypeId(retSet.getInt(2));
 
                 results.add(lab);
-
+                System.out.println("labs :"+results.size());
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

@@ -63,7 +63,7 @@ public class PharmacyApiImplementation implements PharmacyApi {
         pharmacy.setOpenHour(pharmacy_open_hour);
         pharmacy.setCloseHour(pharmacy_close_hour);
         pharmacy.setRate(pharmacy_rate);
-        pharmacy.setMedicalTypeId(3);
+        pharmacy.setMedicalTypeId(5);
         pharmacy.setPharmacyPhones(phones);
         pharmacy.setStartDate(pharmacy_start_date);
         pharmacy.setEndDate(pharmacy_end_date);
