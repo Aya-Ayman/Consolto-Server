@@ -211,10 +211,9 @@ public class HospitalImpl implements Hospital {
 
         ArrayList<ResultPojo> results = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement retrievePs = connection.prepareStatement("SELECT  hospital_id , medical_type_medical_type_id FROM hospital where hospital_name=? OR hospital_name_en=? OR hospital_ceo=?");
-            retrievePs.setString(1, input);
-            retrievePs.setString(2, input);
-            retrievePs.setString(3, input);
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT  hospital_id , medical_type_medical_type_id FROM hospital where hospital_name like ? OR hospital_name_en like ?");
+            retrievePs.setString(1, input+"%");
+            retrievePs.setString(2, input+"%");
 
             ResultSet retSet = retrievePs.executeQuery();
 
@@ -223,9 +222,9 @@ public class HospitalImpl implements Hospital {
                 hos.setId(retSet.getInt(1));
                
                 hos.setTypeId(retSet.getInt(2));
-
+                System.out.println("hospital is "+retSet.getInt(2));
                 results.add(hos);
-
+ 
             }
 
         } catch (SQLException ex) {
@@ -241,8 +240,8 @@ public class HospitalImpl implements Hospital {
         ArrayList<ResultPojo> results = new ArrayList<>();
 
         try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement retrievePs = connection.prepareStatement("SELECT hospital_id , medical_type_medical_type_id FROM hospital where hospital_id in (SELECT hospital_hospital_id FROM hospital_departments where department=?)");
-            retrievePs.setString(1, input);
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT hospital_id , medical_type_medical_type_id FROM hospital where hospital_id in (SELECT hospital_hospital_id FROM hospital_departments where department like ?)");
+            retrievePs.setString(1, input+"%");
 
             ResultSet retSet = retrievePs.executeQuery();
 
