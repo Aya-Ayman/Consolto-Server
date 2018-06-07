@@ -241,7 +241,7 @@ public class EmployeeApiImp implements EmployeeApiInt {
             @FormParam("password") String password, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3, @FormParam("address") String address, @FormParam("job") String job,
             @FormParam("company_id") int companyID, @FormParam("startDate") String startDate,
             @FormParam("endDate") String endDate,
-            @FormParam("packageType") float packageType) {
+            @FormParam("packageType") float packageType,@FormParam("urlImage") String urlImage) {
         
         ArrayList<String> insertedPhones = new ArrayList<>();
         Boolean checkInsertion = false;
@@ -254,7 +254,7 @@ public class EmployeeApiImp implements EmployeeApiInt {
         insertedEmployee.setJob(job);
         insertedEmployee.setPassword(password);
         insertedEmployee.setCompanyId(companyID);
-        //  insertedEmployee.setImage(employeeImage);
+       insertedEmployee.setImage(urlImage);
         insertedEmployee.setStartDate(startDate);
         insertedEmployee.setEndDate(endDate);
         insertedEmployee.setPackageType(packageType);
