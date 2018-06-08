@@ -42,7 +42,6 @@
          <input type = "submit" value = "insert" />
           <br /> <br /> <br /> <br />
        </form>
-<<<<<<< HEAD
          
          <form action = "http://localhost:8084/MedicalInsuranceSystem/rest/user/insertEmployee" method = "POST"> 
         
@@ -76,10 +75,6 @@
             <input type = "submit" value = "insertEmployee" />
         </form>
         <br>
-         
-         
-=======
-    
->>>>>>> c56092e043d674f82477208880c0b32b43332d75
+ 
     </body>
 </html>

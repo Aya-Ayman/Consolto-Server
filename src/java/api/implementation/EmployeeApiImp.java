@@ -192,6 +192,7 @@ public class EmployeeApiImp implements EmployeeApiInt {
             @FormParam("phone3") String phone3,
             @FormParam("startDate") String startDate,
             @FormParam("endDate") String endDate,
+            @FormParam("urlImage") String employeeImage,
             @FormParam("packageType") float packageType
     ) {
 
@@ -207,7 +208,7 @@ public class EmployeeApiImp implements EmployeeApiInt {
         updatedEmployee.setJob(job);
         updatedEmployee.setPassword(password);
         updatedEmployee.setCompanyId(companyID);
-        // updatedEmployee.setImage(employeeImage);
+        updatedEmployee.setImage(employeeImage);
         updatedEmployee.setStartDate(startDate);
         updatedEmployee.setEndDate(endDate);
         updatedEmployee.setPackageType(packageType);
@@ -239,8 +240,8 @@ public class EmployeeApiImp implements EmployeeApiInt {
     @Override
     public ResponseMessage insertEmployee(@FormParam("name") String name, @FormParam("mail") String mail,
             @FormParam("password") String password, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3, @FormParam("address") String address, @FormParam("job") String job,
-            @FormParam("company_id") int companyID, @FormParam("startDate") String startDate,
-            @FormParam("endDate") String endDate,
+            @FormParam("company_id") int companyID, @FormParam("start_date") String startDate,
+            @FormParam("end_date") String endDate,
             @FormParam("packageType") float packageType,@FormParam("urlImage") String urlImage) {
         
         ArrayList<String> insertedPhones = new ArrayList<>();
@@ -254,7 +255,7 @@ public class EmployeeApiImp implements EmployeeApiInt {
         insertedEmployee.setJob(job);
         insertedEmployee.setPassword(password);
         insertedEmployee.setCompanyId(companyID);
-       insertedEmployee.setImage(urlImage);
+        insertedEmployee.setImage(urlImage);
         insertedEmployee.setStartDate(startDate);
         insertedEmployee.setEndDate(endDate);
         insertedEmployee.setPackageType(packageType);
