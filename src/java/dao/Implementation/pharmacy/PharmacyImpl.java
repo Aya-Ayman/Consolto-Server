@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pojos.PharmacyPojo;
+import pojos.ResultPojo;
 
 /**
  *
@@ -178,31 +179,22 @@ public class PharmacyImpl implements Pharmacy {
 
     }
     
-     public ArrayList<PharmacyPojo> searchPharmacy(String input) {
+     public ArrayList<ResultPojo> searchPharmacy(String input) {
 
-        ArrayList<PharmacyPojo> results = new ArrayList<>();
+        ArrayList<ResultPojo> results = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement retrievePs = connection.prepareStatement("SELECT * FROM pharmacy where pharmacy_name_en=? OR pharmacy_name_ar=?");
-            retrievePs.setString(1,input );
-           retrievePs.setString(2,input);
+            PreparedStatement retrievePs = connection.prepareStatement("SELECT pharmacy_id , medical_type_medical_type_id FROM pharmacy where pharmacy_name_en like ? OR pharmacy_name_ar like ?");
+            retrievePs.setString(1,input+"%" );
+           retrievePs.setString(2,input+"%");
           //  retrievePs.setString(3, "%"+ input+"%");
 
             ResultSet retSet = retrievePs.executeQuery();
 
             while (retSet.next()) {
-                PharmacyPojo pharmacy = new PharmacyPojo();
+                ResultPojo pharmacy = new ResultPojo();
                 pharmacy.setId(retSet.getInt(1));
-                pharmacy.setNameEn(retSet.getString(2));
-                pharmacy.setLatitude(retSet.getDouble(3));
-                pharmacy.setLongitude(retSet.getDouble(4));
-                pharmacy.setStartDate(retSet.getString(5));
-                pharmacy.setEndDate(retSet.getString(6));
-                pharmacy.setRate(retSet.getInt(7));
-                pharmacy.setAddress(retSet.getString(8));
-                pharmacy.setOpenHour(retSet.getString(9));
-                pharmacy.setCloseHour(retSet.getString(10));
-                pharmacy.setNameAr(retSet.getString(11));
-                pharmacy.setMedicalTypeId(retSet.getInt(12));
+               
+                pharmacy.setTypeId(retSet.getInt(2)); //this one
                   results.add(pharmacy);
 
             }

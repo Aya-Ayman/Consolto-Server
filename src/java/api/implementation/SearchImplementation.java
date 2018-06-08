@@ -21,9 +21,11 @@ import pojos.HospitalListPojo;
 import pojos.HospitalPojo;
 import pojos.LabListPojo;
 import pojos.LabPojo;
+import pojos.ListOfAllResultsPojo;
 import pojos.PharmacyListPojo;
 import pojos.PharmacyPojo;
 import pojos.ResultListPojo;
+import pojos.ResultPojo;
 
 /**
  *
@@ -32,66 +34,80 @@ import pojos.ResultListPojo;
 @Path("search")
 public class SearchImplementation {
 
-
     @GET
     @Path("/getAll/{input}")
     @Produces(MediaType.APPLICATION_JSON)
     public ResultListPojo getAll(@PathParam("input") String input) {
-        ArrayList<Object> results = new ArrayList();
-         ResultListPojo obj = new ResultListPojo();
-         
+        ArrayList<ResultPojo> results = new ArrayList();
+
+        ResultListPojo obj = new ResultListPojo();
         HospitalImpl hospitalObj = new HospitalImpl();
-        ArrayList<HospitalPojo> hospitals = new ArrayList();
-        HospitalListPojo hospitalsList = new HospitalListPojo();
+        ArrayList<ResultPojo> hospitals = new ArrayList();
         hospitals = hospitalObj.searchHospitalByName(input);
-        hospitalsList.setHospitals(hospitals);
+
         if (hospitals.size() != 0) {
-            results.add(hospitalsList);
+            for (int i = 0; i < hospitals.size(); i++) {
+
+                results.add(hospitals.get(i));
+
+            }
         }
 
-        ArrayList<HospitalPojo> hospitals2 = new ArrayList();
-        HospitalListPojo hospitalsList2 = new HospitalListPojo();
-        hospitals2 = hospitalObj.searchHospitalByDepartment(input);
-        hospitalsList2.setHospitals(hospitals2);
-        if (hospitals2.size() != 0) {
-            results.add(hospitalsList2);
-        }
-
+//        ArrayList<ResultPojo> hospitals2 = new ArrayList();
+//        //   ResultListPojo hospitalsList2 = new ResultListPojo();
+//        hospitals2 = hospitalObj.searchHospitalByDepartment(input);
+//        //   hospitalsList.setResults(hospitals2);
+//        if (hospitals2.size() != 0) {
+//
+//            for (int i = 0; i < hospitals2.size(); i++) {
+//                results.add(hospitals2.get(i));
+//
+//            }
+//        }
         LabImpl labObj = new LabImpl();
-        ArrayList<LabPojo> labs = new ArrayList();
-        LabListPojo labList = new LabListPojo();
-        labs = labObj.searchLabBySpecialization(input);
-        labList.setLabs(labs);
-        if (labs.size() != 0) {
-            results.add(labList);
-        }
+//        ArrayList<ResultPojo> labs = new ArrayList();
+//        labs = labObj.searchLabBySpecialization(input);
+//
+////        ResultListPojo labList = new ResultListPojo();
+//        if (labs.size()!= 0) {
+//
+//            for (int i = 0; i < labs.size(); i++) {
+//                results.add(labs.get(i));
+//
+//            }
+//        }
 
-        ArrayList<LabPojo> labs2 = new ArrayList();
-        LabListPojo labList2 = new LabListPojo();
+        ArrayList<ResultPojo> labs2 = new ArrayList();
         labs2 = labObj.searchLabByName(input);
-        labList2.setLabs(labs2);
         if (labs2.size() != 0) {
-            results.add(labList2);
+            for (int i = 0; i < labs2.size(); i++) {
+                results.add(labs2.get(i));
+
+            }
         }
 
         PharmacyImpl PharmacyObj = new PharmacyImpl();
-        ArrayList<PharmacyPojo> pharmacies = new ArrayList();
-        PharmacyListPojo pharmacyList = new PharmacyListPojo();
+        ArrayList<ResultPojo> pharmacies = new ArrayList();
         pharmacies = PharmacyObj.searchPharmacy(input);
-        pharmacyList.setPharmacies(pharmacies);
         if (pharmacies.size() != 0) {
-            results.add(pharmacyList);
+            for (int i = 0; i < pharmacies.size(); i++) {
+                results.add(pharmacies.get(i));
+
+            }
         }
 
         ClinicImpl clinicObj = new ClinicImpl();
-        ArrayList<ClinicPojo> clinics = new ArrayList();
-        ClinicListPojo clinicList = new ClinicListPojo();
+        ArrayList<ResultPojo> clinics = new ArrayList();
         clinics = clinicObj.searchClinic(input);
-        clinicList.setClinics(clinics);
         if (clinics.size() != 0) {
-            results.add(clinicList);
+            for (int i = 0; i < clinics.size(); i++) {
+                results.add(clinics.get(i));
+
+            }
         }
-            obj.setResults(results);
+
+        obj.setResults(results);
+        System.out.println("results =" + results.size());
 
         return obj;
     }

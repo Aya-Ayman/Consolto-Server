@@ -46,13 +46,14 @@ public interface EmployeeApiInt {
             @FormParam("phone3") String phone3,
             @FormParam("startDate") String startDate,
             @FormParam("endDate") String endDate,
+            @FormParam("urlImage") String employeeImage,
             @FormParam("packageType") float packageType
     );
-    
-      public ResponseMessage insertEmployee(@FormParam("name") String name, @FormParam("mail") String mail,
+
+    public ResponseMessage insertEmployee(@FormParam("name") String name, @FormParam("mail") String mail,
             @FormParam("password") String password, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3, @FormParam("address") String address, @FormParam("job") String job,
-            @FormParam("company_id") int companyID,@FormParam("startDate") String startDate,
+            @FormParam("company_id") int companyID, @FormParam("startDate") String startDate,
             @FormParam("endDate") String endDate,
-            @FormParam("packageType") float packageType);
+            @FormParam("packageType") float packageType, @FormParam("urlImage") String urlImage);
 
 }

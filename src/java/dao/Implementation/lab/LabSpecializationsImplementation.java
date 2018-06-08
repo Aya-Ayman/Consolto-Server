@@ -36,7 +36,6 @@ public class LabSpecializationsImplementation implements LabSpecializations {
             Logger.getLogger(LabSpecializationsImplementation.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-
     }
 
     public int deleteLabSpecializations(int lab_id) {

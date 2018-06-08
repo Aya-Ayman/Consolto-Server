@@ -20,7 +20,7 @@ public class EmployeePojo {
     private String address;
     private String job;
     private String password;
-   // private Blob image;
+    private String image;
     private int companyId;
     private ArrayList<String> phones;
     private String startDate;
@@ -75,14 +75,14 @@ public class EmployeePojo {
     public void setPassword(String password) {
         this.password = password;
     }
-//
-//    public Blob getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(Blob image) {
-//        this.image = image;
-//    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public int getCompanyId() {
         return companyId;
