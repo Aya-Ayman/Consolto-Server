@@ -52,7 +52,7 @@ public class ClinicImpl implements Clinic {
                 clinic.setDoctorNameEn(retSet.getString(11));
                 clinic.setDoctorNameAr(retSet.getString(12));
                 clinic.setMedicalTypeId(retSet.getInt(13));
-                clinic.setImage(retSet.getBlob(14));
+                clinic.setImage(retSet.getString(14));
                 phones = phonesObj.getClinicPhones(retSet.getInt(1));
                 clinic.setPhones(phones);
             }
@@ -83,8 +83,7 @@ public class ClinicImpl implements Clinic {
             insertPs.setString(11, clinic.getDoctorNameEn());
             insertPs.setString(12, clinic.getDoctorNameAr());
             insertPs.setInt(13, clinic.getMedicalTypeId());
-            Blob blob = null;
-            insertPs.setBlob(14, blob);
+            insertPs.setString(14, clinic.getImage());
 
             int insertflag = insertPs.executeUpdate();
 
@@ -172,7 +171,7 @@ public class ClinicImpl implements Clinic {
                 clinic.setDoctorNameEn(retSet.getString(11));
                 clinic.setDoctorNameAr(retSet.getString(12));
                 clinic.setMedicalTypeId(retSet.getInt(13));
-                clinic.setImage(retSet.getBlob(14));
+                clinic.setImage(retSet.getString(14));
                 phones = phonesObj.getClinicPhones(retSet.getInt(1));
                 clinic.setPhones(phones);
                 clinics.add(clinic);

@@ -55,7 +55,7 @@ public class LabImpl implements Lab {
                 lab.setCeo(retSet.getString(11));
                 lab.setNameAr(retSet.getString(12));
                 lab.setMedicalTypeId(retSet.getInt(13));
-                lab.setImage(retSet.getBlob(14));
+                lab.setImage(retSet.getString(14));
                 phones = phonesObj.getLabPhones(retSet.getInt(1));
                 specializations = specializationsObj.getLabSpecializations(retSet.getInt(1));
 
@@ -91,8 +91,7 @@ public class LabImpl implements Lab {
             insertPs.setString(11, lab.getCeo());
             insertPs.setString(12, lab.getNameAr());
             insertPs.setInt(13, lab.getMedicalTypeId());
-            Blob blob = null;
-            insertPs.setBlob(14, blob);
+            insertPs.setString(14, lab.getImage());
 
             int insertflag = insertPs.executeUpdate();
             boolean res = false;
@@ -182,7 +181,7 @@ public class LabImpl implements Lab {
                 lab.setNameAr(retSet.getString(12));
                 lab.setMedicalTypeId(13);
 
-                lab.setImage(retSet.getBlob(14));
+                lab.setImage(retSet.getString(14));
                 phones = phonesObj.getLabPhones(retSet.getInt(1));
                 specializations = specializationsObj.getLabSpecializations(retSet.getInt(1));
 

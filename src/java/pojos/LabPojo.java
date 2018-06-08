@@ -28,7 +28,7 @@ public class LabPojo {
     private String ceo;
     private String nameAr;
     private int medicalTypeId;
-    private Blob image;
+    private String image;
     private ArrayList<String> labPhones;
     private ArrayList<String> labSpecializations;
 
@@ -136,11 +136,11 @@ public class LabPojo {
         this.medicalTypeId = medicalTypeId;
     }
 
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

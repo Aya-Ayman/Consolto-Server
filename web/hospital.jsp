@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action = "http://localhost:8585/MedicalInsuranceSystem/api/version1/hospital/insert" method = "POST">
+        <form action = "http://localhost:8084/MedicalInsuranceSystem/api/version1/hospital/insert" method = "POST">
             Name: <input type = "text" name = "name">
             <br />
             Name in english: <input type = "text" name = "name_english" />
@@ -53,11 +53,22 @@
             dept7: <input type="checkbox" name ="c7" value="dept7">
             dept8: <input type="checkbox" name ="c8" value="dept8">
 
-
+         
+        <input type="file" id="fileButton"/>
+            
+            <progress value="0" max="100" id="progress">0%</progress><br/><br/>
+            <input type="text" id="urlImage" name="urlImage"/> </br>   
+            <button type="button" id="fileInput" value="upload"></button></br>
+            
             <input type = "submit" value = "insert" />
+            
+            
         </form>
-        <form action = "http://localhost:8084/lab3_server/rest/user/get" method = "GET">
-            <input type = "submit" value = "retrive" />
-        </form>
+        
+         
+         <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+         
+           <script src="uploadImage.js"></script>
+        
     </body>
 </html>

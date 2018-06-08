@@ -22,7 +22,7 @@
      </body>-->
 
     <body>
-        <form action = "http://localhost:8585/MedicalInsuranceSystem/api/version1/lab/insert" method = "POST">
+        <form action = "http://localhost:8084/MedicalInsuranceSystem/api/version1/lab/insert" method = "POST">
             Name ar: <input type = "text" name = "lab_name_ar">
             <br />
             Name en: <input type = "text" name = "lab_name_en" />
@@ -64,6 +64,21 @@
             special8: <input type="checkbox" name ="c8" value="special8">
 
 
+                     
+        <input type="file" id="fileButton"/>
+            
+            <progress value="0" max="100" id="progress">0%</progress><br/><br/>
+            <input type="text" id="urlImage" name="urlImage"/> </br>   
+            <button type="button" id="fileInput" value="upload"></button></br>
+            
             <input type = "submit" value = "insert" />
+            
+            
         </form>
+        
+         
+         <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+         
+           <script src="uploadImage.js"></script>
+    </body>
 </html>
