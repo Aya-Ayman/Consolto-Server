@@ -70,4 +70,24 @@ public class ReviewsDaoImp implements ReviewsDaoInt {
         all.setList_review(allreviews);
         return all;
     }
+     public float reateAverage(int serviceId, int medicalTypeId) {
+        float average = 0;
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement retrieveall = connection.prepareStatement("SELECT AVG(review_rate) AS average FROM reviews where service_id=? AND medicaltype_id=?");
+            retrieveall.setInt(1, serviceId);
+            retrieveall.setInt(2, medicalTypeId);
+                System.out.println("serviceId is "+ serviceId);
+                System.out.println("medicalTypeId is "+ medicalTypeId);
+
+            ResultSet retSet = retrieveall.executeQuery();
+            while (retSet.next()) {
+                average = retSet.getFloat("average");  
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewsDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return average;
+    }
 }

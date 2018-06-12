@@ -5,6 +5,7 @@
  */
 package dao.Implementation.pharmacy;
 
+import dao.Implementation.review.ReviewsDaoImp;
 import dao.Interfaces.pharmacy.Pharmacy;
 import dbconnectionfactory.DBConnection;
 import java.sql.Connection;
@@ -25,6 +26,7 @@ public class PharmacyImpl implements Pharmacy {
 
     @Override
     public PharmacyPojo retrieve(int pharmacyId) {
+        ReviewsDaoImp obj = new ReviewsDaoImp();
         PharmacyPojo pharmacy = null;
         ArrayList<String> phones = new ArrayList();
         PharmacyPhonesImplementation phonesObj = new PharmacyPhonesImplementation();
@@ -37,6 +39,7 @@ public class PharmacyImpl implements Pharmacy {
             while (retSet.next()) {
 
                 pharmacy = new PharmacyPojo();
+                float rate = obj.reateAverage(retSet.getInt(1), retSet.getInt(12));
 
                 pharmacy.setId(retSet.getInt(1));
                 pharmacy.setNameEn(retSet.getString(2));
@@ -44,7 +47,7 @@ public class PharmacyImpl implements Pharmacy {
                 pharmacy.setLongitude(retSet.getDouble(4));
                 pharmacy.setStartDate(retSet.getString(5));
                 pharmacy.setEndDate(retSet.getString(6));
-                pharmacy.setRate(retSet.getInt(7));
+                pharmacy.setRate(rate);
                 pharmacy.setAddress(retSet.getString(8));
                 pharmacy.setOpenHour(retSet.getString(9));
                 pharmacy.setCloseHour(retSet.getString(10));
@@ -178,24 +181,24 @@ public class PharmacyImpl implements Pharmacy {
         return pharmacies;
 
     }
-    
-     public ArrayList<ResultPojo> searchPharmacy(String input) {
+
+    public ArrayList<ResultPojo> searchPharmacy(String input) {
 
         ArrayList<ResultPojo> results = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
             PreparedStatement retrievePs = connection.prepareStatement("SELECT pharmacy_id , medical_type_medical_type_id FROM pharmacy where pharmacy_name_en like ? OR pharmacy_name_ar like ?");
-            retrievePs.setString(1,input+"%" );
-           retrievePs.setString(2,input+"%");
-          //  retrievePs.setString(3, "%"+ input+"%");
+            retrievePs.setString(1, input + "%");
+            retrievePs.setString(2, input + "%");
+            //  retrievePs.setString(3, "%"+ input+"%");
 
             ResultSet retSet = retrievePs.executeQuery();
 
             while (retSet.next()) {
                 ResultPojo pharmacy = new ResultPojo();
                 pharmacy.setId(retSet.getInt(1));
-               
+
                 pharmacy.setTypeId(retSet.getInt(2)); //this one
-                  results.add(pharmacy);
+                results.add(pharmacy);
 
             }
         } catch (SQLException ex) {

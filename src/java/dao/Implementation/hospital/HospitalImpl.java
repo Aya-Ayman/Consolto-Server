@@ -5,6 +5,7 @@
  */
 package dao.Implementation.hospital;
 
+import dao.Implementation.review.ReviewsDaoImp;
 import dao.Interfaces.hospital.Hospital;
 import dbconnectionfactory.DBConnection;
 import java.sql.Blob;
@@ -27,6 +28,8 @@ public class HospitalImpl implements Hospital {
 
     @Override
     public HospitalPojo retrieve(int hospitalId) {
+              ReviewsDaoImp obj = new  ReviewsDaoImp();
+
         HospitalPhonesImplementation phonesObj = new HospitalPhonesImplementation();
         HospitalDepartmentsImplementation departmentsObj = new HospitalDepartmentsImplementation();
         ArrayList<String> departments = new ArrayList();
@@ -43,7 +46,7 @@ public class HospitalImpl implements Hospital {
             while (retSet.next()) {
 
                 hospital = new HospitalPojo();
-
+           float rate = obj.reateAverage(retSet.getInt(1),retSet.getInt(13));
                 hospital.setId(retSet.getInt(1));
                 hospital.setNameAr(retSet.getString(2));
                 hospital.setAddress(retSet.getString(3));
@@ -51,7 +54,7 @@ public class HospitalImpl implements Hospital {
                 hospital.setLatitude(retSet.getDouble(5));
                 hospital.setStartDate(retSet.getString(6));
                 hospital.setEndDate(retSet.getString(7));
-                hospital.setRate(retSet.getInt(8));
+                hospital.setRate(rate);
                 hospital.setOpenHour(retSet.getString(9));
                 hospital.setCloseHour(retSet.getString(10));
                 hospital.setCeo(retSet.getString(11));
