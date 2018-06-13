@@ -25,13 +25,7 @@
 
 <servlet-name>jersey-servlet</servlet-name>
 
-
-
-
 <url-pattern>/api/version1/*</url-pattern>
-
-
-
 
 </servlet-mapping>
 

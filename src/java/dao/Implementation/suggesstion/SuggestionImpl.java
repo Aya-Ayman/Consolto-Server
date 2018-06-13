@@ -85,5 +85,47 @@ public class SuggestionImpl implements Suggestion {
         }
         return allSuggesstions;
     }
+    
+     @Override
+    public SuggestionPojo retrieveOneSuggestion(int id) {
+
+        SuggestionPojo retrievedSuggestion = null;
+        Connection con = null;
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        try {
+            con = DBConnection.getConnection();
+            pst = con.prepareStatement("SELECT * FROM medical_insurance_suggestion WHERE suggest_id = ?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                retrievedSuggestion = new SuggestionPojo();
+                retrievedSuggestion.setSuggestId(rs.getInt(1));
+                retrievedSuggestion.setDescription(rs.getString(2));
+                retrievedSuggestion.setMedicalType(rs.getInt(3));
+                retrievedSuggestion.setLatitude(rs.getDouble(4));
+                retrievedSuggestion.setLongitude(rs.getDouble(5));
+                retrievedSuggestion.setAddress(rs.getString(6));
+                retrievedSuggestion.setContactPhone(rs.getString(7));
+                retrievedSuggestion.setSupervisor(rs.getString(8));
+                retrievedSuggestion.setDate(rs.getString(9));
+                retrievedSuggestion.setMedicalServiceNameAr(rs.getString(10));
+                retrievedSuggestion.setMedicalServiceNameEn(rs.getString(11));
+                retrievedSuggestion.setEmployeeId(rs.getInt(12));
+            }
+
+           
+        
+        } catch (Exception ex) {
+
+            System.out.println("Error in Suggestion Selection");
+        }
+
+        return retrievedSuggestion;
+
+    }
 
 }
