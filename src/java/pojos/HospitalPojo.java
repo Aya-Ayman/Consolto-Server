@@ -28,8 +28,7 @@ public class HospitalPojo {
     private String Ceo;
     private String nameEn;
     private int medicalTypeId;
-
-    private Blob image;
+    private String image;
     private ArrayList<String> phones;
     private ArrayList<String> departments;
 
@@ -137,13 +136,11 @@ public class HospitalPojo {
         this.medicalTypeId = medicalTypeId;
     }
 
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setHospitalImage(Blob image) {
-        this.image = image;
-    }
+  
 
     public ArrayList<String> getPhones() {
         return phones;
@@ -157,7 +154,7 @@ public class HospitalPojo {
         return departments;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

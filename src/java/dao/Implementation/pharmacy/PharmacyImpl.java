@@ -50,7 +50,7 @@ public class PharmacyImpl implements Pharmacy {
                 pharmacy.setCloseHour(retSet.getString(10));
                 pharmacy.setNameAr(retSet.getString(11));
                 pharmacy.setMedicalTypeId(retSet.getInt(12));
-                pharmacy.setImage(retSet.getBlob(13));
+                pharmacy.setImage(retSet.getString(13));
                 phones = phonesObj.getPharmacyPhones(retSet.getInt(1));
                 pharmacy.setPharmacyPhones(phones);
             }
@@ -81,7 +81,7 @@ public class PharmacyImpl implements Pharmacy {
             insertPs.setString(10, pharmacy.getCloseHour());
             insertPs.setString(11, pharmacy.getNameAr());
             insertPs.setInt(12, pharmacy.getMedicalTypeId());
-            insertPs.setBlob(13, pharmacy.getImage());
+            insertPs.setString(13, pharmacy.getImage());
             int insertflag = insertPs.executeUpdate();
 
             boolean res = false;
@@ -165,7 +165,7 @@ public class PharmacyImpl implements Pharmacy {
                 pharmacy.setCloseHour(retSet.getString(10));
                 pharmacy.setNameAr(retSet.getString(11));
                 pharmacy.setMedicalTypeId(retSet.getInt(12));
-                pharmacy.setImage(retSet.getBlob(13));
+                pharmacy.setImage(retSet.getString(13));
                 phones = phonesObj.getPharmacyPhones(retSet.getInt(1));
                 pharmacy.setPharmacyPhones(phones);
                 pharmacies.add(pharmacy);

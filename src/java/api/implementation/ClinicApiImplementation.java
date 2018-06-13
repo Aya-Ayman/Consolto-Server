@@ -31,7 +31,7 @@ public class ClinicApiImplementation implements ClinicApi {
     @Path("/insert")
     // @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public ResponseMessage insertClinic(@FormParam("clinic_longitude") String clinic_longitude, @FormParam("clinic_latitude") String clinic_latitude, @FormParam("clinic_address") String clinic_address, @FormParam("clinic_specialization") String clinic_specialization, @FormParam("clinic_end_date") String clinic_end_date, @FormParam("clinic_start_date") String clinic_start_date, @FormParam("clinic_open_hour") String clinic_open_hour, @FormParam("clinic_close_hour") String clinic_close_hour, @FormParam("clinic_rate") int clinic_rate, @FormParam("clinic_doctor_name_en") String clinic_doctor_name_en, @FormParam("clinic_doctor_name_ar") String clinic_doctor_name_ar, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3) {
+    public ResponseMessage insertClinic(@FormParam("clinic_longitude") String clinic_longitude, @FormParam("clinic_latitude") String clinic_latitude, @FormParam("clinic_address") String clinic_address, @FormParam("clinic_specialization") String clinic_specialization, @FormParam("clinic_end_date") String clinic_end_date, @FormParam("clinic_start_date") String clinic_start_date, @FormParam("clinic_open_hour") String clinic_open_hour, @FormParam("clinic_close_hour") String clinic_close_hour, @FormParam("clinic_rate") float clinic_rate, @FormParam("clinic_doctor_name_en") String clinic_doctor_name_en, @FormParam("clinic_doctor_name_ar") String clinic_doctor_name_ar, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3,@FormParam("urlImage")String urlImage) {
 
         ResponseMessage response = new ResponseMessage();
         ArrayList<String> phones = new ArrayList();
@@ -67,7 +67,8 @@ public class ClinicApiImplementation implements ClinicApi {
         clinic.setAddress(clinic_address);
         clinic.setRate(clinic_rate);
         clinic.setPhones(phones);
-
+        clinic.setImage(urlImage);
+        
         boolean result = clinicObj.addClinic(clinic);
 
         if (result == true) {

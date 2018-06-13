@@ -57,7 +57,7 @@ public class HospitalImpl implements Hospital {
                 hospital.setCeo(retSet.getString(11));
                 hospital.setNameEn(retSet.getString(12));
                 hospital.setMedicalTypeId(retSet.getInt(13));
-                hospital.setHospitalImage(retSet.getBlob(14));
+                hospital.setImage(retSet.getString(14));
 
                 phones = phonesObj.getHospitalPhones(retSet.getInt(1));
                 departments = departmentsObj.getHospitalDepartments(retSet.getInt(1));
@@ -94,8 +94,7 @@ public class HospitalImpl implements Hospital {
             insertPs.setString(11, hospital.getCeo());
             insertPs.setString(12, hospital.getNameEn());
             insertPs.setInt(13, hospital.getMedicalTypeId());
-            Blob blob = null;
-            insertPs.setBlob(14, blob);
+            insertPs.setString(14, hospital.getImage());
 
             int insertflag = insertPs.executeUpdate();
             boolean res = false;
@@ -189,7 +188,7 @@ public class HospitalImpl implements Hospital {
                 hos.setCeo(retSet.getString(11));
                 hos.setNameEn(retSet.getString(12));
                 hos.setMedicalTypeId(retSet.getInt(13));
-                hos.setHospitalImage(retSet.getBlob(14));
+                hos.setImage(retSet.getString(14));
 
                 phones = phonesObj.getHospitalPhones(retSet.getInt(1));
                 departments = departmentsObj.getHospitalDepartments(retSet.getInt(1));
