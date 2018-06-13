@@ -28,7 +28,7 @@ public class PharmacyPojo {
     private String nameAr;
     private int medicalTypeId;
     private ArrayList<String> pharmacyPhones;
-    private Blob image;
+    private String image;
 
     public int getId() {
         return id;
@@ -134,11 +134,11 @@ public class PharmacyPojo {
         this.pharmacyPhones = pharmacyPhones;
     }
 
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(String image) {
         this.image = image;
     }
     

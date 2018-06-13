@@ -33,7 +33,7 @@ public class PharmacyApiImplementation implements PharmacyApi {
     @Path("/insert")
     // @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public ResponseMessage insertPharmacy(@FormParam("pharmacy_name_en") String pharmacy_name_en, @FormParam("pharmacy_latitude") String pharmacy_latitude, @FormParam("pharmacy_longitude") String pharmacy_longitude, @FormParam("pharmacy_start_date") String pharmacy_start_date, @FormParam("pharmacy_end_date") String pharmacy_end_date, @FormParam("pharmacy_rate") int pharmacy_rate, @FormParam("pharmacy_address") String pharmacy_address, @FormParam("pharmacy_open_hour") String pharmacy_open_hour, @FormParam("pharmacy_close_hour") String pharmacy_close_hour, @FormParam("pharmacy_name_ar") String pharmacy_name_ar, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3) {
+    public ResponseMessage insertPharmacy(@FormParam("pharmacy_name_en") String pharmacy_name_en, @FormParam("pharmacy_latitude") String pharmacy_latitude, @FormParam("pharmacy_longitude") String pharmacy_longitude, @FormParam("pharmacy_start_date") String pharmacy_start_date, @FormParam("pharmacy_end_date") String pharmacy_end_date, @FormParam("pharmacy_rate") float pharmacy_rate, @FormParam("pharmacy_address") String pharmacy_address, @FormParam("pharmacy_open_hour") String pharmacy_open_hour, @FormParam("pharmacy_close_hour") String pharmacy_close_hour, @FormParam("pharmacy_name_ar") String pharmacy_name_ar, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3,@FormParam("urlImage")String urlImage) {
         ResponseMessage response = new ResponseMessage();
         PharmacyPojo pharmacy = new PharmacyPojo();
         ArrayList<String> phones = new ArrayList();
@@ -41,9 +41,9 @@ public class PharmacyApiImplementation implements PharmacyApi {
 
         double mylongitude = Double.parseDouble(pharmacy_longitude);
         double mylatitude = Double.parseDouble(pharmacy_latitude);
-        Date start = null, end = null;
-        start = java.sql.Date.valueOf(pharmacy_start_date);
-        end = java.sql.Date.valueOf(pharmacy_end_date);
+//        Date start = null, end = null;
+//        start = java.sql.Date.valueOf(pharmacy_start_date);
+//        end = java.sql.Date.valueOf(pharmacy_end_date);
 
         if (!phone1.isEmpty()) {
             phones.add(phone1);
@@ -67,7 +67,7 @@ public class PharmacyApiImplementation implements PharmacyApi {
         pharmacy.setPharmacyPhones(phones);
         pharmacy.setStartDate(pharmacy_start_date);
         pharmacy.setEndDate(pharmacy_end_date);
-
+        pharmacy.setImage(urlImage);
         boolean result = pharmacyObj.addPharmacy(pharmacy);
 
         if (result == true) {
