@@ -1,7 +1,7 @@
 <%-- 
-    Document   : post
-    Created on : Mar 1, 2018, 6:56:00 PM
-    Author     : hoda.CO
+    Document   : editEmployee
+    Created on : Jun 8, 2018, 6:25:12 PM
+    Author     : Mayada Saleh
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,14 +12,17 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action = "./InsertEmployee" method = "POST">
+       
+        
+         <form action = "./EditEmployee" method = "POST">
+          <!--<c:param name="employeeId" value="${3}"/></c:url>-->
             
+        <input type="text" name="employeeId" hidden="" value="${3}"   
+           
             Name: <input type = "text" name = "name">
             <br />
-            
             mail : <input type = "text" name = "mail">
             <br />
-
             password <input type = "text" name = "password" />
             <br />
            
@@ -59,6 +62,18 @@
          <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
          
            <script src="uploadImage.js"></script>
-           
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </body>
 </html>
