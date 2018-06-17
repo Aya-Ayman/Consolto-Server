@@ -18,8 +18,8 @@ public interface SuggestionApi {
 
     public ResponsePojo addSuggestion(SuggestionPojo suggest);
 
-     public SuggesstionListPojo getAllSuggesstions() ;
+    public SuggesstionListPojo getAllSuggesstions() ;
 	 
-	 public SuggestionPojo getOneSuggesstion(@PathParam("id") int id);
+     public SuggestionPojo getOneSuggesstion(@PathParam("id") int id);
 
 }

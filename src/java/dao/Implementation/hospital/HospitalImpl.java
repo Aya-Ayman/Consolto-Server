@@ -213,6 +213,7 @@ public class HospitalImpl implements Hospital {
 
         ArrayList<ResultPojo> results = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
+
             PreparedStatement retrievePs = connection.prepareStatement("SELECT  hospital_id , medical_type_medical_type_id FROM hospital where hospital_name like ? OR hospital_name_en like ?");
             retrievePs.setString(1, input+"%");
             retrievePs.setString(2, input+"%");
@@ -237,32 +238,36 @@ public class HospitalImpl implements Hospital {
         return results;
     }
 
-    public ArrayList<ResultPojo> searchHospitalByDepartment(String input) {
-
-        ArrayList<ResultPojo> results = new ArrayList<>();
-
-        try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement retrievePs = connection.prepareStatement("SELECT hospital_id , medical_type_medical_type_id FROM hospital where hospital_id in (SELECT hospital_hospital_id FROM hospital_departments where department like ?)");
-            retrievePs.setString(1, input+"%");
-
-            ResultSet retSet = retrievePs.executeQuery();
-
-            while (retSet.next()) {
-                ResultPojo hos = new ResultPojo();
-                hos.setId(retSet.getInt(1));
-             
-                hos.setTypeId(retSet.getInt(2));
-
-
-                results.add(hos);
-
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-
-        return results;
-    }
+//    public ArrayList<ResultPojo> searchHospitalByDepartment(String input) {
+//
+//        ArrayList<ResultPojo> results = new ArrayList<>();
+//
+//        try (Connection connection = DBConnection.getConnection()) {
+//            PreparedStatement retrievePs = connection.prepareStatement("SELECT hospital_id , medical_type_medical_type_id FROM hospital where hospital_id in (SELECT hospital_hospital_id FROM hospital_departments where department like ?)");
+//<<<<<<< HEAD
+//            retrievePs.setString(1,input+"%");
+//=======
+//            retrievePs.setString(1, input+"%");
+//>>>>>>> 229c069139e01ec12b3e6f2eef7ca15832fdd636
+//
+//            ResultSet retSet = retrievePs.executeQuery();
+//
+//            while (retSet.next()) {
+//                ResultPojo hos = new ResultPojo();
+//                hos.setId(retSet.getInt(1));
+//             
+//                hos.setTypeId(retSet.getInt(2));
+//
+//
+//                results.add(hos);
+//
+//            }
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//            return null;
+//        }
+//
+//        return results;
+//    }
 
 }

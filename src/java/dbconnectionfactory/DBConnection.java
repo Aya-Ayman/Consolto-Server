@@ -22,7 +22,12 @@ public class DBConnection {
     public static final String PASSWORD = "";
     private static Connection connection;
 
-    public static Connection getConnection() {
+
+ 
+
+    public static Connection getConnection() throws SQLException {
+
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);

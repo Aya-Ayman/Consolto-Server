@@ -187,15 +187,23 @@ public class PharmacyImpl implements Pharmacy {
         ArrayList<ResultPojo> results = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
             PreparedStatement retrievePs = connection.prepareStatement("SELECT pharmacy_id , medical_type_medical_type_id FROM pharmacy where pharmacy_name_en like ? OR pharmacy_name_ar like ?");
+
+
+            retrievePs.setString(1,input+"%" );
+           retrievePs.setString(2,input+"%");
+          //  retrievePs.setString(3, "%"+ input+"%");
+
             retrievePs.setString(1, input + "%");
             retrievePs.setString(2, input + "%");
             //  retrievePs.setString(3, "%"+ input+"%");
+
 
             ResultSet retSet = retrievePs.executeQuery();
 
             while (retSet.next()) {
                 ResultPojo pharmacy = new ResultPojo();
                 pharmacy.setId(retSet.getInt(1));
+
 
                 pharmacy.setTypeId(retSet.getInt(2)); //this one
                 results.add(pharmacy);
