@@ -21,8 +21,8 @@ import pojos.ResponseMessage;
 public interface CompanyApiUrlInterface {
   CompanyListPojo retrive();
 CompanyResponse retriveCompany(@PathParam("id")int id);
-ResponseMessage setData (@FormParam("name")String name,@FormParam("email")String email,@FormParam("latitude")String latitude,@FormParam("longitude")String longitude,@FormParam("address")String address,@FormParam("companyPackage")String companyPackage,@FormParam("startDate")String startDate,@FormParam("endDate")String endDate,@FormParam("ceo")String ceo,@FormParam("insuranceId")int insuranceId,@FormParam("phone1")String phone1,@FormParam("phone2")String phone2,@FormParam("phone3")String phone3);
-CompanyResponse update(@FormParam("name")String name,@FormParam("email")String email,@FormParam("latitude")String latitude,@FormParam("longitude")String longitude,@FormParam("address")String address,@FormParam("companyPackage")String companyPackage,@FormParam("startDate")String startDate,@FormParam("endDate")String endDate,@FormParam("ceo")String ceo,@FormParam("insuranceId")int insuranceId,@FormParam("phone1")String phone1,@FormParam("phone2")String phone2,@FormParam("phone3")String phone3,@PathParam("id")int id);
+ResponseMessage setData (CompanyPojo companyPojo);
+CompanyResponse update(CompanyPojo companyPojo);
  
 ResponseMessage delete(@PathParam("id")int id);
 }

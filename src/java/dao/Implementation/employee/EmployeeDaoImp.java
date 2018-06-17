@@ -45,7 +45,7 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
                 employee.setAddress(retSet.getString(4));
                 employee.setJob(retSet.getString(5));
                 employee.setPassword(retSet.getString(6));
-                //   employee.setImage(retSet.getBlob(7));
+                employee.setImage(retSet.getString(7));
                 employee.setStartDate(retSet.getString(8));
                 employee.setEndDate(retSet.getString(9));
                 employee.setPackageType(retSet.getFloat(10));
@@ -72,7 +72,7 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
                 employee.setAddress(retSet.getString(4));
                 employee.setJob(retSet.getString(5));
                 employee.setPassword(retSet.getString(6));
-                //       employee.setImage(retSet.getBlob(7));
+                employee.setImage(retSet.getString(7));
                 employee.setStartDate(retSet.getString(8));
                 employee.setEndDate(retSet.getString(9));
                 employee.setPackageType(retSet.getFloat(10));
@@ -111,7 +111,7 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
                 retrievedUser.setAddress(rs.getString(4));
                 retrievedUser.setJob(rs.getString(5));
                 retrievedUser.setPassword(rs.getString(6));
-                //     retrievedUser.setImage(rs.getBlob(7));
+                retrievedUser.setImage(rs.getString(7));
                 retrievedUser.setStartDate(rs.getString(8));
                 retrievedUser.setEndDate(rs.getString(9));
                 retrievedUser.setPackageType(rs.getFloat(10));
@@ -166,21 +166,17 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
                 retrievedUser.setAddress(rs.getString(4));
                 retrievedUser.setJob(rs.getString(5));
                 retrievedUser.setPassword(rs.getString(6));
-                System.out.println("dao.Implementation.employee.EmployeeDaoImp.select()");
-                // retrievedUser.setImage(rs.getBlob(7));
+                retrievedUser.setImage(rs.getString(7));
 
                 retrievedUser.setStartDate(rs.getString(8));
                 retrievedUser.setEndDate(rs.getString(9));
                 retrievedUser.setPackageType(rs.getFloat(10));
                 retrievedUser.setCompanyId(rs.getInt(11));
-                System.out.println("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
             }
 
-            System.out.println("iddddddddd" + id);
             pst2 = con.prepareStatement("SELECT * FROM employee_phone WHERE employee_employee_id = ?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst2.setInt(1, id);
             rs2 = pst2.executeQuery();
-            //     System.out.println("phonessss" + rs2.getString(1));
 
             while (rs2.next()) {
                 employeePhones.add(rs2.getString(1));
@@ -265,17 +261,18 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
 
             }
 
-            pst = con.prepareStatement("UPDATE employee SET employee_email = ?, employee_name = ?, employee_address = ?, employee_job= ?, employee_password = ?, employee_startdate = ?, employee_enddate = ?, employee_packagetype = ?, company_company_id = ? WHERE employee_id = ?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst = con.prepareStatement("UPDATE employee SET employee_email = ?, employee_name = ?, employee_address = ?, employee_job= ?, employee_password = ?,  employee_image = ?, employee_startdate = ?, employee_enddate = ?, employee_packagetype = ?, company_company_id = ? WHERE employee_id = ?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, emp.getEmail());
             pst.setString(2, emp.getName());
             pst.setString(3, emp.getAddress());
             pst.setString(4, emp.getJob());
             pst.setString(5, emp.getPassword());
-            pst.setString(6, emp.getStartDate());
-            pst.setString(7, emp.getEndDate());
-            pst.setFloat(8, emp.getPackageType());
-            pst.setInt(9, emp.getCompanyId());
-            pst.setInt(10, emp.getId());
+            pst.setString(6, emp.getImage());
+            pst.setString(7, emp.getStartDate());
+            pst.setString(8, emp.getEndDate());
+            pst.setFloat(9, emp.getPackageType());
+            pst.setInt(10, emp.getCompanyId());
+            pst.setInt(11, emp.getId());
             System.out.println(pst);
             pst.executeUpdate();
 
@@ -304,18 +301,19 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
             con = DBConnection.getConnection();
             // Employee Insertion
             pst = con.prepareStatement("INSERT INTO EMPLOYEE"
-                    + "(employee_email,employee_name,employee_address,employee_job,employee_password,employee_startdate,employee_enddate,employee_packagetype,company_company_id)"
-                    + " VALUES(?,?,?,?,?,?,?,?,?)", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                    + "(employee_email,employee_name,employee_address,employee_job,employee_password,employee_image,employee_startdate,employee_enddate,employee_packagetype,company_company_id)"
+                    + " VALUES(?,?,?,?,?,?,?,?,?,?)", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             pst.setString(1, emp.getEmail());
             pst.setString(2, emp.getName());
             pst.setString(3, emp.getAddress());
             pst.setString(4, emp.getJob());
             pst.setString(5, emp.getPassword());
-            pst.setString(6, emp.getStartDate());
-            pst.setString(7, emp.getEndDate());
-            pst.setFloat(8, emp.getPackageType());
-            pst.setInt(9, emp.getCompanyId());
+            pst.setString(6,emp.getImage());
+            pst.setString(7, emp.getStartDate());
+            pst.setString(8, emp.getEndDate());
+            pst.setFloat(9, emp.getPackageType());
+            pst.setInt(10, emp.getCompanyId());
             pst.executeUpdate();
 
             // To Get Employee ID
@@ -343,7 +341,7 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
 
             return true;
         } catch (Exception ex) {
-            System.out.println("Insertion Error");
+                ex.printStackTrace();
             return false;
         }
 

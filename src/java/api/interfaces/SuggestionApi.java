@@ -5,6 +5,7 @@
  */
 package api.interfaces;
 
+import javax.ws.rs.PathParam;
 import pojos.ResponsePojo;
 import pojos.SuggesstionListPojo;
 import pojos.SuggestionPojo;
@@ -17,6 +18,8 @@ public interface SuggestionApi {
 
     public ResponsePojo addSuggestion(SuggestionPojo suggest);
 
-     public SuggesstionListPojo getAllSuggesstions() ;
+    public SuggesstionListPojo getAllSuggesstions() ;
+	 
+     public SuggestionPojo getOneSuggesstion(@PathParam("id") int id);
 
 }

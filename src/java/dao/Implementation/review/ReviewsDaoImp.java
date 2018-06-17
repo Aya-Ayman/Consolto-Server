@@ -70,4 +70,61 @@ public class ReviewsDaoImp implements ReviewsDaoInt {
         all.setList_review(allreviews);
         return all;
     }
-}
+     public float reateAverage(int serviceId, int medicalTypeId) {
+        float average = 0;
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement retrieveall = connection.prepareStatement("SELECT AVG(review_rate) AS average FROM reviews where service_id=? AND medicaltype_id=?");
+            retrieveall.setInt(1, serviceId);
+            retrieveall.setInt(2, medicalTypeId);
+                System.out.println("serviceId is "+ serviceId);
+                System.out.println("medicalTypeId is "+ medicalTypeId);
+
+            ResultSet retSet = retrieveall.executeQuery();
+            while (retSet.next()) {
+                average = retSet.getFloat("average");  
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewsDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return average;
+    }
+
+    @Override
+    public ReviewsList_Pojo retrieveOneReview(int type_id, int service_id) {
+        ArrayList<ReviewsPojo> allreviews = new ArrayList<ReviewsPojo>();
+         
+        Connection con = null;
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        try {
+            con = DBConnection.getConnection();
+            pst = con.prepareStatement("SELECT * FROM reviews WHERE medicaltype_id = ? AND service_id= ?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+            pst.setInt(1, type_id);
+            pst.setInt(2, service_id);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                ReviewsPojo retrievedReview = new ReviewsPojo();
+                retrievedReview.setReviewId(rs.getInt(1));
+                retrievedReview.setMedicalTypeId(rs.getInt(2));
+                retrievedReview.setServiceId(rs.getInt(3));
+                retrievedReview.setDescription(rs.getString(4));
+                retrievedReview.setDate(rs.getString(5));
+                retrievedReview.setType(rs.getString(6));
+                retrievedReview.setEmployeeEmployeeId(rs.getInt(7));
+                retrievedReview.setReviewRate(rs.getFloat(8)); 
+                allreviews.add(retrievedReview);
+            }      
+        } catch (Exception ex) {
+
+            System.out.println("Error in Suggestion Selection");
+        }
+        ReviewsList_Pojo all = new ReviewsList_Pojo();
+        all.setList_review(allreviews);
+        return all;
+    }
+
+    }

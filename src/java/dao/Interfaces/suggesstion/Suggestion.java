@@ -18,4 +18,6 @@ public interface Suggestion {
 
     public List<SuggestionPojo> retrieve();
 
+    public SuggestionPojo retrieveOneSuggestion(int id);
+
 }

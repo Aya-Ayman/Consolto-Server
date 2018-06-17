@@ -28,7 +28,7 @@ public class CompanyPhoneDaoImplementation implements CompanyPhoneDaoInterface{
 
     @Override
     public List<String> getCompanyPhone(int id){
-        try {   
+        try {
             connection = DBConnection.getConnection();
         } catch (SQLException ex) {
             Logger.getLogger(CompanyPhoneDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
@@ -58,7 +58,7 @@ public class CompanyPhoneDaoImplementation implements CompanyPhoneDaoInterface{
     @Override
     public boolean insertCompanyPhone (int companyId,List<String> phoneList)
     {
-        try {   
+        try {
             connection = DBConnection.getConnection();
         } catch (SQLException ex) {
             Logger.getLogger(CompanyPhoneDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);

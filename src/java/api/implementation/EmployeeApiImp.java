@@ -180,93 +180,76 @@ public class EmployeeApiImp implements EmployeeApiInt {
     @Path("/updateEmployee/employeeID={id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public ResponseMessageWithEmployee updateEmployee(@PathParam("id") int employeeId,
-            @FormParam("name") String name,
-            @FormParam("mail") String mail,
-            @FormParam("password") String password,
-            @FormParam("address") String address,
-            @FormParam("job") String job,
-            @FormParam("company_id") int companyID,
-            @FormParam("phone1") String phone1,
-            @FormParam("phone2") String phone2,
-            @FormParam("phone3") String phone3,
-            @FormParam("startDate") String startDate,
-            @FormParam("endDate") String endDate,
-            @FormParam("packageType") float packageType
-    ) {
+    public ResponseMessageWithEmployee updateEmployee(EmployeePojo employeeObject) {
 
         ResponseMessageWithEmployee allResponse = new ResponseMessageWithEmployee();
         ArrayList<String> insertedPhones = new ArrayList<>();
 
-        
         EmployeePojo updatedEmployee = new EmployeePojo();
-        updatedEmployee.setId(employeeId);
-        updatedEmployee.setName(name);
-        updatedEmployee.setEmail(mail);
-        updatedEmployee.setAddress(address);
-        updatedEmployee.setJob(job);
-        updatedEmployee.setPassword(password);
-        updatedEmployee.setCompanyId(companyID);
-        // updatedEmployee.setImage(employeeImage);
-        updatedEmployee.setStartDate(startDate);
-        updatedEmployee.setEndDate(endDate);
-        updatedEmployee.setPackageType(packageType);
+        updatedEmployee.setId(employeeObject.getId());
+        updatedEmployee.setName(employeeObject.getName());
+        updatedEmployee.setEmail(employeeObject.getEmail());
+        updatedEmployee.setAddress(employeeObject.getAddress());
+        updatedEmployee.setJob(employeeObject.getJob());
+        updatedEmployee.setPassword(employeeObject.getPassword());
+        updatedEmployee.setCompanyId(employeeObject.getCompanyId());
+        updatedEmployee.setImage(employeeObject.getImage());
+        updatedEmployee.setStartDate(employeeObject.getStartDate());
+        updatedEmployee.setEndDate(employeeObject.getEndDate());
+        updatedEmployee.setPackageType(employeeObject.getPackageType());
 
-        if (!phone1.isEmpty()) {
-            insertedPhones.add(phone1);
+        if (!employeeObject.getPhones().get(0).isEmpty()) {
+            insertedPhones.add(employeeObject.getPhones().get(0));
         }
-        if (!phone2.isEmpty()) {
-            insertedPhones.add(phone2);
+        if (!employeeObject.getPhones().get(1).isEmpty()) {
+            insertedPhones.add(employeeObject.getPhones().get(1));
         }
-        if (!phone3.isEmpty()) {
-            insertedPhones.add(phone3);
+        if (!employeeObject.getPhones().get(2).isEmpty()) {
+            insertedPhones.add(employeeObject.getPhones().get(2));
         }
         updatedEmployee.setPhones(insertedPhones);
 
         try {
             allResponse = impl.update(updatedEmployee);
 
-
         } catch (Exception ex) {
             Logger.getLogger(EmployeeApiImp.class.getName()).log(Level.SEVERE, null, ex);
         }
         return allResponse;
     }
+    
 
     @POST
     @Path("/insertEmployee")
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public ResponseMessage insertEmployee(@FormParam("name") String name, @FormParam("mail") String mail,
-            @FormParam("password") String password, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3, @FormParam("address") String address, @FormParam("job") String job,
-            @FormParam("company_id") int companyID, @FormParam("startDate") String startDate,
-            @FormParam("endDate") String endDate,
-            @FormParam("packageType") float packageType) {
-        
+    public ResponseMessage insertEmployee(EmployeePojo employeeObject) {
+
         ArrayList<String> insertedPhones = new ArrayList<>();
         Boolean checkInsertion = false;
         ResponseMessage returnedResponse = new ResponseMessage();
         EmployeePojo insertedEmployee = new EmployeePojo();
 
-        insertedEmployee.setName(name);
-        insertedEmployee.setEmail(mail);
-        insertedEmployee.setAddress(address);
-        insertedEmployee.setJob(job);
-        insertedEmployee.setPassword(password);
-        insertedEmployee.setCompanyId(companyID);
-        //  insertedEmployee.setImage(employeeImage);
-        insertedEmployee.setStartDate(startDate);
-        insertedEmployee.setEndDate(endDate);
-        insertedEmployee.setPackageType(packageType);
+        insertedEmployee.setName(employeeObject.getName());
+        insertedEmployee.setEmail(employeeObject.getEmail());
+        insertedEmployee.setAddress(employeeObject.getAddress());
+        insertedEmployee.setJob(employeeObject.getJob());
+        insertedEmployee.setPassword(employeeObject.getPassword());
+        insertedEmployee.setCompanyId(employeeObject.getCompanyId());
+        insertedEmployee.setImage(employeeObject.getImage());
+        insertedEmployee.setStartDate(employeeObject.getStartDate());
+        insertedEmployee.setEndDate(employeeObject.getEndDate());
+        insertedEmployee.setPackageType(employeeObject.getPackageType());
 
-        if (!phone1.isEmpty()) {
-            insertedPhones.add(phone1);
+
+        if (!employeeObject.getPhones().get(0).isEmpty()) {
+            insertedPhones.add(employeeObject.getPhones().get(0));
         }
-        if (!phone2.isEmpty()) {
-            insertedPhones.add(phone2);
+        if (!employeeObject.getPhones().get(1).isEmpty()) {
+            insertedPhones.add(employeeObject.getPhones().get(1));
         }
-        if (!phone3.isEmpty()) {
-            insertedPhones.add(phone3);
+        if (!employeeObject.getPhones().get(2).isEmpty()) {
+            insertedPhones.add(employeeObject.getPhones().get(2));
         }
         insertedEmployee.setPhones(insertedPhones);
 

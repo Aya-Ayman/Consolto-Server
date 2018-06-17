@@ -12,6 +12,7 @@ import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import pojos.ClinicPojo;
@@ -64,6 +65,18 @@ public class Suggestion implements SuggestionApi {
             return null;
         }
 
+    }
+	
+    @Override
+    @GET
+    @Path("/get/suggestionID={id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public SuggestionPojo getOneSuggesstion(@PathParam("id") int id) {
+        SuggestionImpl obj = new SuggestionImpl();
+        SuggestionPojo suggesstion = new SuggestionPojo();
+        suggesstion = obj.retrieveOneSuggestion(id);
+
+        return suggesstion;
     }
 
 }

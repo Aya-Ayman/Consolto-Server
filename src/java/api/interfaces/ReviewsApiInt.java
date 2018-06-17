@@ -6,6 +6,7 @@
 package api.interfaces;
 
 import java.util.ArrayList;
+import javax.ws.rs.PathParam;
 import pojos.ResponseMessage;
 import pojos.ReviewsList_Pojo;
 import pojos.ReviewsPojo;
@@ -16,5 +17,6 @@ import pojos.ReviewsPojo;
  */
 public interface ReviewsApiInt {
      public ResponseMessage setReview(ReviewsPojo review);
-      public ReviewsList_Pojo getAllReviews();
+     public ReviewsList_Pojo getAllReviews();
+    public ReviewsList_Pojo getOneReview(@PathParam("typeid") int type_id,@PathParam("serviceid") int service_id);
 }

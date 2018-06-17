@@ -223,20 +223,28 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
             ps.setString(9,company.getCeo());
             ps.setInt(10, company.getMedicalInsuranceId());
             ps.setInt(11, company.getId());
+                        System.out.println("ps =="+ps);
+
             return_flage = ps.executeUpdate();
             
+            System.out.println("before >> ret_flag="+return_flage);
             if(return_flage==1)
             {
+                                   System.out.println("inside return_flage=1");
+
               CompanyPhoneDaoInterface companyPhoneObject = new CompanyPhoneDaoImplementation();
                return_flage = companyPhoneObject.deleteCompanyPhone(company.getId());
                
               if(return_flage != 0)
               {
+                              System.out.println("after insert >> ret_flag="+return_flage);
+
                isInserted = companyPhoneObject.insertCompanyPhone(company.getId(), company.getPhones());
               }
           }
        
         } catch (SQLException ex) {
+            System.out.println("in errorrrrrrrrrrrrrrr"+ex.getMessage());
             isInserted = false;            
         }
         return isInserted;

@@ -34,25 +34,8 @@ public interface EmployeeApiInt {
 
     public ResponseMessage deleteEmployee(@PathParam("id") int employeeId);
 
-    public ResponseMessageWithEmployee updateEmployee(@PathParam("id") int employeeId,
-            @FormParam("name") String name,
-            @FormParam("mail") String mail,
-            @FormParam("password") String password,
-            @FormParam("address") String address,
-            @FormParam("job") String job,
-            @FormParam("company_id") int companyID,
-            @FormParam("phone1") String phone1,
-            @FormParam("phone2") String phone2,
-            @FormParam("phone3") String phone3,
-            @FormParam("startDate") String startDate,
-            @FormParam("endDate") String endDate,
-            @FormParam("packageType") float packageType
-    );
-    
-      public ResponseMessage insertEmployee(@FormParam("name") String name, @FormParam("mail") String mail,
-            @FormParam("password") String password, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3, @FormParam("address") String address, @FormParam("job") String job,
-            @FormParam("company_id") int companyID,@FormParam("startDate") String startDate,
-            @FormParam("endDate") String endDate,
-            @FormParam("packageType") float packageType);
+    public ResponseMessageWithEmployee updateEmployee(EmployeePojo employeeObject);
+
+    public ResponseMessage insertEmployee(EmployeePojo employeeObject);
 
 }

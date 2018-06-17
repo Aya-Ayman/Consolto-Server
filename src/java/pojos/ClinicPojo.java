@@ -29,7 +29,7 @@ public class ClinicPojo {
     private String doctorNameAr;
     private int medicalTypeId;
     private ArrayList<String> phones;
-    private Blob image;
+    private String image;
 
     public int getId() {
         return id;
@@ -143,11 +143,11 @@ public class ClinicPojo {
         this.phones = phones;
     }
 
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

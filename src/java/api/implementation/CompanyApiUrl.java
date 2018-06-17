@@ -77,35 +77,31 @@ public class CompanyApiUrl implements api.interfaces.CompanyApiUrlInterface{
     
     @POST
     @Path("/insert")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
  @Override
-    public ResponseMessage setData (@FormParam("name")String name,@FormParam("email")String email,@FormParam("latitude")String latitude,@FormParam("longitude")String longitude,@FormParam("address")String address,@FormParam("companyPackage")String companyPackage,@FormParam("startDate")String startDate,@FormParam("endDate")String endDate,@FormParam("ceo")String ceo,@FormParam("insuranceId")int insuranceId,@FormParam("phone1")String phone1,@FormParam("phone2")String phone2,@FormParam("phone3")String phone3){
+    public ResponseMessage setData (CompanyPojo companyPojo){
     
    ResponseMessage response = new ResponseMessage();
    List phoneList = new ArrayList<String>();
-   if(!phone1.isEmpty())
+   if(!companyPojo.getPhones().get(0).isEmpty())
    {    
-    phoneList.add(phone1);
+    phoneList.add(companyPojo.getPhones().get(0));
    }
-   if(!phone2.isEmpty())
+   if(!companyPojo.getPhones().get(1).isEmpty())
    {    
-    phoneList.add(phone2);
+    phoneList.add(companyPojo.getPhones().get(1));
    }
-   if(!phone3.isEmpty())
+   if(!companyPojo.getPhones().get(2).isEmpty())
    {    
-    phoneList.add(phone3);
+    phoneList.add(companyPojo.getPhones().get(2));
    }
    
-   double doubleLongitude = Double.parseDouble(longitude);
-   double doubleLatitude = Double.parseDouble(latitude);
-   float packageFloat = Float.parseFloat(companyPackage);
- 
- 
-   
-   CompanyPojo company = new CompanyPojo(name, email,doubleLatitude , doubleLongitude, address, packageFloat,startDate,endDate, ceo, insuranceId,phoneList);
+//   double doubleLongitude = Double.parseDouble(companyPojo.getLongitude().toString());
+//   double doubleLatitude = Double.parseDouble(companyPojo.getLatitude().toString());
+//   float packageFloat = Float.parseFloat(companyPojo.getPackageType().toString());
+
    CompanyDaoInterface implObject = new CompanyDaoImplementation();
-    boolean isInserted = implObject.insertCompany(company);
+    boolean isInserted = implObject.insertCompany(companyPojo);
     if(isInserted==true)
      {
       response.setError("0");
@@ -123,41 +119,46 @@ public class CompanyApiUrl implements api.interfaces.CompanyApiUrlInterface{
 }
            
     @PUT
-    @Path("/update/{id}")
+    @Path("/update")
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public CompanyResponse update(@FormParam("name")String name,@FormParam("email")String email,@FormParam("latitude")String latitude,@FormParam("longitude")String longitude,@FormParam("address")String address,@FormParam("companyPackage")String companyPackage,@FormParam("startDate")String startDate,@FormParam("endDate")String endDate,@FormParam("ceo")String ceo,@FormParam("insuranceId")int insuranceId,@FormParam("phone1")String phone1,@FormParam("phone2")String phone2,@FormParam("phone3")String phone3,@PathParam("id")int id)
+    public CompanyResponse update(CompanyPojo companyPojo)
     {
+        System.out.println("update");
+        
       CompanyResponse response = new CompanyResponse();
       List phoneList = new ArrayList<String>();
-      if(!phone1.isEmpty())
+      if(!companyPojo.getPhones().get(0).isEmpty())
       {    
-       phoneList.add(phone1);
+       phoneList.add(companyPojo.getPhones().get(0));
       }
-        if(!phone2.isEmpty())
+        if(!companyPojo.getPhones().get(1).isEmpty())
       { 
-        phoneList.add(phone2);
+        phoneList.add(companyPojo.getPhones().get(1));
       }
-        if(!phone3.isEmpty())
+        if(!companyPojo.getPhones().get(2).isEmpty())
       {   
-        phoneList.add(phone3);  
+        phoneList.add(companyPojo.getPhones().get(2));  
       }
-        double doubleLongitude = Double.parseDouble(longitude);
-       double doubleLatitude = Double.parseDouble(latitude);
-        float packageFloat = Float.parseFloat(companyPackage);
+//        double doubleLongitude = Double.parseDouble(companyPojo.getLongitude().toString());
+//       double doubleLatitude = Double.parseDouble(companyPojo.getLatitude().toString());
+//        float packageFloat = Float.parseFloat(companyPojo.getPackageType().toString());
 
-        
-      CompanyPojo company = new CompanyPojo(id, name, email, doubleLatitude, doubleLongitude, address, packageFloat, startDate, endDate, ceo, insuranceId,phoneList);
+
       CompanyDaoInterface implObject = new CompanyDaoImplementation();
-      boolean isInserted = implObject.updateCompany(company);
+      boolean isInserted = implObject.updateCompany(companyPojo);
       if(isInserted==true)
        {
+                   System.out.println("inside true");
+
          response.setError("0");
          response.setMessage("company is updated");
          response.setStatus(true);
-         response.setCompanyObject(company);
+         response.setCompanyObject(companyPojo);
        }
      else{
+                             System.out.println("inside false");
+
          response.setError("1");
          response.setMessage("company is not updated");
          response.setStatus(false);
