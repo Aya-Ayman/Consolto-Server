@@ -194,6 +194,7 @@ public class ClinicImpl implements Clinic {
 
         ArrayList<ResultPojo> results = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
+
             PreparedStatement retrievePs = connection.prepareStatement("SELECT clinic_id , medical_type_medical_type_id FROM clinic where clinic_doctor_name_ar like ? OR clinic_doctor_name_en like ?");
             retrievePs.setString(1, input + "%");
             retrievePs.setString(2, input + "%");
@@ -216,4 +217,53 @@ public class ClinicImpl implements Clinic {
 
         return results;
     }
+    
+      
+    public boolean updateClinic(ClinicPojo clinic) {
+        ClinicPhonesImplementation phonesObj = new ClinicPhonesImplementation();
+            boolean isInserted=false;
+
+        try (Connection connection = DBConnection.getConnection()) {
+            PreparedStatement updatePs = connection.prepareStatement("Update clinic SET clinic_longitude=?, clinic_latitude=?, clinic_address=?, clinic_specialization=?, clinic_end_date=? ,clinic_start_date=? ,clinic_open_hour=? ,clinic_close_hour=? ,clinic_rate=? ,clinic_doctor_name_en=? ,clinic_doctor_name_ar=? ,medical_type_medical_type_id=? ,clinic_image=? where clinic_id=?");
+            updatePs.setDouble(1, clinic.getLongitude());
+            updatePs.setDouble(2, clinic.getLatitude());
+            updatePs.setString(3, clinic.getAddress());
+            updatePs.setString(4, clinic.getSpecialization());
+            updatePs.setString(5, clinic.getEndDate());
+            updatePs.setString(6, clinic.getStartDate());
+            updatePs.setString(7, clinic.getOpenHour());
+            updatePs.setString(8, clinic.getCloseHour());
+            updatePs.setFloat(9, clinic.getRate());
+            updatePs.setString(10, clinic.getDoctorNameEn());
+            updatePs.setString(11, clinic.getDoctorNameAr());
+            updatePs.setInt(12, clinic.getMedicalTypeId());
+            updatePs.setString(13, clinic.getImage());
+            updatePs.setInt(14, clinic.getId());
+
+            int updateflag = updatePs.executeUpdate();
+
+            int isDeleted ;
+            if (updateflag == 1) {
+
+              isDeleted=phonesObj.deleteClinicPhones(clinic.getId());
+              
+              if(isDeleted!=0)
+              {
+              isInserted=phonesObj.addClinicPhones(clinic.getId(), clinic.getPhones());
+              
+              }
+              
+
+            }
+           
+
+            // System.out.println("insert" + );
+        } catch (SQLException ex) {
+            Logger.getLogger(ClinicImpl.class.getName()).log(Level.SEVERE, null, ex);
+            isInserted= false;
+        }
+
+        return isInserted;
+    }
+    
 }

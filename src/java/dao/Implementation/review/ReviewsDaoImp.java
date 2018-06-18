@@ -90,4 +90,153 @@ public class ReviewsDaoImp implements ReviewsDaoInt {
         }
         return average;
     }
-}
+
+    @Override
+    public ReviewsList_Pojo retrieveOneReview(int type_id, int service_id) {
+        ArrayList<ReviewsPojo> allreviews = new ArrayList<ReviewsPojo>();
+         
+        Connection con = null;
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        try {
+            con = DBConnection.getConnection();
+            pst = con.prepareStatement("SELECT * FROM reviews WHERE medicaltype_id = ? AND service_id= ?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+            pst.setInt(1, type_id);
+            pst.setInt(2, service_id);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                ReviewsPojo retrievedReview = new ReviewsPojo();
+                retrievedReview.setReviewId(rs.getInt(1));
+                retrievedReview.setMedicalTypeId(rs.getInt(2));
+                retrievedReview.setServiceId(rs.getInt(3));
+                retrievedReview.setDescription(rs.getString(4));
+                retrievedReview.setDate(rs.getString(5));
+                retrievedReview.setType(rs.getString(6));
+                retrievedReview.setEmployeeEmployeeId(rs.getInt(7));
+                retrievedReview.setReviewRate(rs.getFloat(8)); 
+                allreviews.add(retrievedReview);
+            }      
+        } catch (Exception ex) {
+
+            System.out.println("Error in Suggestion Selection");
+        }
+        ReviewsList_Pojo all = new ReviewsList_Pojo();
+        all.setList_review(allreviews);
+        return all;
+    }
+
+    
+    public ReviewsList_Pojo retrieveByReview(int type_id, int service_id) {
+        ArrayList<ReviewsPojo> allreviews = new ArrayList<ReviewsPojo>();
+         
+        Connection con = null;
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        try {
+            con = DBConnection.getConnection();
+            pst = con.prepareStatement("SELECT * FROM reviews WHERE medicaltype_id = ? AND service_id= ? AND type=?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+            pst.setInt(1, type_id);
+            pst.setInt(2, service_id);
+            pst.setString(3,"review");            
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                ReviewsPojo retrievedReview = new ReviewsPojo();
+                retrievedReview.setReviewId(rs.getInt(1));
+                retrievedReview.setMedicalTypeId(rs.getInt(2));
+                retrievedReview.setServiceId(rs.getInt(3));
+                retrievedReview.setDescription(rs.getString(4));
+                retrievedReview.setDate(rs.getString(5));
+                retrievedReview.setType(rs.getString(6));
+                retrievedReview.setEmployeeEmployeeId(rs.getInt(7));
+                retrievedReview.setReviewRate(rs.getFloat(8)); 
+                allreviews.add(retrievedReview);
+            }      
+        } catch (Exception ex) {
+
+            System.out.println("Error in Suggestion Selection");
+        }
+        ReviewsList_Pojo all = new ReviewsList_Pojo();
+        all.setList_review(allreviews);
+        return all;
+    }
+    public ReviewsList_Pojo retrieveByComplain(int type_id, int service_id) {
+        ArrayList<ReviewsPojo> allreviews = new ArrayList<ReviewsPojo>();
+         
+        Connection con = null;
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        try {
+            con = DBConnection.getConnection();
+            pst = con.prepareStatement("SELECT * FROM reviews WHERE medicaltype_id = ? AND service_id= ? AND type=?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+            pst.setInt(1, type_id);
+            pst.setInt(2, service_id);
+            pst.setString(3,"complain");            
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                ReviewsPojo retrievedReview = new ReviewsPojo();
+                retrievedReview.setReviewId(rs.getInt(1));
+                retrievedReview.setMedicalTypeId(rs.getInt(2));
+                retrievedReview.setServiceId(rs.getInt(3));
+                retrievedReview.setDescription(rs.getString(4));
+                retrievedReview.setDate(rs.getString(5));
+                retrievedReview.setType(rs.getString(6));
+                retrievedReview.setEmployeeEmployeeId(rs.getInt(7));
+                retrievedReview.setReviewRate(rs.getFloat(8)); 
+                allreviews.add(retrievedReview);
+            }      
+        } catch (Exception ex) {
+
+            System.out.println("Error in Suggestion Selection");
+        }
+        ReviewsList_Pojo all = new ReviewsList_Pojo();
+        all.setList_review(allreviews);
+        return all;
+    }
+
+    @Override
+    public int retrieveReviewsCount(int type_id) {
+        int count = 0;
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement retrieveall = connection.prepareStatement("SELECT COUNT(review_id) AS count FROM reviews where type=? AND medicaltype_id=?");
+            retrieveall.setString(1, "review");
+            retrieveall.setInt(2, type_id);
+            ResultSet retSet = retrieveall.executeQuery();
+            while (retSet.next()) {
+                count = retSet.getInt("count");  
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewsDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
+    
+    
+    @Override
+    public int retrieveComplainsCount(int type_id) {
+        int count = 0;
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement retrieveall = connection.prepareStatement("SELECT COUNT(review_id) AS count FROM reviews where type=? AND medicaltype_id=?");
+            retrieveall.setString(1, "complain");
+            retrieveall.setInt(2, type_id);
+
+            ResultSet retSet = retrieveall.executeQuery();
+            while (retSet.next()) {
+                count = retSet.getInt("count");  
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewsDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
+    }
+

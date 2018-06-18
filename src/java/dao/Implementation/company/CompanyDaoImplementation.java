@@ -37,7 +37,11 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
         CompanyPojo company = new CompanyPojo();
          CompanyResponse companyResponse = new CompanyResponse();
          List<String>phoneList;
-         connection = DBConnection.getConnection();
+        try {
+            connection = DBConnection.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(CompanyDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ResultSet rs = null;
         PreparedStatement ps = null;
         String myQuery = "select * from company where company_id = ?";
@@ -80,7 +84,11 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
     
     @Override
     public List<CompanyPojo> getAllCompanies() {
-        connection = DBConnection.getConnection();
+        try {
+            connection = DBConnection.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(CompanyDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         List<CompanyPojo>allCompanies = new ArrayList<CompanyPojo>();
        List<String>phoneList;
@@ -118,7 +126,11 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
     @Override
     public int getCompanyIdFromMail(String companyMail){
         int companyId = -1;
-        connection = DBConnection.getConnection();
+        try {
+            connection = DBConnection.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(CompanyDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ResultSet rs = null;
         PreparedStatement ps = null;
         String myQuery = "select company_id from company where company_email = ?";
@@ -141,7 +153,11 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
 
     @Override
     public boolean insertCompany(CompanyPojo company) {
-        connection = DBConnection.getConnection();
+        try {
+            connection = DBConnection.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(CompanyDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
         PreparedStatement ps = null;
         String myQuery = "insert into company(company_email, company_latitude, company_longitude, company_address, company_package_type, company_name, company_start_date, company_end_date, company_ceo, medical_insurance_insurance_id) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int return_flage1 = 0;
@@ -180,7 +196,11 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
     
     @Override
     public boolean updateCompany(CompanyPojo company) {
-        connection = DBConnection.getConnection();
+        try {
+            connection = DBConnection.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(CompanyDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         PreparedStatement ps = null;
         String myQuery = "UPDATE company SET company_email = ?, company_name=?, company_latitude=?, company_longitude=?, company_address=?, company_package_type=?, company_start_date=?, company_end_date=?, company_ceo=?, medical_insurance_insurance_id=? WHERE company_id=?";
@@ -237,7 +257,11 @@ public class CompanyDaoImplementation implements CompanyDaoInterface{
     @Override
     public boolean deleteCompany(int id) {
             
-        connection = DBConnection.getConnection();
+        try {
+            connection = DBConnection.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(CompanyDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 Statement s = null;
                 String myQuery2 = "DELETE FROM company WHERE company_id=";
                 ArrayList<EmployeePojo> employeeOfCompany;

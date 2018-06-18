@@ -5,6 +5,8 @@
  */
 package dao.Implementation.pharmacy;
 
+import dao.Implementation.clinic.ClinicImpl;
+import dao.Implementation.clinic.ClinicPhonesImplementation;
 import dao.Implementation.review.ReviewsDaoImp;
 import dao.Interfaces.pharmacy.Pharmacy;
 import dbconnectionfactory.DBConnection;
@@ -15,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pojos.ClinicPojo;
 import pojos.PharmacyPojo;
 import pojos.ResultPojo;
 
@@ -187,15 +190,23 @@ public class PharmacyImpl implements Pharmacy {
         ArrayList<ResultPojo> results = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
             PreparedStatement retrievePs = connection.prepareStatement("SELECT pharmacy_id , medical_type_medical_type_id FROM pharmacy where pharmacy_name_en like ? OR pharmacy_name_ar like ?");
+
+
+            retrievePs.setString(1,input+"%" );
+           retrievePs.setString(2,input+"%");
+          //  retrievePs.setString(3, "%"+ input+"%");
+
             retrievePs.setString(1, input + "%");
             retrievePs.setString(2, input + "%");
             //  retrievePs.setString(3, "%"+ input+"%");
+
 
             ResultSet retSet = retrievePs.executeQuery();
 
             while (retSet.next()) {
                 ResultPojo pharmacy = new ResultPojo();
                 pharmacy.setId(retSet.getInt(1));
+
 
                 pharmacy.setTypeId(retSet.getInt(2)); //this one
                 results.add(pharmacy);
@@ -209,4 +220,51 @@ public class PharmacyImpl implements Pharmacy {
         return results;
     }
 
+    
+    public boolean updatePharmacy(PharmacyPojo pharmacy) {
+        PharmacyPhonesImplementation phonesObj = new PharmacyPhonesImplementation();
+            boolean isInserted=false;
+
+        try (Connection connection = DBConnection.getConnection()) {
+            PreparedStatement updatePs = connection.prepareStatement("UPDATE pharmacy SET pharmacy_name_en=?, pharmacy_latitude=? ,pharmacy_longitude=? ,pharmacy_start_date=? ,pharmacy_end_date=? ,pharmacy_rate=? ,pharmacy_address=? ,pharmacy_open_hour=? ,pharmacy_close_hour=? ,pharmacy_name_ar=? ,medical_type_medical_type_id=? ,pharmacy_image=? where pharmacy_id=? ");
+            updatePs.setString(1, pharmacy.getNameEn());
+            updatePs.setDouble(2, pharmacy.getLatitude());
+            updatePs.setDouble(3, pharmacy.getLongitude());
+            updatePs.setString(4, pharmacy.getStartDate());
+            updatePs.setString(5, pharmacy.getEndDate());
+            updatePs.setFloat(6, pharmacy.getRate());
+            updatePs.setString(7, pharmacy.getAddress());
+            updatePs.setString(8, pharmacy.getOpenHour());
+            updatePs.setString(9, pharmacy.getCloseHour());
+            updatePs.setString(10, pharmacy.getNameAr());
+            updatePs.setInt(11, pharmacy.getMedicalTypeId());
+            updatePs.setString(12, pharmacy.getImage());
+            updatePs.setInt(13, pharmacy.getId());
+
+            int updateflag = updatePs.executeUpdate();
+
+            int isDeleted ;
+            if (updateflag == 1) {
+
+              isDeleted=phonesObj.deletePharmacyPhones(pharmacy.getId());
+              
+              if(isDeleted!=0)
+              {
+              isInserted=phonesObj.addPharmacyPhones(pharmacy.getId(), pharmacy.getPharmacyPhones());
+              
+              }
+              
+
+            }
+           
+
+            // System.out.println("insert" + );
+        } catch (SQLException ex) {
+            Logger.getLogger(ClinicImpl.class.getName()).log(Level.SEVERE, null, ex);
+            isInserted= false;
+        }
+
+        return isInserted;
+    }
+    
 }

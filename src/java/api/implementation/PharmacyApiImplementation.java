@@ -6,6 +6,7 @@
 package api.implementation;
 
 import api.interfaces.PharmacyApi;
+import dao.Implementation.clinic.ClinicImpl;
 import dao.Implementation.pharmacy.PharmacyImpl;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -13,10 +14,12 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import pojos.ClinicPojo;
 import pojos.PharmacyListPojo;
 import pojos.PharmacyPojo;
 import pojos.ResponseMessage;
@@ -63,7 +66,7 @@ public class PharmacyApiImplementation implements PharmacyApi {
         pharmacy.setOpenHour(pharmacy_open_hour);
         pharmacy.setCloseHour(pharmacy_close_hour);
         pharmacy.setRate(pharmacy_rate);
-        pharmacy.setMedicalTypeId(3);
+        pharmacy.setMedicalTypeId(5);
         pharmacy.setPharmacyPhones(phones);
         pharmacy.setStartDate(pharmacy_start_date);
         pharmacy.setEndDate(pharmacy_end_date);
@@ -119,5 +122,35 @@ public class PharmacyApiImplementation implements PharmacyApi {
         pharmacies = pharmacyObj.getAllPharmacies();
         pharmacyList.setPharmacies(pharmacies);
         return pharmacyList;
+    }
+    
+    @PUT
+    @Path("/update")
+    @Produces(MediaType.APPLICATION_JSON)
+   
+    public ResponseMessage update(PharmacyPojo pharmacy)
+    {
+        
+      ResponseMessage response = new ResponseMessage();
+
+      PharmacyImpl implObject = new PharmacyImpl();
+      boolean isUpdated = implObject.updatePharmacy(pharmacy);
+      if(isUpdated==true)
+       {
+                  
+
+         response.setError("0");
+         response.setMessage("pharmacy is updated");
+         response.setStatus(true);
+         
+       }
+     else{
+                            
+
+         response.setError("1");
+         response.setMessage("pharmacy is not updated");
+         response.setStatus(false);
+         }
+      return response;   
     }
 }

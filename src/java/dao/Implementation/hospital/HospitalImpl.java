@@ -5,6 +5,8 @@
  */
 package dao.Implementation.hospital;
 
+import dao.Implementation.clinic.ClinicImpl;
+import dao.Implementation.clinic.ClinicPhonesImplementation;
 import dao.Implementation.review.ReviewsDaoImp;
 import dao.Interfaces.hospital.Hospital;
 import dbconnectionfactory.DBConnection;
@@ -16,6 +18,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pojos.ClinicPojo;
 import pojos.HospitalPojo;
 import pojos.LabPojo;
 import pojos.ResultPojo;
@@ -213,6 +216,7 @@ public class HospitalImpl implements Hospital {
 
         ArrayList<ResultPojo> results = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
+
             PreparedStatement retrievePs = connection.prepareStatement("SELECT  hospital_id , medical_type_medical_type_id FROM hospital where hospital_name like ? OR hospital_name_en like ?");
             retrievePs.setString(1, input+"%");
             retrievePs.setString(2, input+"%");
@@ -236,33 +240,91 @@ public class HospitalImpl implements Hospital {
 
         return results;
     }
+     
+     
+       public boolean updateHospital(HospitalPojo hospital) {
+        HospitalPhonesImplementation phonesObj = new HospitalPhonesImplementation();
+        HospitalDepartmentsImplementation departments = new HospitalDepartmentsImplementation();
 
-    public ArrayList<ResultPojo> searchHospitalByDepartment(String input) {
-
-        ArrayList<ResultPojo> results = new ArrayList<>();
+            boolean isPhonesInserted=false;
+            boolean isDepartmentsInserted=false;
 
         try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement retrievePs = connection.prepareStatement("SELECT hospital_id , medical_type_medical_type_id FROM hospital where hospital_id in (SELECT hospital_hospital_id FROM hospital_departments where department like ?)");
-            retrievePs.setString(1, input+"%");
+            PreparedStatement insertPs = connection.prepareStatement("Update hospital SET hospital_name=? ,hospital_address=? ,hospital_longitude=? ,hospital_latitude=? ,hospital_start_date=? ,hospital_end_date=? ,hospital_rate=? ,hospital_open_hour=? ,hospital_close_hour=? ,hospital_ceo=? ,hospital_name_en= ? ,medical_type_medical_type_id=? ,hospital_image=? where hospital_id=?");
+           
+            insertPs.setString(1, hospital.getNameAr());
+            insertPs.setString(2, hospital.getAddress());
+            insertPs.setDouble(3, hospital.getLongitude());
+            insertPs.setDouble(4, hospital.getLatitude());
+            insertPs.setString(5, hospital.getStartDate());
+            insertPs.setString(6, hospital.getEndDate());
+            insertPs.setFloat(7, hospital.getRate());
+            insertPs.setString(8, hospital.getOpenHour());
+            insertPs.setString(9, hospital.getCloseHour());
+            insertPs.setString(10, hospital.getCeo());
+            insertPs.setString(11, hospital.getNameEn());
+            insertPs.setInt(12, hospital.getMedicalTypeId());
+            insertPs.setString(13, hospital.getImage());
+            insertPs.setInt(14, hospital.getId());
 
-            ResultSet retSet = retrievePs.executeQuery();
+            int updateflag = insertPs.executeUpdate();
 
-            while (retSet.next()) {
-                ResultPojo hos = new ResultPojo();
-                hos.setId(retSet.getInt(1));
-             
-                hos.setTypeId(retSet.getInt(2));
+            int isPhonesDeleted ;
+            int isDepartmentsDeleted;
+            if (updateflag == 1) {
 
-
-                results.add(hos);
+              isPhonesDeleted=phonesObj.deleteHospitalPhones(hospital.getId());
+              isDepartmentsDeleted=departments.deleteHospitalDepartments(hospital.getId());
+              
+              if(isPhonesDeleted!=0 && isDepartmentsDeleted!=0)
+              {
+              isPhonesInserted=phonesObj.addHospitalPhones(hospital.getId(), hospital.getPhones());
+              isDepartmentsInserted=departments.addHospitalDepartments(hospital.getId(), hospital.getDepartments());
+              }
+              
 
             }
+           
+
+            // System.out.println("insert" + );
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            return null;
+            Logger.getLogger(ClinicImpl.class.getName()).log(Level.SEVERE, null, ex);
+            isPhonesInserted= false;
         }
 
-        return results;
+        return isPhonesInserted&&isDepartmentsInserted;
     }
+
+//    public ArrayList<ResultPojo> searchHospitalByDepartment(String input) {
+//
+//        ArrayList<ResultPojo> results = new ArrayList<>();
+//
+//        try (Connection connection = DBConnection.getConnection()) {
+//            PreparedStatement retrievePs = connection.prepareStatement("SELECT hospital_id , medical_type_medical_type_id FROM hospital where hospital_id in (SELECT hospital_hospital_id FROM hospital_departments where department like ?)");
+//<<<<<<< HEAD
+//            retrievePs.setString(1,input+"%");
+//=======
+//            retrievePs.setString(1, input+"%");
+//>>>>>>> 229c069139e01ec12b3e6f2eef7ca15832fdd636
+//
+//            ResultSet retSet = retrievePs.executeQuery();
+//
+//            while (retSet.next()) {
+//                ResultPojo hos = new ResultPojo();
+//                hos.setId(retSet.getInt(1));
+//             
+//                hos.setTypeId(retSet.getInt(2));
+//
+//
+//                results.add(hos);
+//
+//            }
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//            return null;
+//        }
+//
+//        return results;
+//    }
 
 }

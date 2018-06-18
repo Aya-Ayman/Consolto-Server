@@ -9,9 +9,9 @@ import api.interfaces.ClinicApi;
 import dao.Implementation.clinic.ClinicImpl;
 import java.util.ArrayList;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -25,7 +25,7 @@ import pojos.ResponseMessage;
  * @author Aya
  */
 @Path("/clinic")
-public class ClinicApiImplementation  {
+public class ClinicApiImplementation implements ClinicApi{
 
     @POST
     @Path("/insert")
@@ -44,6 +44,7 @@ public class ClinicApiImplementation  {
         //start = java.sql.Date.valueOf(clinic_start_date);
         //end = java.sql.Date.valueOf(clinic_end_date);
 
+
 //        if (!phone1.isEmpty()) {
 //            phones.add(phone1);
 //        }
@@ -60,6 +61,31 @@ public class ClinicApiImplementation  {
 //        clinic.setDoctorNameEn(clinic_doctor_name_en);
 //        clinic.setSpecialization(clinic_specialization);
         clinic.setMedicalTypeId(2);
+//        clinic.setStartDate(clinic_start_date);
+//        clinic.setEndDate(clinic_end_date);
+//        clinic.setCloseHour(clinic_close_hour);
+//        clinic.setOpenHour(clinic_open_hour);
+//        clinic.setAddress(clinic_address);
+//        clinic.setRate(clinic_rate);
+//        clinic.setPhones(phones);
+//        clinic.setImage(urlImage);
+
+//        if (!phone1.isEmpty()) {
+//            phones.add(phone1);
+//        }
+//        if (!phone2.isEmpty()) {
+//            phones.add(phone2);
+//        }
+//        if (!phone3.isEmpty()) {
+//            phones.add(phone3);
+//        }
+//
+//        clinic.setLatitude(mylatitude);
+//        clinic.setLongitude(mylongitude);
+//        clinic.setDoctorNameAr(clinic_doctor_name_ar);
+//        clinic.setDoctorNameEn(clinic_doctor_name_en);
+//        clinic.setSpecialization(clinic_specialization);
+//        clinic.setMedicalTypeId(6);
 //        clinic.setStartDate(clinic_start_date);
 //        clinic.setEndDate(clinic_end_date);
 //        clinic.setCloseHour(clinic_close_hour);
@@ -121,5 +147,37 @@ public class ClinicApiImplementation  {
         clinics = clinicObj.getAllClinics();
         clinicList.setClinics(clinics);
         return clinicList;
+    }
+    
+    
+    @PUT
+    @Path("/update")
+    @Produces(MediaType.APPLICATION_JSON)
+   
+    @Override
+    public ResponseMessage update(ClinicPojo clinic)
+    {
+        
+      ResponseMessage response = new ResponseMessage();
+
+      ClinicImpl implObject = new ClinicImpl();
+      boolean isUpdated = implObject.updateClinic(clinic);
+      if(isUpdated==true)
+       {
+                  
+
+         response.setError("0");
+         response.setMessage("clinic is updated");
+         response.setStatus(true);
+         
+       }
+     else{
+                            
+
+         response.setError("1");
+         response.setMessage("clinic is not updated");
+         response.setStatus(false);
+         }
+      return response;   
     }
 }

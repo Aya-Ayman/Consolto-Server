@@ -7,17 +7,20 @@ package api.implementation;
 
 import api.interfaces.ReviewsApiInt;
 import dao.Implementation.review.ReviewsDaoImp;
+import dao.Implementation.suggesstion.SuggestionImpl;
 import dao.Interfaces.review.ReviewsDaoInt;
 import java.util.ArrayList;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import pojos.ResponseMessage;
 import pojos.ReviewsList_Pojo;
 import pojos.ReviewsPojo;
+import pojos.SuggestionPojo;
 
 /**
  *
@@ -60,4 +63,54 @@ public class ReviewsApiImp implements ReviewsApiInt{
         ReviewsList_Pojo all =revv.retrieveAll();
         return all;
     }
+ 
+    @GET
+    @Path("/get/typeid={typeid}/serviceid={serviceid}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Override
+    public ReviewsList_Pojo getOneReview(@PathParam("typeid") int type_id,@PathParam("serviceid") int service_id){
+         ReviewsDaoInt obj = new ReviewsDaoImp();
+        ReviewsList_Pojo all  = obj.retrieveOneReview(type_id, service_id);
+        return all;
+    }
+    
+     @GET
+    @Path("/getreview/{typeid}/{serviceid}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ReviewsList_Pojo getByReview(@PathParam("typeid")int type_id,@PathParam("serviceid") int service_id) {
+        ReviewsDaoInt obj = new ReviewsDaoImp();
+        ReviewsList_Pojo all  = obj.retrieveByReview(type_id, service_id);
+        return all;
+    }
+     @GET
+    @Path("/getcomplain/{typeid}/{serviceid}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ReviewsList_Pojo getByComplain(@PathParam("typeid")int type_id,@PathParam("serviceid") int service_id) {
+        ReviewsDaoInt obj = new ReviewsDaoImp();
+        ReviewsList_Pojo all  = obj.retrieveByComplain(type_id, service_id);
+        return all;
+    }
+
+    @GET
+    @Path("/getReviewsCount/{typeid}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public int getreviewscount(@PathParam("typeid") int type_id) {
+        ReviewsDaoInt obj = new ReviewsDaoImp();
+        int count  = obj.retrieveReviewsCount(type_id);
+        return count;
+    }
+
+    @GET
+    @Path("/getComplainsCount/{typeid}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Override
+        public int getcomplainscount(@PathParam("typeid") int type_id)
+ {
+         ReviewsDaoInt obj = new ReviewsDaoImp();
+        int count  = obj.retrieveComplainsCount(type_id);
+        return count;
+    }
+    
+    
+    
 }

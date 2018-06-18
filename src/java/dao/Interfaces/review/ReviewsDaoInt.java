@@ -19,4 +19,16 @@ public interface ReviewsDaoInt {
     public boolean create(ReviewsPojo review);
     
     public ReviewsList_Pojo retrieveAll();
+    
+    public ReviewsList_Pojo retrieveOneReview(int type_id,int service_id);
+    
+    public ReviewsList_Pojo retrieveByReview(int type_id, int service_id);
+    
+    public ReviewsList_Pojo retrieveByComplain(int type_id, int service_id);
+    
+    public int retrieveReviewsCount(int type_id);
+    
+     public int retrieveComplainsCount(int type_id);
+
+
 }

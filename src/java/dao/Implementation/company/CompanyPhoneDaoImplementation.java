@@ -28,7 +28,11 @@ public class CompanyPhoneDaoImplementation implements CompanyPhoneDaoInterface{
 
     @Override
     public List<String> getCompanyPhone(int id){
-        connection = DBConnection.getConnection();
+        try {
+            connection = DBConnection.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(CompanyPhoneDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
       ResultSet rs = null;
       PreparedStatement ps = null;
       String myQuery = "select * from company_phone where company_company_id = ?";
@@ -54,7 +58,11 @@ public class CompanyPhoneDaoImplementation implements CompanyPhoneDaoInterface{
     @Override
     public boolean insertCompanyPhone (int companyId,List<String> phoneList)
     {
-        connection = DBConnection.getConnection();
+        try {
+            connection = DBConnection.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(CompanyPhoneDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
        PreparedStatement ps = null;
         String myQuery = "insert into company_phone(phone, company_company_id) values(?, ?)";
          int return_flage = 0;
@@ -84,7 +92,11 @@ public class CompanyPhoneDaoImplementation implements CompanyPhoneDaoInterface{
     
     @Override
     public int deleteCompanyPhone (int companyId){
-        connection = DBConnection.getConnection();
+        try {
+            connection = DBConnection.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(CompanyPhoneDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
      Statement s = null;
      String myQuery = "DELETE FROM company_phone WHERE company_company_id=";
      int return_flage = 0;
