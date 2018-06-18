@@ -18,6 +18,7 @@ public class MedicalInsurancePojo {
     private String insuranceCeo;
     private String insuranceAddress;
     private Double insuranceLatitude;
+    private Double insuranceLongitude;
     private String insuranceEmail;
     private ArrayList<String> medicalInsurancePhones;
 
@@ -77,4 +78,11 @@ public class MedicalInsurancePojo {
         return insuranceEmail;
     }
 
+    public Double getInsuranceLongitude() {
+        return insuranceLongitude;
+    }
+
+    public void setInsuranceLongitude(Double insuranceLongitude) {
+        this.insuranceLongitude = insuranceLongitude;
+    }
 }
