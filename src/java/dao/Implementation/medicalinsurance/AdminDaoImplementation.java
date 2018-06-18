@@ -29,7 +29,11 @@ public class AdminDaoImplementation implements AdminDaoInterface{
     
     @Override
     public List<AdminPojo> getAllAdmins(){
-     connection = DBConnection.getConnection();
+        try {
+            connection = DBConnection.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         List<AdminPojo>allAdmins = new ArrayList<AdminPojo>();
         Statement s = null;
@@ -55,7 +59,11 @@ public class AdminDaoImplementation implements AdminDaoInterface{
     
     @Override
     public boolean insertAdmin(AdminPojo admin){
-     connection = DBConnection.getConnection();
+        try {
+            connection = DBConnection.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
         PreparedStatement ps = null;
         String myQuery = "insert into admin(username, password, medical_insurance_insurance_id) values(?, ?, ?)";
         int return_flage1 = 0;
@@ -78,7 +86,11 @@ public class AdminDaoImplementation implements AdminDaoInterface{
     @Override
     public boolean deleteAdmin(int id) {
        
-        connection = DBConnection.getConnection();
+        try {
+            connection = DBConnection.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 Statement s = null;
                 String myQuery2 = "DELETE FROM admin WHERE id=";
                 int return_flage = 0; 
@@ -100,7 +112,11 @@ public class AdminDaoImplementation implements AdminDaoInterface{
     @Override
     public ResponseMessage getAdmin(AdminPojo admin) {
         int companyId = -1;
-        connection = DBConnection.getConnection();
+        try {
+            connection = DBConnection.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ResponseMessage response = new ResponseMessage();
         ResultSet rs = null;
         PreparedStatement ps = null;
