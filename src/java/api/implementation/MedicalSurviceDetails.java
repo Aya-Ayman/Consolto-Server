@@ -28,10 +28,10 @@ import pojos.PharmacyPojo;
 @Path("/details")
 public class MedicalSurviceDetails implements MedicalServiceDetailsApi {
 
-    public static final int hospitalID = 1;
-    public static final int clinicID = 2;
-    public static final int pharmacyID = 3;
-    public static final int labID = 4;
+    public static final int hospitalID = 2;
+    public static final int clinicID = 6;
+    public static final int pharmacyID = 5;
+    public static final int labID = 7;
 
     @Override
     @GET

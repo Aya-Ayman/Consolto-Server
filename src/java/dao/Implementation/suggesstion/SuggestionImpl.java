@@ -85,8 +85,8 @@ public class SuggestionImpl implements Suggestion {
         }
         return allSuggesstions;
     }
-    
-     @Override
+
+    @Override
     public SuggestionPojo retrieveOneSuggestion(int id) {
 
         SuggestionPojo retrievedSuggestion = null;
@@ -117,8 +117,6 @@ public class SuggestionImpl implements Suggestion {
                 retrievedSuggestion.setEmployeeId(rs.getInt(12));
             }
 
-           
-        
         } catch (Exception ex) {
 
             System.out.println("Error in Suggestion Selection");
@@ -126,6 +124,32 @@ public class SuggestionImpl implements Suggestion {
 
         return retrievedSuggestion;
 
+    }
+
+    @Override
+    public int reteriveMedicalServiceSuggestionsNumber(int id) {
+        int count = 0;
+        try {
+            Connection con = null;
+            ResultSet rs = null;
+            PreparedStatement pst = null;
+
+            con = DBConnection.getConnection();
+            pst = con.prepareStatement("SELECT COUNT(suggest_id) as suggestionNumbers,suggest_medical_type FROM medical_insurance_suggestion WHERE suggest_medical_type=? ", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                count = rs.getInt("suggestionNumbers");
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SuggestionImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return count;
     }
 
 }

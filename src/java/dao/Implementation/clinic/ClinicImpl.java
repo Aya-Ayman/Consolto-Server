@@ -194,6 +194,7 @@ public class ClinicImpl implements Clinic {
 
         ArrayList<ResultPojo> results = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
+
             PreparedStatement retrievePs = connection.prepareStatement("SELECT clinic_id , medical_type_medical_type_id FROM clinic where clinic_doctor_name_ar like ? OR clinic_doctor_name_en like ?");
             retrievePs.setString(1, input + "%");
             retrievePs.setString(2, input + "%");

@@ -92,7 +92,7 @@ public class LabApiImplementation implements LabApi {
         lab.setNameEn(lab_name_en);
         lab.setOpenHour(lab_open_hour);
         lab.setCloseHour(lab_close_hour);
-        lab.setMedicalTypeId(4);
+        lab.setMedicalTypeId(7);
         lab.setLabPhones(phones);
         lab.setLabSpecializations(specializations);
         lab.setImage(urlImage);

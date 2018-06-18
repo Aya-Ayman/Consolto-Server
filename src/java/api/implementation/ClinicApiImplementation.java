@@ -59,7 +59,7 @@ public class ClinicApiImplementation implements ClinicApi {
         clinic.setDoctorNameAr(clinic_doctor_name_ar);
         clinic.setDoctorNameEn(clinic_doctor_name_en);
         clinic.setSpecialization(clinic_specialization);
-        clinic.setMedicalTypeId(2);
+        clinic.setMedicalTypeId(6);
         clinic.setStartDate(clinic_start_date);
         clinic.setEndDate(clinic_end_date);
         clinic.setCloseHour(clinic_close_hour);

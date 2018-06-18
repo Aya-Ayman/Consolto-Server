@@ -17,12 +17,17 @@ import java.util.logging.Logger;
  */
 public class DBConnection {
 
-     public static final String URL = "jdbc:mysql://172.16.3.222:3306/medical_insurance_database";
+     public static final String URL = "jdbc:mysql://localhost:3306/medical_insurance_database";
     public static final String USERNAME = "root";
     public static final String PASSWORD = "";
     private static Connection connection;
 
-    public static Connection getConnection() {
+
+ 
+
+    public static Connection getConnection() throws SQLException {
+
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);

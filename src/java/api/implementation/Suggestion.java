@@ -19,6 +19,7 @@ import pojos.ClinicPojo;
 import pojos.ResponsePojo;
 import pojos.SuggesstionListPojo;
 import pojos.SuggestionPojo;
+import pojos.ServicesNumber;
 
 /**
  *
@@ -55,10 +56,10 @@ public class Suggestion implements SuggestionApi {
     @Produces(MediaType.APPLICATION_JSON)
     public SuggesstionListPojo getAllSuggesstions() {
         SuggestionImpl obj = new SuggestionImpl();
-         ArrayList<SuggestionPojo> suggesstions =  new ArrayList();
+        ArrayList<SuggestionPojo> suggesstions = new ArrayList();
         SuggesstionListPojo suggesstionList = new SuggesstionListPojo();
-         suggesstions = obj.retrieve();
-     suggesstionList.setSuggestions(suggesstions);
+        suggesstions = obj.retrieve();
+        suggesstionList.setSuggestions(suggesstions);
         if (!suggesstions.isEmpty()) {
             return suggesstionList;
         } else {
@@ -66,8 +67,8 @@ public class Suggestion implements SuggestionApi {
         }
 
     }
-	
-	@Override
+
+    @Override
     @GET
     @Path("/get/suggestionID={id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -79,4 +80,16 @@ public class Suggestion implements SuggestionApi {
         return suggesstion;
     }
 
+    @Override
+    @GET
+    @Path("/get/suggestionOfMedicalServiceId={id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ServicesNumber reteriveSuggestionsNumberForMedicalService(@PathParam("id") int id) {
+        int count = 0;
+        SuggestionImpl suggesstion = new SuggestionImpl();
+        ServicesNumber number = new ServicesNumber();
+        count = suggesstion.reteriveMedicalServiceSuggestionsNumber(id);
+        number.setServiceNumbers(count);
+        return number;
+    }
 }
