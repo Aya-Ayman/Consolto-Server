@@ -20,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 import pojos.ResponseMessage;
 import pojos.ReviewsList_Pojo;
 import pojos.ReviewsPojo;
+import pojos.ServicesNumber;
 import pojos.SuggestionPojo;
 
 /**
@@ -73,4 +74,18 @@ public class ReviewsApiImp implements ReviewsApiInt{
         ReviewsList_Pojo all  = obj.retrieveOneReview(type_id, service_id);
         return all;
     }
-}
+
+    @Override
+     @GET
+    @Path("/get/reviewOfMedicalServiceId={id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ServicesNumber reteriveReviewssNumberForMedicalService(@PathParam("id") int id) {
+
+        int count = 0;
+        ReviewsDaoImp review = new ReviewsDaoImp();
+        ServicesNumber number = new ServicesNumber();
+        count = review.reteriveMedicalServiceReviewssNumber(id);
+        number.setServiceNumbers(count);
+        return number;
+    }
+    }

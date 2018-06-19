@@ -201,12 +201,12 @@ public class EmployeeApiImp implements EmployeeApiInt {
         if (!employeeObject.getPhones().get(0).isEmpty()) {
             insertedPhones.add(employeeObject.getPhones().get(0));
         }
-        if (!employeeObject.getPhones().get(1).isEmpty()) {
-            insertedPhones.add(employeeObject.getPhones().get(1));
-        }
-        if (!employeeObject.getPhones().get(2).isEmpty()) {
-            insertedPhones.add(employeeObject.getPhones().get(2));
-        }
+//        if (!employeeObject.getPhones().get(1).isEmpty()) {
+//            insertedPhones.add(employeeObject.getPhones().get(1));
+//        }
+//        if (!employeeObject.getPhones().get(2).isEmpty()) {
+//            insertedPhones.add(employeeObject.getPhones().get(2));
+//        }
         updatedEmployee.setPhones(insertedPhones);
 
         try {
@@ -245,12 +245,12 @@ public class EmployeeApiImp implements EmployeeApiInt {
         if (!employeeObject.getPhones().get(0).isEmpty()) {
             insertedPhones.add(employeeObject.getPhones().get(0));
         }
-        if (!employeeObject.getPhones().get(1).isEmpty()) {
-            insertedPhones.add(employeeObject.getPhones().get(1));
-        }
-        if (!employeeObject.getPhones().get(2).isEmpty()) {
-            insertedPhones.add(employeeObject.getPhones().get(2));
-        }
+//        if (!employeeObject.getPhones().get(1).isEmpty()) {
+//            insertedPhones.add(employeeObject.getPhones().get(1));
+//        }
+//        if (!employeeObject.getPhones().get(2).isEmpty()) {
+//            insertedPhones.add(employeeObject.getPhones().get(2));
+//        }
         insertedEmployee.setPhones(insertedPhones);
 
         try {

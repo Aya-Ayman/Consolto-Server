@@ -20,4 +20,5 @@ public interface Suggestion {
 
     public SuggestionPojo retrieveOneSuggestion(int id);
 
+    public int reteriveMedicalServiceSuggestionsNumber(int id);
 }

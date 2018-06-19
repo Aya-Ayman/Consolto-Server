@@ -207,6 +207,9 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
 
         ArrayList<Integer> employeeIDS = new ArrayList<>();
 
+        PreparedStatement pstSuggestion = null;
+        PreparedStatement pstReviews = null;
+
         try {
             con = DBConnection.getConnection();
 
@@ -224,13 +227,21 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
                 pst2.setInt(1, employeeId);
                 pst2.executeUpdate();
 
+                pstSuggestion = con.prepareStatement("DELETE FROM medical_insurance_suggestion where employee_employee_id = ?");
+                pstSuggestion.setInt(1, employeeId);
+                pstSuggestion.executeUpdate();
+
+                pstReviews = con.prepareStatement("DELETE FROM reviews where employee_employee_id = ?");
+                pstReviews.setInt(1, employeeId);
+                pstReviews.executeUpdate();
+
                 pst = con.prepareStatement("DELETE FROM EMPLOYEE where employee_id = ?");
                 pst.setInt(1, employeeId);
                 pst.executeUpdate();
                 return true;
             }
         } catch (Exception e) {
-            System.out.println("Employee delete error ");
+            System.out.println("Employee delete error");
             return false;
 
         }
@@ -292,7 +303,6 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
         }
         return allResponse;
     }
-  
 
     @Override
     public boolean insert(EmployeePojo emp) throws SQLException {
@@ -309,7 +319,7 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
             pst.setString(3, emp.getAddress());
             pst.setString(4, emp.getJob());
             pst.setString(5, emp.getPassword());
-            pst.setString(6,emp.getImage());
+            pst.setString(6, emp.getImage());
             pst.setString(7, emp.getStartDate());
             pst.setString(8, emp.getEndDate());
             pst.setFloat(9, emp.getPackageType());
@@ -341,7 +351,7 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
 
             return true;
         } catch (Exception ex) {
-                ex.printStackTrace();
+            ex.printStackTrace();
             return false;
         }
 

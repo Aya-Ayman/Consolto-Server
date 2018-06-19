@@ -127,4 +127,31 @@ public class ReviewsDaoImp implements ReviewsDaoInt {
         return all;
     }
 
+    @Override
+    public int reteriveMedicalServiceReviewssNumber(int id) {
+int count = 0;
+        try {
+            Connection con = null;
+            ResultSet rs = null;
+            PreparedStatement pst = null;
+
+            con = DBConnection.getConnection();
+            pst = con.prepareStatement("SELECT COUNT(review_id) as reviewsNumbers,medicaltype_id FROM reviews WHERE medicaltype_id=? ", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                count = rs.getInt("reviewsNumbers");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewsDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return count;
+
+
+
+    }
+
     }
