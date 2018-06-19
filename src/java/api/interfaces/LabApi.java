@@ -8,6 +8,7 @@ package api.interfaces;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.PathParam;
 import pojos.LabListPojo;
+import pojos.LabPojo;
 import pojos.ResponseMessage;
 
 /**
@@ -21,5 +22,7 @@ public interface LabApi {
     public ResponseMessage deleteLab(@PathParam("lab_id") int lab_id);
 
     public LabListPojo getAllLabs();
+
+    public ResponseMessage update(LabPojo lab);
 
 }

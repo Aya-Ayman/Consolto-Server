@@ -5,13 +5,11 @@
  */
 package api.interfaces;
 
-import java.util.ArrayList;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.PathParam;
 import pojos.PharmacyListPojo;
 import pojos.PharmacyPojo;
 import pojos.ResponseMessage;
-import pojos.ResponsePojo;
 
 /**
  *
@@ -24,5 +22,7 @@ public interface PharmacyApi {
     public ResponseMessage deletePharmacy(@PathParam("pharmacy_id") int pharmacy_id);
 
     public PharmacyListPojo getAllPharmacies();
+
+    public ResponseMessage update(PharmacyPojo pharmacy);
 
 }

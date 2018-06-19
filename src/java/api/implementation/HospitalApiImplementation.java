@@ -9,9 +9,9 @@ import api.interfaces.HospitalApi;
 import dao.Implementation.hospital.HospitalImpl;
 import java.util.ArrayList;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -31,67 +31,68 @@ public class HospitalApiImplementation implements HospitalApi {
     @Path("/insert")
     //@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public ResponseMessage insertHospital(@FormParam("name") String name, @FormParam("name_english") String name_english, @FormParam("address") String address, @FormParam("longitude") String longitude, @FormParam("latitude") String latitude, @FormParam("start_date") String start_date, @FormParam("end_date") String end_date, @FormParam("open_hour") String open_hour, @FormParam("close_hour") String close_hour, @FormParam("rate") float rate, @FormParam("ceo") String ceo, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3, @FormParam("c1") String dept1, @FormParam("c2") String dept2, @FormParam("c3") String dept3, @FormParam("c4") String dept4, @FormParam("c5") String dept5, @FormParam("c6") String dept6, @FormParam("c7") String dept7, @FormParam("c8") String dept8,@FormParam("urlImage")String urlImage) {
+    @Override
+    public ResponseMessage insertHospital(HospitalPojo hospital) {
         ResponseMessage response = new ResponseMessage();
-        HospitalPojo hospital = new HospitalPojo();
-        ArrayList<String> phones = new ArrayList();
-        ArrayList<String> departments = new ArrayList();
+//        HospitalPojo hospital = new HospitalPojo();
+//        ArrayList<String> phones = new ArrayList();
+//        ArrayList<String> departments = new ArrayList();
         HospitalImpl hospitalObj = new HospitalImpl();
-        double mylongitude = Double.parseDouble(longitude);
-        double mylatitude = Double.parseDouble(latitude);
+//        double mylongitude = Double.parseDouble(longitude);
+//        double mylatitude = Double.parseDouble(latitude);
         //Date start = null, end = null;
         //start = java.sql.Date.valueOf(start_date);
         //end = java.sql.Date.valueOf(end_date);
 
-        if (!phone1.isEmpty()) {
-            phones.add(phone1);
-        }
-        if (!phone2.isEmpty()) {
-            phones.add(phone2);
-        }
-        if (!phone3.isEmpty()) {
-            phones.add(phone3);
-        }
-        if (dept1 != null) {
-            departments.add(dept1);
-        }
-        if (dept2 != null) {
-            departments.add(dept2);
-        }
-        if (dept3 != null) {
-            departments.add(dept3);
-        }
-        if (dept4 != null) {
-            departments.add(dept4);
-        }
-        if (dept5 != null) {
-            departments.add(dept5);
-        }
-        if (dept6 != null) {
-            departments.add(dept6);
-        }
-        if (dept7 != null) {
-            departments.add(dept7);
-        }
-        if (dept8 != null) {
-            departments.add(dept8);
-        }
-
-        hospital.setAddress(address);
-        hospital.setCeo(ceo);
-        hospital.setLatitude(mylatitude);
-        hospital.setLongitude(mylongitude);
-        hospital.setNameAr(name);
-        hospital.setNameEn(name_english);
-        hospital.setRate(rate);
-        hospital.setEndDate(end_date);
-        hospital.setStartDate(start_date);
+//        if (!phone1.isEmpty()) {
+//            phones.add(phone1);
+//        }
+//        if (!phone2.isEmpty()) {
+//            phones.add(phone2);
+//        }
+//        if (!phone3.isEmpty()) {
+//            phones.add(phone3);
+//        }
+//        if (dept1 != null) {
+//            departments.add(dept1);
+//        }
+//        if (dept2 != null) {
+//            departments.add(dept2);
+//        }
+//        if (dept3 != null) {
+//            departments.add(dept3);
+//        }
+//        if (dept4 != null) {
+//            departments.add(dept4);
+//        }
+//        if (dept5 != null) {
+//            departments.add(dept5);
+//        }
+//        if (dept6 != null) {
+//            departments.add(dept6);
+//        }
+//        if (dept7 != null) {
+//            departments.add(dept7);
+//        }
+//        if (dept8 != null) {
+//            departments.add(dept8);
+//        }
+//
+//        hospital.setAddress(address);
+//        hospital.setCeo(ceo);
+//        hospital.setLatitude(mylatitude);
+//        hospital.setLongitude(mylongitude);
+//        hospital.setNameAr(name);
+//        hospital.setNameEn(name_english);
+//        hospital.setRate(rate);
+//        hospital.setEndDate(end_date);
+//        hospital.setStartDate(start_date);
         hospital.setMedicalTypeId(2);
-        hospital.setCloseHour(close_hour);
-        hospital.setOpenHour(open_hour);
-        hospital.setPhones(phones);
-        hospital.setDepartments(departments);
-        hospital.setImage(urlImage);
+//        hospital.setCloseHour(close_hour);
+//        hospital.setOpenHour(open_hour);
+//        hospital.setPhones(phones);
+//        hospital.setDepartments(departments);
+//        hospital.setImage(urlImage);
         boolean insertResult = hospitalObj.addHospital(hospital);
 
         if (insertResult == true) {
@@ -143,6 +144,36 @@ public class HospitalApiImplementation implements HospitalApi {
         hospitals = hospitalObj.getAllHospitals();
         hospitalsList.setHospitals(hospitals);
         return hospitalsList;
+    }
+    
+    @PUT
+    @Path("/update")
+    @Produces(MediaType.APPLICATION_JSON)
+   
+    public ResponseMessage update(HospitalPojo hospital)
+    {
+        
+      ResponseMessage response = new ResponseMessage();
+
+      HospitalImpl implObject = new HospitalImpl();
+      boolean isUpdated = implObject.updateHospital(hospital);
+      if(isUpdated==true)
+       {
+                  
+
+         response.setError("0");
+         response.setMessage("hospital is updated");
+         response.setStatus(true);
+         
+       }
+     else{
+                            
+
+         response.setError("1");
+         response.setMessage("hospital is not updated");
+         response.setStatus(false);
+         }
+      return response;   
     }
 
 }

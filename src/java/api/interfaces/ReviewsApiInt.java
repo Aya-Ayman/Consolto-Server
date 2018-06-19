@@ -17,13 +17,15 @@ import pojos.ServicesNumber;
  * @author hoda.CO
  */
 public interface ReviewsApiInt {
-
+    
     public ResponseMessage setReview(ReviewsPojo review);
-
     public ReviewsList_Pojo getAllReviews();
-
-    public ReviewsList_Pojo getOneReview(@PathParam("typeid") int type_id, @PathParam("serviceid") int service_id);
-
+    public ReviewsList_Pojo getOneReview(@PathParam("typeid") int type_id,@PathParam("serviceid") int service_id);
+    public ReviewsList_Pojo getByReview(@PathParam("typeid") int type_id,@PathParam("serviceid") int service_id);
+    public ReviewsList_Pojo getByComplain(@PathParam("typeid") int type_id,@PathParam("serviceid") int service_id);
+    public int getreviewscount(@PathParam("typeid") int type_id);
+    public int getcomplainscount(@PathParam("typeid") int type_id);
     public ServicesNumber reteriveReviewssNumberForMedicalService(@PathParam("id") int id);
+
 
 }

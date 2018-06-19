@@ -5,6 +5,10 @@
  */
 package dao.Implementation.lab;
 
+import dao.Implementation.clinic.ClinicImpl;
+import dao.Implementation.hospital.HospitalDepartmentsImplementation;
+import dao.Implementation.hospital.HospitalImpl;
+import dao.Implementation.hospital.HospitalPhonesImplementation;
 import dao.Implementation.review.ReviewsDaoImp;
 import dao.Interfaces.lab.Lab;
 import dbconnectionfactory.DBConnection;
@@ -16,7 +20,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import pojos.HospitalPojo;
 import pojos.LabPojo;
+import pojos.ResponseMessage;
 import pojos.ResultPojo;
 
 /**
@@ -233,6 +243,62 @@ public class LabImpl implements Lab {
 
         return results;
     }
+    
+       public boolean updateLab(LabPojo lab) {
+        LabPhonesImplementation phonesObj = new LabPhonesImplementation();
+        LabSpecializationsImplementation specializationsObj = new LabSpecializationsImplementation();
+
+            boolean isPhonesInserted=false;
+            boolean isSpecializationsInserted=false;
+
+        try (Connection connection = DBConnection.getConnection()) {
+           PreparedStatement updatePs = connection.prepareStatement("Update lab SET lab_name_en=?, lab_open_hour=? ,lab_close_hour=? ,lab_latitude=? ,lab_longitude=? ,lab_address=? ,lab_start_date=? ,lab_end_date=? ,lab_rate=? ,lab_ceo=? ,lab_name_ar=? ,medical_type_medical_type_id=? ,lab_image=? where lab_id=?");
+            updatePs.setString(1, lab.getNameEn());
+            updatePs.setString(2, lab.getOpenHour());
+            updatePs.setString(3, lab.getCloseHour());
+            updatePs.setDouble(4, lab.getLatitude());
+            updatePs.setDouble(5, lab.getLongitude());
+            updatePs.setString(6, lab.getAddress());
+            updatePs.setString(7, lab.getStartDate());
+            updatePs.setString(8, lab.getEndDate());
+            updatePs.setFloat(9, lab.getRate());
+            updatePs.setString(10, lab.getCeo());
+            updatePs.setString(11, lab.getNameAr());
+            updatePs.setInt(12, lab.getMedicalTypeId());
+            updatePs.setString(13, lab.getImage());
+            updatePs.setInt(14, lab.getId());
+
+
+            int updateflag = updatePs.executeUpdate();
+
+            int isPhonesDeleted ;
+            int isSpecializationsDeleted;
+            if (updateflag == 1) {
+
+              isPhonesDeleted=phonesObj.deleteLabPhones(lab.getId());
+
+              isSpecializationsDeleted=specializationsObj.deleteLabSpecializations(lab.getId());
+
+              if(isPhonesDeleted!=0 && isSpecializationsDeleted!=0)
+              {
+              isPhonesInserted=phonesObj.addLabPhones(lab.getId(), lab.getLabPhones());
+
+              isSpecializationsInserted=specializationsObj.addLabSpecializations(lab.getId(), lab.getLabSpecializations());
+
+              }
+              
+
+            }
+           
+
+            // System.out.println("insert" + );
+        } catch (SQLException ex) {
+            Logger.getLogger(ClinicImpl.class.getName()).log(Level.SEVERE, null, ex);
+            isPhonesInserted= false;
+        }
+
+        return isPhonesInserted&&isSpecializationsInserted;
+    }
 
 
 //    public ArrayList<ResultPojo> searchLabBySpecialization(String input) {
@@ -294,6 +360,5 @@ public class LabImpl implements Lab {
 
         return results;
     }
-
 
 }

@@ -13,6 +13,7 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -148,5 +149,35 @@ public class LabApiImplementation implements LabApi {
         labs = labObj.getAllLabs();
         labList.setLabs(labs);
         return labList;
+    }
+    
+    
+  @PUT
+    @Path("/update")
+    @Produces(MediaType.APPLICATION_JSON)
+   
+    @Override
+    public ResponseMessage update(LabPojo lab)
+    {
+        
+      ResponseMessage response = new ResponseMessage();
+
+      LabImpl implObject = new LabImpl();
+      boolean isUpdated = implObject.updateLab(lab);
+      if(isUpdated==true)
+       {
+                  
+         response.setError("0");
+         response.setMessage("lab is updated");
+         response.setStatus(true);
+         
+       }
+     else{
+                            
+         response.setError("1");
+         response.setMessage("lab is not updated");
+         response.setStatus(false);
+         }
+      return response;   
     }
 }

@@ -9,9 +9,9 @@ import api.interfaces.ClinicApi;
 import dao.Implementation.clinic.ClinicImpl;
 import java.util.ArrayList;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -25,49 +25,75 @@ import pojos.ResponseMessage;
  * @author Aya
  */
 @Path("/clinic")
-public class ClinicApiImplementation implements ClinicApi {
+public class ClinicApiImplementation implements ClinicApi{
 
     @POST
     @Path("/insert")
     // @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public ResponseMessage insertClinic(@FormParam("clinic_longitude") String clinic_longitude, @FormParam("clinic_latitude") String clinic_latitude, @FormParam("clinic_address") String clinic_address, @FormParam("clinic_specialization") String clinic_specialization, @FormParam("clinic_end_date") String clinic_end_date, @FormParam("clinic_start_date") String clinic_start_date, @FormParam("clinic_open_hour") String clinic_open_hour, @FormParam("clinic_close_hour") String clinic_close_hour, @FormParam("clinic_rate") float clinic_rate, @FormParam("clinic_doctor_name_en") String clinic_doctor_name_en, @FormParam("clinic_doctor_name_ar") String clinic_doctor_name_ar, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3,@FormParam("urlImage")String urlImage) {
+    public ResponseMessage insertClinic(ClinicPojo clinic) {
 
         ResponseMessage response = new ResponseMessage();
-        ArrayList<String> phones = new ArrayList();
-        ClinicPojo clinic = new ClinicPojo();
+//        ArrayList<String> phones = new ArrayList();
+//        ClinicPojo clinic = new ClinicPojo();
         ClinicImpl clinicObj = new ClinicImpl();
 
-        double mylongitude = Double.parseDouble(clinic_longitude);
-        double mylatitude = Double.parseDouble(clinic_latitude);
+//        double mylongitude = Double.parseDouble(clinic_longitude);
+//        double mylatitude = Double.parseDouble(clinic_latitude);
         //Date start = null, end = null;
         //start = java.sql.Date.valueOf(clinic_start_date);
         //end = java.sql.Date.valueOf(clinic_end_date);
 
-        if (!phone1.isEmpty()) {
-            phones.add(phone1);
-        }
-        if (!phone2.isEmpty()) {
-            phones.add(phone2);
-        }
-        if (!phone3.isEmpty()) {
-            phones.add(phone3);
-        }
 
-        clinic.setLatitude(mylatitude);
-        clinic.setLongitude(mylongitude);
-        clinic.setDoctorNameAr(clinic_doctor_name_ar);
-        clinic.setDoctorNameEn(clinic_doctor_name_en);
-        clinic.setSpecialization(clinic_specialization);
-        clinic.setMedicalTypeId(6);
-        clinic.setStartDate(clinic_start_date);
-        clinic.setEndDate(clinic_end_date);
-        clinic.setCloseHour(clinic_close_hour);
-        clinic.setOpenHour(clinic_open_hour);
-        clinic.setAddress(clinic_address);
-        clinic.setRate(clinic_rate);
-        clinic.setPhones(phones);
-        clinic.setImage(urlImage);
+//        if (!phone1.isEmpty()) {
+//            phones.add(phone1);
+//        }
+//        if (!phone2.isEmpty()) {
+//            phones.add(phone2);
+//        }
+//        if (!phone3.isEmpty()) {
+//            phones.add(phone3);
+//        }
+//
+//        clinic.setLatitude(mylatitude);
+//        clinic.setLongitude(mylongitude);
+//        clinic.setDoctorNameAr(clinic_doctor_name_ar);
+//        clinic.setDoctorNameEn(clinic_doctor_name_en);
+//        clinic.setSpecialization(clinic_specialization);
+        clinic.setMedicalTypeId(2);
+//        clinic.setStartDate(clinic_start_date);
+//        clinic.setEndDate(clinic_end_date);
+//        clinic.setCloseHour(clinic_close_hour);
+//        clinic.setOpenHour(clinic_open_hour);
+//        clinic.setAddress(clinic_address);
+//        clinic.setRate(clinic_rate);
+//        clinic.setPhones(phones);
+//        clinic.setImage(urlImage);
+
+//        if (!phone1.isEmpty()) {
+//            phones.add(phone1);
+//        }
+//        if (!phone2.isEmpty()) {
+//            phones.add(phone2);
+//        }
+//        if (!phone3.isEmpty()) {
+//            phones.add(phone3);
+//        }
+//
+//        clinic.setLatitude(mylatitude);
+//        clinic.setLongitude(mylongitude);
+//        clinic.setDoctorNameAr(clinic_doctor_name_ar);
+//        clinic.setDoctorNameEn(clinic_doctor_name_en);
+//        clinic.setSpecialization(clinic_specialization);
+//        clinic.setMedicalTypeId(6);
+//        clinic.setStartDate(clinic_start_date);
+//        clinic.setEndDate(clinic_end_date);
+//        clinic.setCloseHour(clinic_close_hour);
+//        clinic.setOpenHour(clinic_open_hour);
+//        clinic.setAddress(clinic_address);
+//        clinic.setRate(clinic_rate);
+//        clinic.setPhones(phones);
+//        clinic.setImage(urlImage);
         
         boolean result = clinicObj.addClinic(clinic);
 
@@ -121,5 +147,37 @@ public class ClinicApiImplementation implements ClinicApi {
         clinics = clinicObj.getAllClinics();
         clinicList.setClinics(clinics);
         return clinicList;
+    }
+    
+    
+    @PUT
+    @Path("/update")
+    @Produces(MediaType.APPLICATION_JSON)
+   
+    @Override
+    public ResponseMessage update(ClinicPojo clinic)
+    {
+        
+      ResponseMessage response = new ResponseMessage();
+
+      ClinicImpl implObject = new ClinicImpl();
+      boolean isUpdated = implObject.updateClinic(clinic);
+      if(isUpdated==true)
+       {
+                  
+
+         response.setError("0");
+         response.setMessage("clinic is updated");
+         response.setStatus(true);
+         
+       }
+     else{
+                            
+
+         response.setError("1");
+         response.setMessage("clinic is not updated");
+         response.setStatus(false);
+         }
+      return response;   
     }
 }
