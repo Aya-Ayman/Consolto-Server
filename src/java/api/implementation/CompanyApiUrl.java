@@ -87,14 +87,14 @@ public class CompanyApiUrl implements api.interfaces.CompanyApiUrlInterface{
    {    
     phoneList.add(companyPojo.getPhones().get(0));
    }
-   if(!companyPojo.getPhones().get(1).isEmpty())
-   {    
-    phoneList.add(companyPojo.getPhones().get(1));
-   }
-   if(!companyPojo.getPhones().get(2).isEmpty())
-   {    
-    phoneList.add(companyPojo.getPhones().get(2));
-   }
+//   if(!companyPojo.getPhones().get(1).isEmpty())
+//   {    
+//    phoneList.add(companyPojo.getPhones().get(1));
+//   }
+//   if(!companyPojo.getPhones().get(2).isEmpty())
+//   {    
+//    phoneList.add(companyPojo.getPhones().get(2));
+//   }
    
 //   double doubleLongitude = Double.parseDouble(companyPojo.getLongitude().toString());
 //   double doubleLatitude = Double.parseDouble(companyPojo.getLatitude().toString());
@@ -132,14 +132,14 @@ public class CompanyApiUrl implements api.interfaces.CompanyApiUrlInterface{
       {    
        phoneList.add(companyPojo.getPhones().get(0));
       }
-        if(!companyPojo.getPhones().get(1).isEmpty())
-      { 
-        phoneList.add(companyPojo.getPhones().get(1));
-      }
-        if(!companyPojo.getPhones().get(2).isEmpty())
-      {   
-        phoneList.add(companyPojo.getPhones().get(2));  
-      }
+//        if(!companyPojo.getPhones().get(1).isEmpty())
+//      { 
+//        phoneList.add(companyPojo.getPhones().get(1));
+//      }
+//        if(!companyPojo.getPhones().get(2).isEmpty())
+//      {   
+//        phoneList.add(companyPojo.getPhones().get(2));  
+//      }
 //        double doubleLongitude = Double.parseDouble(companyPojo.getLongitude().toString());
 //       double doubleLatitude = Double.parseDouble(companyPojo.getLatitude().toString());
 //        float packageFloat = Float.parseFloat(companyPojo.getPackageType().toString());
