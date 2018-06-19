@@ -36,41 +36,41 @@ public class PharmacyApiImplementation implements PharmacyApi {
     @Path("/insert")
     // @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public ResponseMessage insertPharmacy(@FormParam("pharmacy_name_en") String pharmacy_name_en, @FormParam("pharmacy_latitude") String pharmacy_latitude, @FormParam("pharmacy_longitude") String pharmacy_longitude, @FormParam("pharmacy_start_date") String pharmacy_start_date, @FormParam("pharmacy_end_date") String pharmacy_end_date, @FormParam("pharmacy_rate") float pharmacy_rate, @FormParam("pharmacy_address") String pharmacy_address, @FormParam("pharmacy_open_hour") String pharmacy_open_hour, @FormParam("pharmacy_close_hour") String pharmacy_close_hour, @FormParam("pharmacy_name_ar") String pharmacy_name_ar, @FormParam("phone1") String phone1, @FormParam("phone2") String phone2, @FormParam("phone3") String phone3,@FormParam("urlImage")String urlImage) {
+    public ResponseMessage insertPharmacy(PharmacyPojo pharmacy) {
         ResponseMessage response = new ResponseMessage();
-        PharmacyPojo pharmacy = new PharmacyPojo();
-        ArrayList<String> phones = new ArrayList();
+//        PharmacyPojo pharmacy = new PharmacyPojo();
+//        ArrayList<String> phones = new ArrayList();
         PharmacyImpl pharmacyObj = new PharmacyImpl();
 
-        double mylongitude = Double.parseDouble(pharmacy_longitude);
-        double mylatitude = Double.parseDouble(pharmacy_latitude);
+//        double mylongitude = Double.parseDouble(pharmacy_longitude);
+//        double mylatitude = Double.parseDouble(pharmacy_latitude);
 //        Date start = null, end = null;
 //        start = java.sql.Date.valueOf(pharmacy_start_date);
 //        end = java.sql.Date.valueOf(pharmacy_end_date);
 
-        if (!phone1.isEmpty()) {
-            phones.add(phone1);
-        }
-        if (!phone2.isEmpty()) {
-            phones.add(phone2);
-        }
-        if (!phone3.isEmpty()) {
-            phones.add(phone3);
-        }
+//        if (!phone1.isEmpty()) {
+//            phones.add(phone1);
+//        }
+//        if (!phone2.isEmpty()) {
+//            phones.add(phone2);
+//        }
+//        if (!phone3.isEmpty()) {
+//            phones.add(phone3);
+//        }
 
-        pharmacy.setLatitude(mylatitude);
-        pharmacy.setLongitude(mylongitude);
-        pharmacy.setNameAr(pharmacy_name_ar);
-        pharmacy.setNameEn(pharmacy_name_en);
-        pharmacy.setAddress(pharmacy_address);
-        pharmacy.setOpenHour(pharmacy_open_hour);
-        pharmacy.setCloseHour(pharmacy_close_hour);
-        pharmacy.setRate(pharmacy_rate);
-        pharmacy.setMedicalTypeId(5);
-        pharmacy.setPharmacyPhones(phones);
-        pharmacy.setStartDate(pharmacy_start_date);
-        pharmacy.setEndDate(pharmacy_end_date);
-        pharmacy.setImage(urlImage);
+//        pharmacy.setLatitude(mylatitude);
+//        pharmacy.setLongitude(mylongitude);
+//        pharmacy.setNameAr(pharmacy_name_ar);
+//        pharmacy.setNameEn(pharmacy_name_en);
+//        pharmacy.setAddress(pharmacy_address);
+//        pharmacy.setOpenHour(pharmacy_open_hour);
+//        pharmacy.setCloseHour(pharmacy_close_hour);
+//        pharmacy.setRate(pharmacy_rate);
+        pharmacy.setMedicalTypeId(3);
+//        pharmacy.setPharmacyPhones(phones);
+//        pharmacy.setStartDate(pharmacy_start_date);
+//        pharmacy.setEndDate(pharmacy_end_date);
+//        pharmacy.setImage(urlImage);
         boolean result = pharmacyObj.addPharmacy(pharmacy);
 
         if (result == true) {

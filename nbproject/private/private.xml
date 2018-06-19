@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="UI">
-            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/api/implementation/CompanyApiUrl.java</file>
-            <file>file:/C:/Users/Aya/Documents/GitHub/MedicalInsurance/src/java/api/implementation/AdminApiImplementation.java</file>
-        </group>
-<<<<<<< HEAD
-        <group/>
         <group name="chat">
             <file>file:/D:/graduation%20project/Medical3/MedicalInsurance/src/java/api/implementation/ReviewsApiImp.java</file>
             <file>file:/D:/graduation%20project/Medical3/MedicalInsurance/src/java/dao/Implementation/review/ReviewsDaoImp.java</file>
             <file>file:/D:/graduation%20project/Medical3/MedicalInsurance/src/java/api/implementation/Suggestion.java</file>
             <file>file:/D:/graduation%20project/Medical3/MedicalInsurance/src/java/dao/Implementation/suggesstion/SuggestionImpl.java</file>
         </group>
-=======
->>>>>>> f307e9baa22a1fe073413329a16cbd1be2f6f4d9
     </open-files>
 </project-private>
