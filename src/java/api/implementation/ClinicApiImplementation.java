@@ -180,4 +180,17 @@ public class ClinicApiImplementation implements ClinicApi{
          }
       return response;   
     }
+    
+    
+    @GET
+    @Path("/retrieveCount")
+    @Produces(MediaType.APPLICATION_JSON)
+    public int retrieveClinicsCount() {
+
+        ClinicImpl clinicObj = new ClinicImpl();
+        int count;
+        count = clinicObj.retrieveClinicsCount();
+        
+        return count;
+    }
 }

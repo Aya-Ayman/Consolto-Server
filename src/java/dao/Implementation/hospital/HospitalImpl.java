@@ -294,6 +294,26 @@ public class HospitalImpl implements Hospital {
 
         return isPhonesInserted&&isDepartmentsInserted;
     }
+       
+       
+        
+    public int retrieveHospitalsCount() {
+        int count = 0;
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement retrieve = connection.prepareStatement("SELECT COUNT(hospital_id) AS count FROM hospital ");
+          
+
+            ResultSet retSet = retrieve.executeQuery();
+            while (retSet.next()) {
+                count = retSet.getInt("count");  
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewsDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
 
 //    public ArrayList<ResultPojo> searchHospitalByDepartment(String input) {
 //

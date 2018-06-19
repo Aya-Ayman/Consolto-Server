@@ -22,4 +22,5 @@ public interface Pharmacy {
 
     public ArrayList<PharmacyPojo> getAllPharmacies();
 
+     public int retrievePharmaciesCount();
 }

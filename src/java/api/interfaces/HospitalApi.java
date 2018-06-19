@@ -23,5 +23,7 @@ public interface HospitalApi {
     public HospitalListPojo getAllHospitals();
 
     public ResponseMessage update(HospitalPojo hospital);
+    
+    public int retrieveHospitalsCount();
 
 }

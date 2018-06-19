@@ -8,5 +8,11 @@
             <file>file:/C:/Users/Hagar/Documents/NetBeansProjects/MedicalInsuranceSystem/src/java/dao/Implementation/clinic/ClinicImpl.java</file>
         </group>
         <group/>
+        <group name="chat">
+            <file>file:/D:/graduation%20project/Medical3/MedicalInsurance/src/java/api/implementation/ReviewsApiImp.java</file>
+            <file>file:/D:/graduation%20project/Medical3/MedicalInsurance/src/java/dao/Implementation/review/ReviewsDaoImp.java</file>
+            <file>file:/D:/graduation%20project/Medical3/MedicalInsurance/src/java/api/implementation/Suggestion.java</file>
+            <file>file:/D:/graduation%20project/Medical3/MedicalInsurance/src/java/dao/Implementation/suggesstion/SuggestionImpl.java</file>
+        </group>
     </open-files>
 </project-private>

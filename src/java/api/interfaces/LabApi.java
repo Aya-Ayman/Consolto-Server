@@ -24,5 +24,7 @@ public interface LabApi {
     public LabListPojo getAllLabs();
 
     public ResponseMessage update(LabPojo lab);
+    
+    public int retrieveLabsCount();
 
 }

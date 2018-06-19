@@ -24,5 +24,7 @@ public interface PharmacyApi {
     public PharmacyListPojo getAllPharmacies();
 
     public ResponseMessage update(PharmacyPojo pharmacy);
+    
+    public int retrievePharmaciesCount();
 
 }
