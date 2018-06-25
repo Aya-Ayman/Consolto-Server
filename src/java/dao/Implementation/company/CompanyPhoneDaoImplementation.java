@@ -66,24 +66,24 @@ public class CompanyPhoneDaoImplementation implements CompanyPhoneDaoInterface{
        PreparedStatement ps = null;
         String myQuery = "insert into company_phone(phone, company_company_id) values(?, ?)";
          int return_flage = 0;
-         int phoneListSize=phoneList.size();
-         int i=0;
-            while( phoneListSize>0)
-           {    
+//         int phoneListSize=phoneList.size();
+//         int i=0;
+//            while( phoneListSize>0)
+//           {    
            try {
                ps = connection.prepareStatement(myQuery);
-               ps.setString(1, (String) phoneList.get(i));
+               ps.setString(1, (String) phoneList.get(0));
                ps.setInt(2,companyId);
                return_flage = ps.executeUpdate();
-               if(return_flage==1)
-               {
-                   phoneListSize--;
-                   i++;
-               }
+//               if(return_flage==1)
+//               {
+//                   phoneListSize--;
+//                   i++;
+//               }
            } catch (SQLException ex) {
                Logger.getLogger(CompanyPhoneDaoImplementation.class.getName()).log(Level.SEVERE, null, ex);
            }
-          }
+          
     return return_flage == 1;
     
     }

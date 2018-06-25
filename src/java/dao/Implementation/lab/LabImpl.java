@@ -192,7 +192,7 @@ public class LabImpl implements Lab {
                 lab.setRate(retSet.getInt(10));
                 lab.setCeo(retSet.getString(11));
                 lab.setNameAr(retSet.getString(12));
-                lab.setMedicalTypeId(13);
+                lab.setMedicalTypeId(retSet.getInt(13));
 
                 lab.setImage(retSet.getString(14));
                 phones = phonesObj.getLabPhones(retSet.getInt(1));
