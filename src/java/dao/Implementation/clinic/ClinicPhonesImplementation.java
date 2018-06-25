@@ -23,14 +23,22 @@ public class ClinicPhonesImplementation implements ClinicPhones {
 
     @Override
     public boolean addClinicPhones(int clinic_id, ArrayList<String> phones) {
-
+        System.out.println("PHONES="+phones);
         try (Connection connection = (Connection) DBConnection.getConnection()) {
             PreparedStatement insertPs = connection.prepareStatement("INSERT INTO clinic_phone (phone,clinic_clinic_id) VALUES (?,?)");
+        System.out.println("conn="+connection);
 
             for (int i = 0; i < phones.size(); i++) {
+                        System.out.println("PHONE"+i+" = "+phones.get(i));
+        System.out.println("clinic_id="+clinic_id);
+
                 insertPs.setString(1, phones.get(i));
                 insertPs.setInt(2, clinic_id);
+                        System.out.println("sql2="+insertPs);
+                      //  System.out.println("res="+insertPs.executeUpdate());
+
                 insertPs.executeUpdate();
+   
             }
             return true;
         } catch (SQLException ex) {

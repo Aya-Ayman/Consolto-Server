@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -355,6 +356,24 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
             return false;
         }
 
+    }
+
+    public void upload(String path) {
+
+        try {
+            con = DBConnection.getConnection();
+
+            System.out.println("in upload db");
+
+            pst = con.prepareStatement("LOAD DATA LOCAL INFILE '"+ path +"' INTO TABLE medical_insurance_database.employee FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n"
+                    + "' IGNORE 1 LINES (employee_id,employee_email,employee_name, employee_address, employee_job, employee_password,employee_image,employee_startdate,employee_enddate,employee_packagetype,company_company_id)");
+            pst.executeUpdate();
+            System.out.println(pst);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
     }
 
 }
