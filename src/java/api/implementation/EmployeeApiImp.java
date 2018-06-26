@@ -73,6 +73,20 @@ public class EmployeeApiImp implements EmployeeApiInt {
         }
     }
 
+    
+    @POST
+    @Path("/upload")
+    //@Produces(MediaType.APPLICATION_JSON)
+    
+    public void upload() {
+     System.out.print("in upload api");
+       
+        EmployeeDaoImp obj= new EmployeeDaoImp();
+        obj.upload();
+    }
+    
+    
+    
     @POST
     @Path("/forget")
     @Consumes(MediaType.APPLICATION_JSON)

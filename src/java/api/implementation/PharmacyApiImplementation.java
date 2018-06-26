@@ -153,4 +153,16 @@ public class PharmacyApiImplementation implements PharmacyApi {
          }
       return response;   
     }
+    
+     @GET
+    @Path("/retrieveCount")
+    @Produces(MediaType.APPLICATION_JSON)
+    public int retrievePharmaciesCount() {
+
+        PharmacyImpl pharmacyObj = new PharmacyImpl();
+        int count;
+        count = pharmacyObj.retrievePharmaciesCount();
+        
+        return count;
+    }
 }

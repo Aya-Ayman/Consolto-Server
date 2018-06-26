@@ -21,5 +21,7 @@ public interface Lab {
     public boolean deleteLab(int lab_id);
 
     public ArrayList<LabPojo> getAllLabs();
+    
+    public int retrieveLabsCount() ;
 
 }

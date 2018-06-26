@@ -23,5 +23,7 @@ public interface ClinicApi {
     public ClinicListPojo getAllClinics();
 
     public ResponseMessage update(ClinicPojo clinic);
+    
+    public int retrieveClinicsCount();
 
 }

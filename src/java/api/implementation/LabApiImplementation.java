@@ -6,6 +6,7 @@
 package api.implementation;
 
 import api.interfaces.LabApi;
+import dao.Implementation.hospital.HospitalImpl;
 import dao.Implementation.lab.LabImpl;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -180,5 +181,17 @@ public class LabApiImplementation implements LabApi {
          response.setStatus(false);
          }
       return response;   
+    }
+    
+    @GET
+    @Path("/retrieveCount")
+    @Produces(MediaType.APPLICATION_JSON)
+    public int retrieveLabsCount() {
+
+        LabImpl labObj = new LabImpl();
+        int count;
+        count = labObj.retrieveLabsCount();
+        
+        return count;
     }
 }

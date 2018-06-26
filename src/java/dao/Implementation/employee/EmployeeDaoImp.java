@@ -32,6 +32,26 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
     PreparedStatement pstSelect = null;
     ArrayList<String> employeePhones;
 
+    public void upload() {
+
+        try {
+            con = DBConnection.getConnection();
+
+            System.out.println("in upload db");
+
+            pst = con.prepareStatement("LOAD DATA LOCAL INFILE 'C:\\Users\\Aya\\Desktop\\empp.csv' INTO TABLE medical_insurance_database.employee FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n"
+                    + "' IGNORE 1 LINES (employee_id,employee_email,employee_name, employee_address, employee_job, employee_password,employee_image,employee_startdate,employee_enddate,employee_packagetype,company_company_id)");
+            pst.executeUpdate();
+            System.out.println(pst);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
+    }
+    
+    
+    
     @Override
     public EmployeePojo retrieveByMailAndPassword(String mail, String password) {
         EmployeePojo employee = new EmployeePojo();

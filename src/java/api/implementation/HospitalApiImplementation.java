@@ -176,4 +176,16 @@ public class HospitalApiImplementation implements HospitalApi {
       return response;   
     }
 
+    
+     @GET
+    @Path("/retrieveCount")
+    @Produces(MediaType.APPLICATION_JSON)
+    public int retrieveHospitalsCount() {
+
+        HospitalImpl hospitalObj = new HospitalImpl();
+        int count;
+        count = hospitalObj.retrieveHospitalsCount();
+        
+        return count;
+    }
 }

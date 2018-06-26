@@ -22,4 +22,5 @@ public interface Hospital {
 
     public ArrayList<HospitalPojo> getAllHospitals();
 
+     public int retrieveHospitalsCount();
 }

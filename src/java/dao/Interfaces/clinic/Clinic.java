@@ -21,4 +21,6 @@ public interface Clinic {
     public boolean deleteClinic(int clinic_id);
 
     public ArrayList<ClinicPojo> getAllClinics();
+    
+     public int retrieveClinicsCount();
 }

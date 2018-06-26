@@ -301,6 +301,25 @@ public class LabImpl implements Lab {
     }
 
 
+        
+    public int retrieveLabsCount() {
+        int count = 0;
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement retrieve = connection.prepareStatement("SELECT COUNT(lab_id) AS count FROM lab ");
+          
+
+            ResultSet retSet = retrieve.executeQuery();
+            while (retSet.next()) {
+                count = retSet.getInt("count");  
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewsDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
+    
 //    public ArrayList<ResultPojo> searchLabBySpecialization(String input) {
 //
 //        ArrayList<ResultPojo> results = new ArrayList<>();

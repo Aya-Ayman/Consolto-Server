@@ -266,5 +266,24 @@ public class PharmacyImpl implements Pharmacy {
 
         return isInserted;
     }
+   
     
+     
+    public int retrievePharmaciesCount() {
+        int count = 0;
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement retrieve = connection.prepareStatement("SELECT COUNT(pharmacy_id) AS count FROM pharmacy ");
+          
+
+            ResultSet retSet = retrieve.executeQuery();
+            while (retSet.next()) {
+                count = retSet.getInt("count");  
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReviewsDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
 }
