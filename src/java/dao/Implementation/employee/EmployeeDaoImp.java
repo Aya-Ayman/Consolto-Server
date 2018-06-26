@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -136,21 +137,23 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
                 retrievedUser.setEndDate(rs.getString(9));
                 retrievedUser.setPackageType(rs.getFloat(10));
                 retrievedUser.setCompanyId(rs.getInt(11));
-
+                employeePhones = new ArrayList<>();
+                employeePhones.add(rs.getString(12));
+                retrievedUser.setPhones(employeePhones);
                 allEmployee.add(retrievedUser);
             }
 
-            for (int i = 0; i < employeeIDS.size(); i++) {
-                pst2 = con.prepareStatement("SELECT * FROM employee_phone WHERE employee_employee_id = ?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-                pst2.setInt(1, employeeIDS.get(i));
-                rs2 = pst2.executeQuery();
-                employeePhones = new ArrayList<>();
-
-                while (rs2.next()) {
-                    employeePhones.add(rs2.getString(1));
-                }
-                allEmployee.get(i).setPhones(employeePhones);
-            }
+//            for (int i = 0; i < employeeIDS.size(); i++) {
+//                pst2 = con.prepareStatement("SELECT * FROM employee_phone WHERE employee_employee_id = ?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+//                pst2.setInt(1, employeeIDS.get(i));
+//                rs2 = pst2.executeQuery();
+//                employeePhones = new ArrayList<>();
+//
+//                while (rs2.next()) {
+//                    employeePhones.add(rs2.getString(1));
+//                }
+//                allEmployee.get(i).setPhones(employeePhones);
+//            }
 
             return allEmployee;
 
@@ -187,21 +190,22 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
                 retrievedUser.setJob(rs.getString(5));
                 retrievedUser.setPassword(rs.getString(6));
                 retrievedUser.setImage(rs.getString(7));
-
                 retrievedUser.setStartDate(rs.getString(8));
                 retrievedUser.setEndDate(rs.getString(9));
                 retrievedUser.setPackageType(rs.getFloat(10));
                 retrievedUser.setCompanyId(rs.getInt(11));
+                 employeePhones.add(rs.getString(12));
+                retrievedUser.setPhones(employeePhones);
             }
 
-            pst2 = con.prepareStatement("SELECT * FROM employee_phone WHERE employee_employee_id = ?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            pst2.setInt(1, id);
-            rs2 = pst2.executeQuery();
-
-            while (rs2.next()) {
-                employeePhones.add(rs2.getString(1));
-            }
-            retrievedUser.setPhones(employeePhones);
+//            pst2 = con.prepareStatement("SELECT * FROM employee_phone WHERE employee_employee_id = ?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+//            pst2.setInt(1, id);
+//            rs2 = pst2.executeQuery();
+//
+//            while (rs2.next()) {
+//                employeePhones.add(rs2.getString(1));
+//            }
+//            retrievedUser.setPhones(employeePhones);
             allResponse.setEmployeePojo(retrievedUser);
 
             reponseMessage.setMessage("ReturnedEmployee");
@@ -226,7 +230,6 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
     public boolean deleteEmployee(int employeeId) throws SQLException {
 
         ArrayList<Integer> employeeIDS = new ArrayList<>();
-
         PreparedStatement pstSuggestion = null;
         PreparedStatement pstReviews = null;
 
@@ -245,7 +248,7 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
             } else {
                 pst2 = con.prepareStatement("DELETE FROM EMPLOYEE_PHONE where employee_employee_id = ?");
                 pst2.setInt(1, employeeId);
-                pst2.executeUpdate();
+               pst2.executeUpdate();
 
                 pstSuggestion = con.prepareStatement("DELETE FROM medical_insurance_suggestion where employee_employee_id = ?");
                 pstSuggestion.setInt(1, employeeId);
@@ -277,22 +280,22 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
 
             con = DBConnection.getConnection();
 
-            pst2 = con.prepareStatement("DELETE FROM EMPLOYEE_PHONE where employee_employee_id = ?");
-            pst2.setInt(1, emp.getId());
-            pst2.executeUpdate();
+//            pst2 = con.prepareStatement("DELETE FROM EMPLOYEE_PHONE where employee_employee_id = ?");
+//            pst2.setInt(1, emp.getId());
+//            pst2.executeUpdate();
+//
+//            for (int i = 0; i < emp.getPhones().size(); i++) {
+//                System.out.println("start for");
+//                pst2 = con.prepareStatement("INSERT INTO employee_phone"
+//                        + "(phone,employee_employee_id)"
+//                        + " VALUES(?,?)", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+//                pst2.setInt(2, emp.getId());
+//                pst2.setString(1, emp.getPhones().get(i));
+//                pst2.executeUpdate();
+//
+//            }
 
-            for (int i = 0; i < emp.getPhones().size(); i++) {
-                System.out.println("start for");
-                pst2 = con.prepareStatement("INSERT INTO employee_phone"
-                        + "(phone,employee_employee_id)"
-                        + " VALUES(?,?)", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-                pst2.setInt(2, emp.getId());
-                pst2.setString(1, emp.getPhones().get(i));
-                pst2.executeUpdate();
-
-            }
-
-            pst = con.prepareStatement("UPDATE employee SET employee_email = ?, employee_name = ?, employee_address = ?, employee_job= ?, employee_password = ?,  employee_image = ?, employee_startdate = ?, employee_enddate = ?, employee_packagetype = ?, company_company_id = ? WHERE employee_id = ?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            pst = con.prepareStatement("UPDATE employee SET employee_email = ?, employee_name = ?, employee_address = ?, employee_job= ?, employee_password = ?,  employee_image = ?, employee_startdate = ?, employee_enddate = ?, employee_packagetype = ?, company_company_id = ?, employee_phone_inside = ? WHERE employee_id = ?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst.setString(1, emp.getEmail());
             pst.setString(2, emp.getName());
             pst.setString(3, emp.getAddress());
@@ -303,7 +306,8 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
             pst.setString(8, emp.getEndDate());
             pst.setFloat(9, emp.getPackageType());
             pst.setInt(10, emp.getCompanyId());
-            pst.setInt(11, emp.getId());
+            pst.setInt(12, emp.getId());
+            pst.setString(11,emp.getPhones().get(0));
             System.out.println(pst);
             pst.executeUpdate();
 
@@ -331,8 +335,8 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
             con = DBConnection.getConnection();
             // Employee Insertion
             pst = con.prepareStatement("INSERT INTO EMPLOYEE"
-                    + "(employee_email,employee_name,employee_address,employee_job,employee_password,employee_image,employee_startdate,employee_enddate,employee_packagetype,company_company_id)"
-                    + " VALUES(?,?,?,?,?,?,?,?,?,?)", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                    + "(employee_email,employee_name,employee_address,employee_job,employee_password,employee_image,employee_startdate,employee_enddate,employee_packagetype,company_company_id,employee_phone_inside)"
+                    + " VALUES(?,?,?,?,?,?,?,?,?,?,?)", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             pst.setString(1, emp.getEmail());
             pst.setString(2, emp.getName());
@@ -344,30 +348,31 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
             pst.setString(8, emp.getEndDate());
             pst.setFloat(9, emp.getPackageType());
             pst.setInt(10, emp.getCompanyId());
+            pst.setString(11,emp.getPhones().get(0));
             pst.executeUpdate();
 
-            // To Get Employee ID
-            pstSelect = con.prepareStatement("SELECT * FROM employee WHERE employee_email = ?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            pstSelect.setString(1, emp.getEmail());
-            rs = pstSelect.executeQuery();
-            int employeeID = 0;
-            while (rs.next()) {
-                employeeID = rs.getInt(1);
-            }
-
-            System.out.println("number phonesssss " + emp.getPhones().size());
-            //Employee Phone Insertion
-            for (int i = 0; i < emp.getPhones().size(); i++) {
-                System.out.println("start for");
-                pst2 = con.prepareStatement("INSERT INTO employee_phone"
-                        + "(phone,employee_employee_id)"
-                        + " VALUES(?,?)", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-                pst2.setInt(2, employeeID);
-                pst2.setString(1, emp.getPhones().get(i));
-                pst2.executeUpdate();
-                System.out.println("counter" + i);
-                System.out.println("end for");
-            }
+//            // To Get Employee ID
+//            pstSelect = con.prepareStatement("SELECT * FROM employee WHERE employee_email = ?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+//            pstSelect.setString(1, emp.getEmail());
+//            rs = pstSelect.executeQuery();
+//            int employeeID = 0;
+//            while (rs.next()) {
+//                employeeID = rs.getInt(1);
+//            }
+//
+//            System.out.println("number phonesssss " + emp.getPhones().size());
+//            //Employee Phone Insertion
+//            for (int i = 0; i < emp.getPhones().size(); i++) {
+//                System.out.println("start for");
+//                pst2 = con.prepareStatement("INSERT INTO employee_phone"
+//                        + "(phone,employee_employee_id)"
+//                        + " VALUES(?,?)", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+//                pst2.setInt(2, employeeID);
+//                pst2.setString(1, emp.getPhones().get(i));
+//                pst2.executeUpdate();
+//                System.out.println("counter" + i);
+//                System.out.println("end for");
+//            }
 
             return true;
         } catch (Exception ex) {
@@ -375,6 +380,24 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
             return false;
         }
 
+    }
+
+    public void upload(String path) {
+
+        try {
+            con = DBConnection.getConnection();
+
+            System.out.println("in upload db");
+
+            pst = con.prepareStatement("LOAD DATA LOCAL INFILE '"+ path +"' INTO TABLE medical_insurance_database.employee FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n"
+                    + "' IGNORE 1 LINES (employee_id,employee_email,employee_name, employee_address, employee_job, employee_password,employee_image,employee_startdate,employee_enddate,employee_packagetype,company_company_id,employee_phone_inside)");
+            pst.executeUpdate();
+            System.out.println(pst);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
     }
 
 }

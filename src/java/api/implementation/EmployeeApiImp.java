@@ -9,6 +9,12 @@ import SendMailImp.SendMail;
 import api.interfaces.EmployeeApiInt;
 import dao.Implementation.employee.EmployeeDaoImp;
 import dao.Interfaces.employee.EmployeeDaoInt;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -31,6 +37,7 @@ import pojos.EmployeePojo;
 import pojos.ResponseMessage;
 import pojos.ResponseMessageWithEmployee;
 import pojos.ResponseMessageWithId;
+import pojos.url;
 
 /**
  *
@@ -40,7 +47,6 @@ import pojos.ResponseMessageWithId;
 public class EmployeeApiImp implements EmployeeApiInt {
 
     static EmployeeDaoImp impl = new EmployeeDaoImp();
-
     @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -74,17 +80,17 @@ public class EmployeeApiImp implements EmployeeApiInt {
     }
 
     
-    @POST
-    @Path("/upload")
-    //@Produces(MediaType.APPLICATION_JSON)
-    
-    public void upload() {
-     System.out.print("in upload api");
-       
-        EmployeeDaoImp obj= new EmployeeDaoImp();
-        obj.upload();
-    }
-    
+//    @POST
+//    @Path("/upload")
+//    //@Produces(MediaType.APPLICATION_JSON)
+//    
+//    public void upload() {
+//     System.out.print("in upload api");
+//       
+//        EmployeeDaoImp obj= new EmployeeDaoImp();
+//        obj.upload();
+//    }
+//    
     
     
     @POST
@@ -189,6 +195,10 @@ public class EmployeeApiImp implements EmployeeApiInt {
 
         return returnedResponse;
     }
+    
+    
+    
+    
 
     @PUT
     @Path("/updateEmployee/employeeID={id}")
@@ -211,17 +221,18 @@ public class EmployeeApiImp implements EmployeeApiInt {
         updatedEmployee.setStartDate(employeeObject.getStartDate());
         updatedEmployee.setEndDate(employeeObject.getEndDate());
         updatedEmployee.setPackageType(employeeObject.getPackageType());
-
-        if (!employeeObject.getPhones().get(0).isEmpty()) {
-            insertedPhones.add(employeeObject.getPhones().get(0));
-        }
+        insertedPhones.add(employeeObject.getPhones().get(0));
+        updatedEmployee.setPhones(insertedPhones);
+//        if (!employeeObject.getPhones().get(0).isEmpty()) {
+//            insertedPhones.add(employeeObject.getPhones().get(0));
+//        }
 //        if (!employeeObject.getPhones().get(1).isEmpty()) {
 //            insertedPhones.add(employeeObject.getPhones().get(1));
 //        }
 //        if (!employeeObject.getPhones().get(2).isEmpty()) {
 //            insertedPhones.add(employeeObject.getPhones().get(2));
 //        }
-        updatedEmployee.setPhones(insertedPhones);
+//        updatedEmployee.setPhones(insertedPhones);
 
         try {
             allResponse = impl.update(updatedEmployee);
@@ -254,18 +265,19 @@ public class EmployeeApiImp implements EmployeeApiInt {
         insertedEmployee.setStartDate(employeeObject.getStartDate());
         insertedEmployee.setEndDate(employeeObject.getEndDate());
         insertedEmployee.setPackageType(employeeObject.getPackageType());
+        insertedPhones.add(employeeObject.getPhones().get(0));
+        insertedEmployee.setPhones(insertedPhones);
 
-
-        if (!employeeObject.getPhones().get(0).isEmpty()) {
-            insertedPhones.add(employeeObject.getPhones().get(0));
-        }
+//        if (!employeeObject.getPhones().get(0).isEmpty()) {
+//            insertedPhones.add(employeeObject.getPhones().get(0));
+//        }
 //        if (!employeeObject.getPhones().get(1).isEmpty()) {
 //            insertedPhones.add(employeeObject.getPhones().get(1));
 //        }
 //        if (!employeeObject.getPhones().get(2).isEmpty()) {
 //            insertedPhones.add(employeeObject.getPhones().get(2));
 //        }
-        insertedEmployee.setPhones(insertedPhones);
+//        insertedEmployee.setPhones(insertedPhones);
 
         try {
             checkInsertion = impl.insert(insertedEmployee);
@@ -289,5 +301,47 @@ public class EmployeeApiImp implements EmployeeApiInt {
         }
 
         return returnedResponse;
+    }
+    
+//     @POST
+//    @Path("/upload")
+//    //@Produces(MediaType.APPLICATION_JSON)
+//    
+//    public void upload() {
+//     System.out.print("in upload api");
+//       
+//        EmployeeDaoImp obj= new EmployeeDaoImp();
+//        obj.upload();
+//    }
+    
+    
+    @POST
+    @Path("/upload")
+      public void downloadFile(url newUrl)
+    { 
+  
+                   try {
+                //String fileName = "7mada";
+                String Path="C://Users//Aya//Downloads//"+newUrl.getName();
+                File newFile= new File("C://Users//Aya//Downloads","//"+newUrl.getName());
+                downloadUsingNIO(newUrl.getPath(),newFile.getAbsolutePath());
+                EmployeeDaoImp obj= new EmployeeDaoImp();
+                  obj.upload(Path);
+                //  downloadUsingStream(url, "/Users/pankaj/sitemap_stream.xml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+                      
+     
+    }         
+    
+    
+       private static void downloadUsingNIO(String urlStr, String file) throws IOException {
+        URL url = new URL(urlStr);
+        ReadableByteChannel rbc = Channels.newChannel(url.openStream());
+        FileOutputStream fos = new FileOutputStream(file);
+        fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+        fos.close();
+        rbc.close();
     }
 }

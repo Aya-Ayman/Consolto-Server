@@ -245,6 +245,7 @@ public class LabImpl implements Lab {
     }
     
        public boolean updateLab(LabPojo lab) {
+           System.out.println("in uodate lab imp");
         LabPhonesImplementation phonesObj = new LabPhonesImplementation();
         LabSpecializationsImplementation specializationsObj = new LabSpecializationsImplementation();
 
@@ -267,10 +268,10 @@ public class LabImpl implements Lab {
             updatePs.setInt(12, lab.getMedicalTypeId());
             updatePs.setString(13, lab.getImage());
             updatePs.setInt(14, lab.getId());
-
+            System.out.println("sql is"+updatePs);
 
             int updateflag = updatePs.executeUpdate();
-
+            System.out.println("flag"+updateflag);
             int isPhonesDeleted ;
             int isSpecializationsDeleted;
             if (updateflag == 1) {

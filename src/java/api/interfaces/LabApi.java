@@ -16,6 +16,7 @@ import pojos.ResponseMessage;
  * @author Aya
  */
 public interface LabApi {
+
     public ResponseMessage insertData(LabPojo lab);
 
     public ResponseMessage deleteLab(@PathParam("lab_id") int lab_id);

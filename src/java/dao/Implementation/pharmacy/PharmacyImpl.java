@@ -222,6 +222,8 @@ public class PharmacyImpl implements Pharmacy {
 
     
     public boolean updatePharmacy(PharmacyPojo pharmacy) {
+                                        System.out.println("updatePharmacy");
+
         PharmacyPhonesImplementation phonesObj = new PharmacyPhonesImplementation();
             boolean isInserted=false;
 
@@ -247,11 +249,12 @@ public class PharmacyImpl implements Pharmacy {
             if (updateflag == 1) {
 
               isDeleted=phonesObj.deletePharmacyPhones(pharmacy.getId());
-              
+                                System.out.println("is deleted"+isInserted);
+
               if(isDeleted!=0)
               {
               isInserted=phonesObj.addPharmacyPhones(pharmacy.getId(), pharmacy.getPharmacyPhones());
-              
+                  System.out.println("is inserted"+isInserted);
               }
               
 

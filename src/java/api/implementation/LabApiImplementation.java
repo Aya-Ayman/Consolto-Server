@@ -37,12 +37,12 @@ public class LabApiImplementation implements LabApi {
     @Produces(MediaType.APPLICATION_JSON)
     public ResponseMessage insertData(LabPojo lab) {
         ResponseMessage response = new ResponseMessage();
-        
+
 //        ArrayList<String> phones = new ArrayList();
 //        ArrayList<String> specializations = new ArrayList();
 //        LabPojo lab = new LabPojo();
         LabImpl labObj = new LabImpl();
-//
+
 //        double mylongitude = Double.parseDouble(lab_longitude);
 //        double mylatitude = Double.parseDouble(lab_latitude);
         //Date start = null, end = null;
